@@ -1,7 +1,9 @@
 ![jsp](http://img.blog.csdn.net/20161109223035101)
 
 # **1. JSP概述**
+
 ## **1.1 什么是JSP**
+
 JSP（Java Server Pages）是JavaWeb服务器端的动态资源。它与html页面的作用是相同的，显示数据和获取数据。
 
 JSP全称是Java Server Pages，它和servle技术一样，都是SUN公司定义的一种用于开发动态web资源的技术。
@@ -15,11 +17,13 @@ JSP这门技术的最大的特点在于，写jsp就像在写html，但它相比h
 强调一个概念：对现在的用户而言，认为通过浏览器看到的东西都是网页。但我们程序员心里要清楚，开一个浏览器访问网页，这些网页有可能是一个html页面（即静态web资源），也有可能是一个动态web资源（即servlet或jsp程序输出的)。
 
 ## **1.2 JSP的组成**
+
 JSP = html + Java脚本（代码片段） + JSP动态标签
 
 ![jsp](http://img.blog.csdn.net/20161028215746868)
 
 ## **1.3 JSP原理**
+
 Web服务器是如何调用并执行一个jsp页面的？
 Jsp页面中的html排版标签是如何被发送到客户端的？
 Jsp页面中的java代码服务器是如何执行的？
@@ -36,7 +40,7 @@ JSP 的执行过程：
 
 JSP和Servlet的执行效率相差不大，只是第一次执行JSP页面时需要进行编译。
 
- 一般人都会以为JSP 的执行性能会和Servlet 相差很多，其实执行性能上的差别只在第一次的执行。因为JSP 在执行第一次后，会被编译成Servlet 的类文件，即为XXX.class，当再重复调用执行时，就直接执行第一次所产生的Servlet，而不用再重新把JSP编译成Servlet。因此，除了第一次的编译会花较久的时间之外，之后JSP 和Servlet 的执行速度就几乎相同了。
+一般人都会以为JSP 的执行性能会和Servlet 相差很多，其实执行性能上的差别只在第一次的执行。因为JSP 在执行第一次后，会被编译成Servlet 的类文件，即为XXX.class，当再重复调用执行时，就直接执行第一次所产生的Servlet，而不用再重新把JSP编译成Servlet。因此，除了第一次的编译会花较久的时间之外，之后JSP 和Servlet 的执行速度就几乎相同了。
 
 在执行JSP 网页时，通常可分为两个时期：转译时期(Translation Time)和请求时期(Request  Time) 。
 
@@ -47,6 +51,7 @@ JSP和Servlet的执行效率相差不大，只是第一次执行JSP页面时需�
 # **2. JSP语法**
 
 ## **2.1 JSP脚本**
+
 JSP脚本就是Java代码片段，它分为三种：
 
 - &lt;%...%>：Java语句
@@ -81,6 +86,7 @@ JSP脚本就是Java代码片段，它分为三种：
 </html>
 ```
 ## **2.2 内置对象out**
+
 out对象在JSP页面中无需创建就可以使用，它的作用是用来向客户端输出
 ```
  <body>
@@ -98,6 +104,7 @@ out对象在JSP页面中无需创建就可以使用，它的作用是用来向�
 &lt;%=”hello”%>等同于&lt;% out.print(“hello”); %>，也等同于直接在页面中写hello一样。
 
 ## **2.3 多个&lt;%...%>可以通用**
+
 在一个JSP中多个&lt;%...%>是相通的。例如：
 
 ```jsp
@@ -140,6 +147,7 @@ out对象在JSP页面中无需创建就可以使用，它的作用是用来向�
 # **3. JSP的原理**
 
 ## **3.1 JSP是特殊的Servlet**
+
 JSP是一种特殊的Servlet，当JSP页面首次被访问时，容器（Tomcat）会先把JSP编译成Servlet，然后再去执行Servlet。所以JSP其实就是一个Servlet！
 
 ![jsp](http://img.blog.csdn.net/20161028220112775)
@@ -150,7 +158,7 @@ JSP生成的Servlet存放在${CATALANA}/work目录下，我经常开玩笑的说
 
 你会发现，在JSP中的静态信息（例如&lt;html>等）在“真身”中都是使用out.write()完成打印！这些静态信息都是作为字符串输出给了客户端
 
-JSP的整篇内容都会放到名为_jspService的方法中！你可能会说<@page>不在“真身”中，<%@page>我们明天再讲
+JSP的整篇内容都会放到名为_jspService的方法中！你可能会说&lt;@page>不在“真身”中，&lt;%@page>我们明天再讲
 
 a_jsp.java的_jspService()方法：
 
@@ -869,7 +877,7 @@ public class User {
 <jsp:useBean id="user1" class="cn.itcast.domain.User" />
 ```
 
-上面代码表示在当前JSP页面中创建User类型的对象，并且把它保存到page域中了。下面我们把<jsp:useBean>标签翻译成Java代码：
+上面代码表示在当前JSP页面中创建User类型的对象，并且把它保存到page域中了。下面我们把&lt;jsp:useBean>标签翻译成Java代码：
 
 ```jsp
 <%
@@ -932,7 +940,7 @@ pageContext.setAttribute("user1", user1);
 JSP2.0要把html和css分离、要把html和javascript分离、要把Java脚本替换成标签。标签的好处是非Java人员都可以使用。
 
 JSP2.0 – 纯标签页面，即：不包含&lt;% … %>、&lt;%! … %>，以及&lt;%= … %>
-EL（Expression Language）是一门表达式语言，它对应<%=…%>。我们知道在JSP中，表达式会被输出，所以EL表达式也会被输出。
+EL（Expression Language）是一门表达式语言，它对应&lt;%=…%>。我们知道在JSP中，表达式会被输出，所以EL表达式也会被输出。
 
 ### **13.1.2　EL的格式**
 
@@ -1054,7 +1062,7 @@ header和headerValues是与请求头相关的内置对象：
 
 ### **13.4 应用初始化参数相关内置对象**
 
-- initParam：initParam是Map<String,String>类型。它对应web.xml文件中的<context-param>参数。
+- initParam：initParam是Map&lt;String,String>类型。它对应web.xml文件中的&lt;context-param>参数。
 
 
 ### **13.5 Cookie相关内置对象**
