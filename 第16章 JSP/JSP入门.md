@@ -272,10 +272,9 @@ import属性是唯一可以重复出现的属性：
 ```
 
 ## **6.5 page指令的errorPage和isErrorPage**
-我们知道，在一个JSP页面出错后，Tomcat会响应给用户错误信息（500页面）！如果你不希望Tomcat给用户输出错误信息，那么可以使用page指令的errorPage来指定错误页！也就是自定义错误页面，例如：<%@page errorPage=”xxx.jsp”%>。这时，在当前JSP页面出现错误时，会请求转发到xxx.jsp页面。
+我们知道，在一个JSP页面出错后，Tomcat会响应给用户错误信息（500页面）！如果你不希望Tomcat给用户输出错误信息，那么可以使用page指令的errorPage来指定错误页！也就是自定义错误页面，例如：&lt;%@page errorPage=”xxx.jsp”%>。这时，在当前JSP页面出现错误时，会请求转发到xxx.jsp页面。
 
 a.jsp
-
 ```jsp
 <%@ page import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page  errorPage="b.jsp" %>
@@ -318,8 +317,8 @@ b.jsp
 web.xml中配置错误页面
 
 不只可以通过JSP的page指令来配置错误页面，还可以在web.xml文件中指定错误页面。这种方式其实与page指令无关，但想来想去还是在这个位置来讲解比较合适！
-web.xml
 
+web.xml
 ```xml
   <error-page>
   	<error-code>404</error-code>
@@ -334,7 +333,6 @@ web.xml
   	<location>/error.jsp</location>
   </error-page>
 ```
-
 
 &lt;error-page>有两种使用方式：
 
@@ -352,6 +350,7 @@ web.xml
 这种方式会在控制台看到异常信息！而使用page指令时不会在控制台打印异常信息。
 
 ## **6.6 page指令的autoFlush和buffer**
+
 buffer表示当前JSP的输出流（out隐藏对象）的缓冲区大小，默认为8kb。
 
 autoFlush表示在out对象的缓冲区满时如果处理！当autoFlush为true时，表示缓冲区满时把缓冲区数据输出到客户端；当autoFlush为false时，表示缓冲区满时，抛出异常。autoFlush的默认值为true。
@@ -359,6 +358,7 @@ autoFlush表示在out对象的缓冲区满时如果处理！当autoFlush为true�
 这两个属性一般我们也不会去特意设置，都是保留默认值！
 
 ## **6.7 page指令的isELIgnored**
+
 后面我们会讲解EL表达式语言，page指令的isElIgnored属性表示当前JSP页面是否忽略EL表达式，默认值为false，表示不忽略（即支持）。
 
 ## **6.8 page指令的其他属性**
@@ -369,10 +369,10 @@ autoFlush表示在out对象的缓冲区满时如果处理！当autoFlush为true�
 - session：默认为true，表示当前JSP页面可以使用session对象，如果为false表示当前JSP页面不能使用session对象
 - extends：指定当前JSP页面生成的Servlet的父类
 
-## **6.9 <jsp-config>**
-在web.xml页面中配置<jsp-config>也可以完成很多page指定的功能！
+## **6.9 &lt;jsp-config>**
+在web.xml页面中配置&lt;jsp-config>也可以完成很多page指定的功能！
 
-```
+```xml
 <jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
@@ -398,6 +398,7 @@ include指令只有一个属性：file，指定要包含的页面，例如：
 很明显，在ol.jsp中在使用username变量，而这个变量在hel.jsp中定义的，所以只有这两个JSP文件合并后才能使用。通过include指定完成对它们的合并！
 
 # **8. taglib指令**
+
 这个指令需要在学习了自定义标签后才会使用，现在只能做了了解而已！
 
 在JSP页面中使用第三方的标签库时，需要使用taglib指令来“导包”。
@@ -490,9 +491,9 @@ pageContext也是域对象，它的范围是当前页面。它的范围也是四
 
 ```java
 pageContext.setAttribute("x", "X");
-	pageContext.setAttribute("x", "XX", PageContext.REQUEST_SCOPE);
-    pageContext.setAttribute("x", "XXX", PageContext.SESSION_SCOPE);
-    pageContext.setAttribute("x", "XXXX", PageContext.APPLICATION_SCOPE);
+pageContext.setAttribute("x", "XX", PageContext.REQUEST_SCOPE);
+pageContext.setAttribute("x", "XXX", PageContext.SESSION_SCOPE);
+pageContext.setAttribute("x", "XXXX", PageContext.APPLICATION_SCOPE);
 ```
 
 | 返回值    | 方法声明                                     | 功能描述                                     |
@@ -529,16 +530,16 @@ JSP动作标签是JavaWeb内置的动作标签，它们是已经定义好的动�
 
 JSP动作标签的格式：&lt;jsp:标签名 …>
 
-## **11.2 <jsp:include>**
+## **11.2 &lt;jsp:include>**
 
-<jsp:include>标签的作用是用来包含其它JSP页面的！你可能会说，前面已经学习了include指令了，它们是否相同呢？虽然它们都是用来包含其它JSP页面的，但它们的实现的级别是不同的！
+&lt;jsp:include>标签的作用是用来包含其它JSP页面的！你可能会说，前面已经学习了include指令了，它们是否相同呢？虽然它们都是用来包含其它JSP页面的，但它们的实现的级别是不同的！
 
 include指令是在编译级别完成的包含，即把当前JSP和被包含的JSP合并成一个JSP，然后再编译成一个Servlet。
 
 include动作标签是在运行级别完成的包含，即当前JSP和被包含的JSP都会各自生成Servlet，然后在执行当前JSP的Servlet时完成包含另一个JSP的Servlet。它与RequestDispatcher的include()方法是相同的！
 
 hel.jsp
-```
+```jsp
 <body>
 	<h1>hel.jsp</h1>
 	<jsp:include page="lo.jsp" />
@@ -551,12 +552,12 @@ lo.jsp
 ```
 其实&lt;jsp:include>在“真身”中不过是一句方法调用，即调用另一个Servlet而已。
 
-##**11.3 <jsp:forward>**
+##**11.3 &lt;jsp:forward>**
 
 forward标签的作用是请求转发！forward标签的作用与RequestDispatcher#forward()方法相同。
 
 hel.jsp
-```
+```jsp
 lo.jsp
 <%
 	out.println("<h1>lo.jsp</h1>");
@@ -564,11 +565,11 @@ lo.jsp
 ```
 注意，最后客户端只能看到lo.jsp的输出，而看不到hel.jsp的内容。也就是说在hel.jsp中的&lt;h1>hel.jsp&lt;/h1>是不会发送到客户端的。&lt;jsp:forward>的作用是“别在显示我，去显示它吧！”。
 
-# **11.4 <jsp:param>**
+# **11.4 &lt;jsp:param>**
 
-还可以在<jsp:include>和<jsp:forward>标签中使用<jsp:param>子标签，它是用来传递参数的。下面用<jsp:include>来举例说明<jsp:param>的使用。
+还可以在&lt;jsp:include>和&lt;jsp:forward>标签中使用&lt;jsp:param>子标签，它是用来传递参数的。下面用&lt;jsp:include>来举例说明&lt;jsp:param>的使用。
 
-```
+```jsp
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -588,7 +589,7 @@ lo.jsp
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 ```
 
-```
+```jsp
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -609,13 +610,15 @@ lo.jsp
 #**12. JavaBean**
 
 ## **12.1 JavaBean概述**
+
 ### **12.1.1 什么是JavaBean**
+
 JavaBean是一种规范，也就是对类的要求。它要求Java类的成员变量提供getter/setter方法，这样的成员变量被称之为JavaBean属性。
 
 JavaBean还要求类必须提供仅有的无参构造器，例如：public User() {…}
 
 User.java
-```
+```java
 package cn.itcast.domain;
 
 public class User {
@@ -638,6 +641,7 @@ public class User {
 ```
 
 ### **12.1.2 JavaBean属性**
+
 JavaBean属性是具有getter/setter方法的成员变量。
 
 - 也可以只提供getter方法，这样的属性叫只读属性
@@ -646,7 +650,7 @@ JavaBean属性是具有getter/setter方法的成员变量。
 
 JavaBean属性名要求：前两个字母要么都大写，要么都小写：
 
-```
+```java
 public class User {
 	private String iD;
 	private String ID;
@@ -658,7 +662,7 @@ public class User {
 
 JavaBean可能存在属性，但不存在这个成员变量，例如：
 
-```
+```java
 public class User {
 	public String getUsername() {
 		return "zhangSan";
@@ -666,9 +670,7 @@ public class User {
 }
 ```
 
-上例中User类有一个名为username的只读属性！但User类并没有username这个成员变量！
-
-还可以并变态一点：
+上例中User类有一个名为username的只读属性！但User类并没有username这个成员变量！还可以并变态一点：
 
 ```java
 public class User {
@@ -686,6 +688,7 @@ public class User {
 上例中User类中有一个名为username的属性，它是可读可写的属性！而Use类的成员变量名为hello！也就是说JavaBean的属性名取决与方法名称，而不是成员变量的名称。但通常没有人做这么变态的事情。
 
 ## **12.2 内省**
+
 内省的目标是得到JavaBean属性的读、写方法的反射对象，通过反射对JavaBean属性进行操作的一组API。例如User类有名为username的JavaBean属性，通过两个Method对象（一个是getUsenrmae()，一个是setUsername()）来操作User对象。
 
 如果你还不能理解内省是什么，那么我们通过一个问题来了解内省的作用。现在我们有一个Map，内容如下：
@@ -727,11 +730,12 @@ public class User {
 你可能想到的是反射，通过map的key来查找User类的Field！这么做是没有问题的，但我们要知道类的成员变量是私有的，虽然也可以通过反射去访问类的私有的成员变量，但我们也要清楚反射访问私有的东西是有“危险”的，所以还是建议通过getUsername和setUsername来访问JavaBean属性。
 
 ### **12.2.1 内省之获取BeanInfo**
+
 我们这里不想去对JavaBean规范做过多的介绍，所以也就不在多介绍BeanInfo的“出身”了。你只需要知道如何得到它，以及BeanInfo有什么。
 
 通过java.beans.Introspector的getBeanInfo()方法来获取java.beans.BeanInfo实例。
 
-```
+```java
 BeanInfo beanInfo = Introspector.getBeanInfo(User.class);
 ```
 
@@ -739,7 +743,7 @@ BeanInfo beanInfo = Introspector.getBeanInfo(User.class);
 
 通过BeanInfo可以得到这个类的所有JavaBean属性的PropertyDescriptor对象。然后就可以通过PropertyDescriptor对象得到这个属性的getter/setter方法的Method对象了。
 
-```
+```java
 PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
 ```
 
@@ -751,7 +755,7 @@ PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
 
 ### **12.2.3 完成Map数据封装到User对象中**
 
-```
+```java
 public void fun1() throws Exception {
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("username", "admin");
@@ -776,15 +780,15 @@ public void fun1() throws Exception {
 ```
 
 ## **12.3 commons-beanutils**
-提到内省，不能不提commons-beanutils这个工具。它底层使用了内省，对内省进行了大量的简化！
-使用beanutils需要的jar包：
+
+提到内省，不能不提commons-beanutils这个工具。它底层使用了内省，对内省进行了大量的简化！使用beanutils需要的jar包：
 
 - commons-beanutils.jar
 - commons-logging.jar
 
 ### **12.3.1 设置JavaBean属性**
 
-```
+```Java
 User user = new User();
 BeanUtils.setProperty(user, "username", "admin");
 BeanUtils.setProperty(user, "password", "admin123");
@@ -792,7 +796,7 @@ System.out.println(user);
 ```
 ### **12.3.2 获取JavaBean属性**
 
-```
+```java
 User user = new User("admin", "admin123");
 String username = BeanUtils.getProperty(user, "username");
 String password = BeanUtils.getProperty(user, "password");
@@ -801,7 +805,7 @@ System.out.println("username=" + username + ", password=" + password);
 
 ### **12.3.3 封装Map数据到JavaBean对象中**
 
-```
+```java
 Map<String,String> map = new HashMap<String,String>();
 map.put("username", "admin");
 map.put("password", "admin123");
@@ -815,7 +819,7 @@ System.out.println(user);
 
 在JSP中与JavaBean相关的标签有：
 
-- <jsp:useBean>：创建JavaBean对象
+- &lt;jsp:useBean>：创建JavaBean对象
 - &lt;jsp:setProperty>：设置JavaBean属性
 - &lt;jsp:getProperty>：获取JavaBean属性
 
@@ -854,9 +858,9 @@ public class User {
 }
 ```
 
-### **12.4.1 <jsp:useBean>**
+### **12.4.1 &lt;jsp:useBean>**
 
-<jsp:useBean>标签的作用是创建JavaBean对象：
+&lt;jsp:useBean>标签的作用是创建JavaBean对象：
 
 - 在当前JSP页面创建JavaBean对象
 - 把创建的JavaBean对象保存到域对象中
@@ -906,8 +910,9 @@ pageContext.setAttribute("user1", user1);
 %>
 ```
 
-### **12.4.2　<jsp:setProperty>和<jsp:getProperty>**
-<jsp:setProperty>标签的作用是给JavaBean设置属性值，而<jsp:getProperty>是用来获取属性值。在使用它们之前需要先创建JavaBean：
+### **12.4.2　&lt;jsp:setProperty>和&lt;jsp:getProperty>**
+
+&lt;jsp:setProperty>标签的作用是给JavaBean设置属性值，而&lt;jsp:getProperty>是用来获取属性值。在使用它们之前需要先创建JavaBean：
 
 ```
 <jsp:useBean id="user1" class="cn.itcast.domain.User" />
@@ -921,17 +926,21 @@ pageContext.setAttribute("user1", user1);
 # **13. EL（表达式语言）**
 
 ## **13.1 EL概述**
+
 ### **13.1.1 EL的作用**
+
 JSP2.0要把html和css分离、要把html和javascript分离、要把Java脚本替换成标签。标签的好处是非Java人员都可以使用。
 
-JSP2.0 – 纯标签页面，即：不包含<% … %>、<%! … %>，以及<%= … %>
+JSP2.0 – 纯标签页面，即：不包含&lt;% … %>、&lt;%! … %>，以及&lt;%= … %>
 EL（Expression Language）是一门表达式语言，它对应<%=…%>。我们知道在JSP中，表达式会被输出，所以EL表达式也会被输出。
 
 ### **13.1.2　EL的格式**
+
 格式：${…}
 例如：${1 + 2}
 
 ###**13.1.3　关闭EL**
+
 如果希望整个JSP忽略EL表达式，需要在page指令中指定isELIgnored=”true”。
 如果希望忽略某个EL表达式，可以在EL表达式之前添加“\”，例如：\${1 + 2}。
 
@@ -956,9 +965,11 @@ EL（Expression Language）是一门表达式语言，它对应<%=…%>。我们
 | empty  | 是否为空 | \${empty “”}，可以判断字符串、数据、集合的长度是否为0，为0返回true。empty还可以与not或!一起使用。${not empty “”} | true  |
 
 ### **13.1.5 EL不显示null**
+
 当EL表达式的值为null时，会在页面上显示空白，即什么都不显示。
 
 ## **13.2 EL表达式格式**
+
 先来了解一下EL表达式的格式！现在还不能演示它，因为需要学习了EL11个内置对象后才方便显示它。
 
 - 操作List和数组：\${list[0]}、${arr[0]}；
@@ -966,6 +977,7 @@ EL（Expression Language）是一门表达式语言，它对应<%=…%>。我们
 - 操作Map的值：\${map.key}、${map[‘key’]}，对应map.get(key)。
 
 ## **13.3 EL内置对象**
+
 EL一共11个内置对象，无需创建即可以使用。这11个内置对象中有10个是Map类型的，最后一个是pageContext对象。
 
 - pageScope
@@ -981,6 +993,7 @@ EL一共11个内置对象，无需创建即可以使用。这11个内置对象�
 - pageContext
 
 ### **13.1 域相关内置对象**
+
 域内置对象一共有四个：
 
 - pageScope：${pageScope.name}等同与pageContext.getAttribute(“name”)
@@ -1019,23 +1032,25 @@ public class Person {
 全域查找：${person}表示依次在pageScope、requesScopet、sessionScope、appliationScope四个域中查找名字为person的属性。
 
 ### **13.2 请求参数相关内置对象**
+
 param和paramValues这两个内置对象是用来获取请求参数的。
 
-- param：Map<String,String>类型，param对象可以用来获取参数，与request.getParameter()方法相同。
+- param：Map&lt;String,String>类型，param对象可以用来获取参数，与request.getParameter()方法相同。
 
 
 注意，在使用EL获取参数时，如果参数不存在，返回的是空字符串，而不是null。这一点与使用request.getParameter()方法是不同的。
 
 
-- paramValues：paramValues是Map<String, String[]>类型，当一个参数名，对应多个参数值时可以使用它。
+- paramValues：paramValues是Map&lt;String, String[]>类型，当一个参数名，对应多个参数值时可以使用它。
 
 
 ### **13.3 请求头相关内置对象**
+
 header和headerValues是与请求头相关的内置对象：
 
-- header： Map<String,String>类型，用来获取请求头。
+- header： Map&lt;String,String>类型，用来获取请求头。
 
-- headerValues：headerValues是Map<String,String[]>类型。当一个请求头名称，对应多个值时，使用该对象，这里就不在赘述。
+- headerValues：headerValues是Map&lt;String,String[]>类型。当一个请求头名称，对应多个值时，使用该对象，这里就不在赘述。
 
 ### **13.4 应用初始化参数相关内置对象**
 
@@ -1044,7 +1059,7 @@ header和headerValues是与请求头相关的内置对象：
 
 ### **13.5 Cookie相关内置对象**
 
-- cookie：cookie是Map<String,Cookie>类型，其中key是Cookie的名字，而值是Cookie对象本身
+- cookie：cookie是Map&lt;String,Cookie>类型，其中key是Cookie的名字，而值是Cookie对象本身
 
 ### **13.6 pageContext对象**
 
@@ -1066,6 +1081,7 @@ pageContext：pageContext是PageContext类型！可以使用pageContext对象调
 # **14. EL函数库**
 
 ## **14.1 什么EL函数库**
+
 EL函数库是由第三方对EL的扩展，我们现在学习的EL函数库是由JSTL添加的。JSTL明天再学
 
 EL函数库就是定义一些有返回值的静态方法。然后通过EL语言来调用它们！当然，不只是JSTL可以定义EL函数库，我们也可以自定义EL函数库
@@ -1073,8 +1089,11 @@ EL函数库就是定义一些有返回值的静态方法。然后通过EL语言�
 EL函数库中包含了很多对字符串的操作方法，以及对集合对象的操作。例如：${fn:length(“abc”)}会输出3，即字符串的长度
 
 ## **14.2 导入函数库**
+
 因为是第三方的东西，所以需要导入。导入需要使用taglib指令！
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+```
+%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+```
 
 ## **14.3 EL函数库介绍**
 
@@ -1130,6 +1149,7 @@ ${fn:escapeXml("<html></html>")}<br/> <!-- <html></html> -->
 ```
 
 ## **14.4 自定义EL函数库**
+
 - 写一个类，写一个有返回值的静态方法；
 - 编写itcast.tld文件，可以参数fn.tld文件来写，把itcast.tld文件放到/WEB-INF目录下；
 - 在页面中添加taglib指令，导入自定义标签库。
@@ -1148,7 +1168,7 @@ public class ItcastFuncations {
 
 itcast.tld（放到classes下）
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <taglib xmlns="http://java.sun.com/xml/ns/j2ee"
@@ -1170,7 +1190,7 @@ itcast.tld（放到classes下）
 
 index.jsp
 
-```
+```jsp
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="itcast" uri="/WEB-INF/itcast.tld" %>
 
