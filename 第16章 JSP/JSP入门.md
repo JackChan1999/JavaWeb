@@ -49,9 +49,9 @@ JSP和Servlet的执行效率相差不大，只是第一次执行JSP页面时需�
 ## **2.1 JSP脚本**
 JSP脚本就是Java代码片段，它分为三种：
 
-- <%...%>：Java语句
-- <%=…%>：Java表达式
-- <%!...%>：Java定义类成员
+- &lt;%...%>：Java语句
+- &lt;%=…%>：Java表达式
+- &lt;%!...%>：Java定义类成员
 
 ```jsp
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
@@ -92,13 +92,13 @@ out对象在JSP页面中无需创建就可以使用，它的作用是用来向�
   </body>
 ```
 
-其中<%=…%>与out.print()功能是相同的！它们都是向客户端输出，例如：
+其中&lt;%=…%>与out.print()功能是相同的！它们都是向客户端输出，例如：
 
-&lt;%=s1%>等同于<% out.print(s1); %>
-<%=”hello”%>等同于<% out.print(“hello”); %>，也等同于直接在页面中写hello一样。
+&lt;%=s1%>等同于&lt;% out.print(s1); %>
+&lt;%=”hello”%>等同于&lt;% out.print(“hello”); %>，也等同于直接在页面中写hello一样。
 
 ## **2.3 多个&lt;%...%>可以通用**
-在一个JSP中多个<%...%>是相通的。例如：
+在一个JSP中多个&lt;%...%>是相通的。例如：
 
 ```jsp
   <body>
@@ -187,13 +187,13 @@ final javax.servlet.http.HttpServletResponse response)
 
 JSP脚本一共三种形式：
 
-- <%...%>：内容会直接放到“真身”中
-- <%=…%>：内容会放到out.print()中，作为out.print()的参数
-- <%!…%>：内容会放到_jspService()方法之外，被类直接包含
+- &lt;%...%>：内容会直接放到“真身”中
+- &lt;%=…%>：内容会放到out.print()中，作为out.print()的参数
+- &lt;%!…%>：内容会放到_jspService()方法之外，被类直接包含
 
-前面已经讲解了<%...%>和<%=…%>，但还没有讲解<%!...%>的作用！
+前面已经讲解了&lt;%...%>和&lt;%=…%>，但还没有讲解&lt;%!...%>的作用！
 
-现在我们已经知道了，JSP其实就是一个类，一个Servlet类。<%!...%>的作用是在类中添加方法或成员的，所以<%!...%>中的内容不会出现在_jspService()中
+现在我们已经知道了，JSP其实就是一个类，一个Servlet类。&lt;%!...%>的作用是在类中添加方法或成员的，所以&lt;%!...%>中的内容不会出现在_jspService()中
 ```jsp
 　<%!
 		private String name;
@@ -205,7 +205,7 @@ JSP脚本一共三种形式：
 
 # **5. JSP注释**
 
-我们现在已经知道JSP是需要先编译成.java，再编译成.class的。其中<%-- ... --%>中的内容在JSP编译成.java时会被忽略的，即JSP注释。
+我们现在已经知道JSP是需要先编译成.java，再编译成.class的。其中&lt;%-- ... --%>中的内容在JSP编译成.java时会被忽略的，即JSP注释。
 
 也可以在JSP页面中使用html注释：&lt;!-- … -->，但这个注释在JSP编译成的.java中是存在的，它不会被忽略，而且会被发送到客户端浏览器。但是在浏览器显示服务器发送过来的html时，因为&lt;!-- … -->是html的注释，所以浏览器是不会显示它的
 
@@ -215,7 +215,7 @@ JSP脚本一共三种形式：
 
 ## **6.1 JSP指令概述**
 
-JSP指令的格式：<%@指令名 attr1=”” attr2=”” %>，一般都会把JSP指令放到JSP文件的最上方，但这不是必须的
+JSP指令的格式：&lt;%@指令名 attr1=”” attr2=”” %>，一般都会把JSP指令放到JSP文件的最上方，但这不是必须的
 
 JSP中有三大指令：page、include、taglib，最为常用，也最为复杂的就是page指令了
 
@@ -223,7 +223,7 @@ JSP中有三大指令：page、include、taglib，最为常用，也最为复杂
 
 page指令是最为常用的指令，也是属性最多的指令！
 
-page指令没有必须属性，都是可选属性。例如<%@page %>，没有给出任何属性也是可以的！
+page指令没有必须属性，都是可选属性。例如&lt;%@page %>，没有给出任何属性也是可以的！
 
 在JSP页面中，任何指令都可以重复出现！
 
@@ -239,7 +239,7 @@ page指令没有必须属性，都是可选属性。例如<%@page %>，没有给
 
 pageEncoding指定当前JSP页面的编码！这个编码是给服务器看的，服务器需要知道当前JSP使用的编码，不然服务器无法正确把JSP编译成java文件。所以这个编码只需要与真实的页面编码一致即可！在MyEclipse中，在JSP文件上点击右键，选择属性就可以看到当前JSP页面的编码了。
 
-contentType属性与response.setContentType()方法的作用相同！它会完成两项工作，一是设置响应字符流的编码，二是设置content-type响应头。例如：<%@ contentType=”text/html;charset=utf-8”%>，它会使“真身”中出现response.setContentType(“text/html;charset=utf-8”)
+contentType属性与response.setContentType()方法的作用相同！它会完成两项工作，一是设置响应字符流的编码，二是设置content-type响应头。例如：&lt;%@ contentType=”text/html;charset=utf-8”%>，它会使“真身”中出现response.setContentType(“text/html;charset=utf-8”)
 
 无论是page指令的pageEncoding还是contentType，它们的默认值都是ISO-8859-1，我们知道ISO-8859-1是无法显示中文的，所以JSP页面中存在中文的话，一定要设置这两个属性
 
@@ -254,10 +254,14 @@ contentType属性与response.setContentType()方法的作用相同！它会完�
 
 import是page指令中一个很特别的属性！
 import属性值对应“真身”中的import语句。
-import属性值可以使逗号：<%@page import=”java.net.*,java.util.*,java.sql.*”%>
-
+import属性值可以使逗号：
+```
+<%@page import=”java.net.*,java.util.*,java.sql.*”%>
+```
 import属性是唯一可以重复出现的属性：
+```
 <%@page import=”java.util.*” import=”java.net.*” import=”java.sql.*”%>
+```
 但是，我们一般会使用多个page指令来导入多个包：
 
 ```

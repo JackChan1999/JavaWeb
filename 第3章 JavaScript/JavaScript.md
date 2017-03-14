@@ -84,14 +84,18 @@ alert(typeof(d));   //  output string
 // 在JavaScript中 定义字符串  可以使用单引号 或者 双引号
 ```
 ## **6.2 JavaScript的数据类型**
-### **6.2.1JavaScript和Java一样存在两种数据类型**
+
+### **6.2.1 JavaScript和Java一样存在两种数据类型**
 - 原始值 （存储在栈Stack中简单数据）
 - 引用值 （存储在堆heap中对象）
+
 ### **6.2.2 5种原始数据类型**
 - Undefined、Null、Boolean、Number 和 String
 - JavaScript中字符串是原始数据类型
+
 ### **6.2.3 通过typeof运算符，查看变量类型**
 所有引用类型都是object
+
 ### **6.2.4 通过instanceof 运算符解决typeof对象类型判断问题**
 
 在使用 typeof 运算符时采用引用类型存储值会出现一个问题，无论引用的是什么类型的对象，它都返回 "object"。ECMAScript 引入了另一个 Java 运算符 instanceof 来解决这个问题。instanceof 运算符与 typeof 运算符相似，用于识别正在处理的对象的类型。与 typeof 方法不同的是，instanceof 方法要求开发者明确地确认对象为某特定类型。例如：
@@ -554,7 +558,6 @@ DOM 定义了访问 HTML 和 XML 文档的标准：
 | write()                | 向文档写 HTML 表达式 或 JavaScript 代码 |
  <br>
 案例：
-
 ```javascript
 // 获得id为username1的标签的value的值.
 var input = document.getElementById("username1");
@@ -572,6 +575,7 @@ for(var i=0;i<inputs.length;i++){
 ```
 
 ### **11.6.3 Document创建标签**
+
 | 方法               | 功能描述     |
 | :--------------- | :------- |
 | createElement()  | 创建一个元素标签 |
@@ -604,7 +608,9 @@ for(var i=0;i<inputs.length;i++){
 ```
 
 ## **11.7 Element对象:元素(标签)**
+
 ### **11.7.1 元素对象操作属性**
+
 | 方法                       | 功能描述   |
 | :----------------------- | :----- |
 | getAttribute(name)       | 获得属性的值 |
@@ -655,21 +661,21 @@ alert(lis.length);
 ```
 
 ## **11.8 Node对象:节点对象**
+
 ### **11.8.1 Node中的常用的属性**
 - **nodeName**
-
-- 如果节点是元素节点，nodeName返回这个元素的名称
-- 如果是属性节点，nodeName返回这个属性的名称
-- 如果是文本节点，nodeName返回一个内容为#text 的字符串
+  - 如果节点是元素节点，nodeName返回这个元素的名称
+  - 如果是属性节点，nodeName返回这个属性的名称
+  - 如果是文本节点，nodeName返回一个内容为#text 的字符串
 
 - **nodeType**
-- Node.ELEMENT_NODE    ---1    --- 元素节点
-- Node.ATTRIBUTE_NODE  ---2    --- 属性节点
-- Node.TEXT_NODE       ---3    --- 文本节点
+  - Node.ELEMENT_NODE    ---1    --- 元素节点
+  - Node.ATTRIBUTE_NODE  ---2    --- 属性节点
+  - Node.TEXT_NODE       ---3    --- 文本节点
 - **nodeValue**
-- 如果给定节点是一个属性节点，返回值是这个属性的值
-- 如果给定节点是一个文本节点，返回值是这个文本节点内容
-- 如果给定节点是一个元素节点，返回值是 null
+  - 如果给定节点是一个属性节点，返回值是这个属性的值
+  - 如果给定节点是一个文本节点，返回值是这个文本节点内容
+  - 如果给定节点是一个元素节点，返回值是 null
 
 | 节点   | nodeName | nodeType | nodeValue |
 | :--- | :------- | :------- | :-------- |
@@ -703,34 +709,33 @@ alert(t.nodeValue);             // output  文本
 ```
 ### **11.8.2 节点名称、值和类型**
 - **nodeName：其内容是给定节点的名字**
-
-- 如果是元素节点，nodeName返回这个元素的名称(标签名)
-- 如果是属性节点，nodeName返回这个属性的名称(属性名)
-- 如果是文本节点，nodeName返回一个内容为#text 的字符串
+  - 如果是元素节点，nodeName返回这个元素的名称(标签名)
+  - 如果是属性节点，nodeName返回这个属性的名称(属性名)
+  - 如果是文本节点，nodeName返回一个内容为#text 的字符串
 
 - **nodeType：返回一个整数，这个数值代表着给定节点的类型**
-- Node.ELEMENT_NODE     ---1    --- 元素节点
-- Node.ATTRIBUTE_NODE  ---2    --- 属性节点
-- Node.TEXT_NODE             ---3    --- 文本节点
+  - Node.ELEMENT_NODE     ---1    --- 元素节点
+  - Node.ATTRIBUTE_NODE  ---2    --- 属性节点
+  - Node.TEXT_NODE             ---3    --- 文本节点
 
 - **nodeValue：返回给定节点的当前值（字符串）**
-- 如果给定节点是一个属性节点，返回值是这个属性的值
-- 如果给定节点是一个文本节点，返回值是这个文本节点内容
-- 如果给定节点是一个元素节点，返回值是 null
+  - 如果给定节点是一个属性节点，返回值是这个属性的值
+  - 如果给定节点是一个文本节点，返回值是这个文本节点内容
+  - 如果给定节点是一个元素节点，返回值是 null
 
 ### **11.8.3 节点对象的父节点、子节点及同辈节点**
 - **父节点： parentNode**
-- parentNode 属性返回的节点永远是一个元素节点，因为只有元素节点才有可能包含子节点
-- document 节点的没有父节点
+  - parentNode 属性返回的节点永远是一个元素节点，因为只有元素节点才有可能包含子节点
+  - document 节点的没有父节点
 
 - **子节点**
-- childNodes：获取指定节点的所有子节点集合
-- firstChild：获取指定节点的第一个子节点
-- lastChild：获取指定节点的最后一个子节点
+  - childNodes：获取指定节点的所有子节点集合
+  - firstChild：获取指定节点的第一个子节点
+  - lastChild：获取指定节点的最后一个子节点
 
 - **同辈节点**
-- nextSibling: 返回一个给定节点的下一个兄弟节点
-- previousSibling：返回一个给定节点的上一个兄弟节点
+  - nextSibling: 返回一个给定节点的下一个兄弟节点
+  - previousSibling：返回一个给定节点的上一个兄弟节点
 
 ### **11.8.4 节点属性**
 - 节点属性attributes是Node接口定义的属性
@@ -762,15 +767,16 @@ alert(t.nodeValue);             // output  文本
 移动节点：由以下三种方法组合完成
 
 - 查找节点
-- getElementById()：通过节点的id属性，查找对应节点。
-- getElementsByName()：通过节点的name属性，查找对应节点。
-- getElementsByTagName()：通过节点名称，查找对应节点。
+  - getElementById()：通过节点的id属性，查找对应节点。
+  - getElementsByName()：通过节点的name属性，查找对应节点。
+  - getElementsByTagName()：通过节点名称，查找对应节点。
 
 - 插入节点
-- appendChild()方法
-- insertBefore()方法
+  - appendChild()方法
+  - insertBefore()方法
 
 - 替换节点：replaceChild()方法
+
 ### **11.8.9 复制节点**
 cloneNode(boolean)方法，其中，参数boolean是判断是否复制子节点
 
@@ -783,7 +789,7 @@ cloneNode(boolean)方法，其中，参数boolean是判断是否复制子节点
 获得焦点：onfocus，失去焦点：onblur
 
 innerHTML的案例
-```javascript
+```html
 var table = "
 <table width='400' border='1'>
       <tr>
@@ -799,7 +805,9 @@ function createTable(){
 }
 ```
 使用innerHTML生成动态的表格
+
 # **12. JS中的事件**
+
 HTML 4.0 的新特性之一是有能力使 HTML 事件触发浏览器中的动作（action），比如当用户点击某个 HTML 元素时启动一段 JavaScript。下面是一个属性列表，这些属性可插入 HTML 标签来定义事件动作。
 
 事件通常与函数配合使用，这样就可以通过发生的事件来驱动函数执行。
