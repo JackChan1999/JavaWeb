@@ -1,8 +1,3 @@
-# JavaWeb开发
-从Web开发初学者的角度出发，深刻且通俗地揭示了JavaWeb开发的内幕。全书共9章，详细讲解了从XML基础到HTTP协议，从Tomcat开发Web站点到HttpServletResponse和HttpservletRequest的应用，从Servlet技术到JSP技术，以及Cookie、Session、JavaBean等JavaWeb开发的各方面的知识和技巧。本书深入浅出，用通俗易懂的语言阐述其中涉及的概念，并通过结合典型翔实的Web应用案例、分析案例代码、解决常见问题等方式，帮助初学者真正明白Web应用程序开发的全过程。
-
-本书为JavaWeb开发入门基础笔记，让初学者达到能够灵活使用Java语言开发Web应用程序的程度。为了让初学者易于学习，本书力求内容通俗易懂，讲解寓教于乐，同时针对书中的每个知识点，都精心设计了经典案例，让初学者真正理解这些知识点在实际工作中如何去运用。
-
 # GitHub托管
 
 # 在线阅读
