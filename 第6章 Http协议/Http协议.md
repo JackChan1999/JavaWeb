@@ -92,13 +92,13 @@ Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
 - Host:localhost：请求的主机名为localhost
 
 - User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0：
-与浏览器和OS相关的信息。有些网站会显示用户的系统版本和浏览器版本信息，这都是通过获取User-Agent头信息而来的
+  与浏览器和OS相关的信息。有些网站会显示用户的系统版本和浏览器版本信息，这都是通过获取User-Agent头信息而来的
 
 - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8：
-告诉服务器，当前客户端可以接收的文档类型，其实这里包含了*/*，就表示什么都可以接收
+  告诉服务器，当前客户端可以接收的文档类型，其实这里包含了*/*，就表示什么都可以接收
 
 - Accept-Language: zh-cn,zh;q=0.5
-当前客户端支持的语言，可以在浏览器的工具选项中找到语言相关信息
+  当前客户端支持的语言，可以在浏览器的工具选项中找到语言相关信息
 - Accept-Encoding: gzip, deflate：支持的压缩格式。数据在网络上传递时，可能服务器会把数据压缩后再发送
 
 - Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7：客户端支持的编码
@@ -106,7 +106,7 @@ Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
 - Connection: keep-alive：客户端支持的链接方式，保持一段时间链接，默认为3000ms
 
 - Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
-因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID，然后在讲会话是讲究它！
+  因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID，然后在讲会话是讲究它！
 
 ## **6.2 POST请求**
 
@@ -119,6 +119,7 @@ Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
 </form>
 ```
 ![http](http://img.blog.csdn.net/20161028111125470)
+
 打开HttpWatch，输入hello后点击提交，查看请求内容如下：
 
 ```
@@ -140,10 +141,10 @@ keyword=hello
 POST请求是可以有体的，而GET请求不能有请求体。
 
 - Referer: http://localhost:8080/hello/index.jsp
-请求来自哪个页面，例如你在百度上点击链接到了这里，那么Referer:http://www.baidu.com；如果你是在浏览器的地址栏中直接输入的地址，那么就没有Referer这个请求头了
+  请求来自哪个页面，例如你在百度上点击链接到了这里，那么Referer:http://www.baidu.com；如果你是在浏览器的地址栏中直接输入的地址，那么就没有Referer这个请求头了
 
 - Content-Type: application/x-www-form-urlencoded
-表单的数据类型，说明会使用url格式编码数据；url编码的数据都是以“%”为前缀，后面跟随两位的16进制，例如“传智”这两个字使用UTF-8的url编码用为“%E4%BC%A0%E6%99%BA”
+  表单的数据类型，说明会使用url格式编码数据；url编码的数据都是以“%”为前缀，后面跟随两位的16进制，例如“传智”这两个字使用UTF-8的url编码用为“%E4%BC%A0%E6%99%BA”
 
 - Content-Length:13：请求体的长度，这里表示13个字节
 - keyword=hello：请求体内容！hello是在表单中输入的数据，keyword是表单字段的名字。
@@ -215,7 +216,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 ## **7.2 若干响应头**
 
 | 响应头                                      | 功能描述                        |
-| ---------------------------------------- | --------------------------- |
+| :--------------------------------------- | :-------------------------- |
 | Content-Encoding: gzip                   | 服务器发送数据时使用的压缩格式             |
 | Server:apache tomcat                     | 服务器的基本信息                    |
 | Content-Length: 80                       | 发送数据的大小                     |
@@ -254,7 +255,7 @@ Date: Tue, 11 Jul 2000 18:23:51 GMT 当前时间
 响应头对浏览器来说很重要，它说明了响应的真正含义。例如200表示响应成功了，302表示重定向，这说明浏览器需要再发一个新的请求。
 
 | 响应码  | 描述                                       |
-| ---- | ---------------------------------------- |
+| :--- | :--------------------------------------- |
 | 200  | 请求成功，浏览器会把响应体内容（通常是html）显示在浏览器中          |
 | 206  | 请求部分资源，和请求头Range使用                       |
 | 302  | 重定向，当响应码为302时，表示服务器要求浏览器重新再发一个请求，<br/>服务器会发送一个响应头Location，它指定了新请求的URL地址 |
@@ -263,7 +264,7 @@ Date: Tue, 11 Jul 2000 18:23:51 GMT 当前时间
 | 404  | 请求的资源没有找到，说明客户端错误的请求了不存在的资源              |
 | 500  | 请求资源找到了，但服务器内部出现了错误                      |
  <br>
- 304：当用户第一次请求index.html时，服务器会添加一个名为Last-Modified响应头，这个头说明了index.html的最后修改时间，浏览器会把index.html内容，以及最后响应时间缓存下来。当用户第二次请求index.html时，在请求中包含一个名为If-Modified-Since请求头，它的值就是第一次请求时服务器通过Last-Modified响应头发送给浏览器的值，即index.html最后的修改时间，If-Modified-Since请求头就是在告诉服务器，我这里浏览器缓存的index.html最后修改时间是这个，您看看现在的index.html最后修改时间是不是这个，如果还是，那么您就不用再响应这个index.html内容了，我会把缓存的内容直接显示出来。而服务器端会获取If-Modified-Since值，与index.html的当前最后修改时间比对，如果相同，服务器会发响应码304，表示index.html与浏览器上次缓存的相同，无需再次发送，浏览器可以显示自己的缓存页面，如果比对不同，那么说明index.html已经做了修改，服务器会响应200
+304：当用户第一次请求index.html时，服务器会添加一个名为Last-Modified响应头，这个头说明了index.html的最后修改时间，浏览器会把index.html内容，以及最后响应时间缓存下来。当用户第二次请求index.html时，在请求中包含一个名为If-Modified-Since请求头，它的值就是第一次请求时服务器通过Last-Modified响应头发送给浏览器的值，即index.html最后的修改时间，If-Modified-Since请求头就是在告诉服务器，我这里浏览器缓存的index.html最后修改时间是这个，您看看现在的index.html最后修改时间是不是这个，如果还是，那么您就不用再响应这个index.html内容了，我会把缓存的内容直接显示出来。而服务器端会获取If-Modified-Since值，与index.html的当前最后修改时间比对，如果相同，服务器会发响应码304，表示index.html与浏览器上次缓存的相同，无需再次发送，浏览器可以显示自己的缓存页面，如果比对不同，那么说明index.html已经做了修改，服务器会响应200
 
 ![http](http://img.blog.csdn.net/20161028111022578)
 
@@ -273,9 +274,7 @@ Date: Tue, 11 Jul 2000 18:23:51 GMT 当前时间
 
 请求头
 
-- If-Modified-Since：把上次请求的index.html的最后修改时间还给服务器；
-  状态码：304，比较If-Modified-Since的时间与文件真实的时间一样时，服务器会响应304，而且不会有响正文，表示浏览器缓存的就是最新版本
-
+- If-Modified-Since：把上次请求的index.html的最后修改时间还给服务器；状态码：304，比较If-Modified-Since的时间与文件真实的时间一样时，服务器会响应304，而且不会有响正文，表示浏览器缓存的就是最新版本
 
 ## **7.4 其他响应头**
 
@@ -293,4 +292,4 @@ Date: Tue, 11 Jul 2000 18:23:51 GMT 当前时间
 
 ## **7.5 HTML中指定响应头**
 
-在HTMl页面中可以使用&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8">来指定响应头，例如在index.html页面中给出&lt;meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">，表示浏览器只会显示index.html页面3秒，然后自动跳转到http://www.itcast.cn。
+在HTMl页面中可以使用<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">来指定响应头，例如在index.html页面中给出<meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">，表示浏览器只会显示index.html页面3秒，然后自动跳转到http://www.itcast.cn。

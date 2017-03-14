@@ -657,7 +657,7 @@ String username = request.getParameter(“username”);
 username = new String(username.getBytes(“ISO-8859-1”), “utf-8”);
 ```
 
-## **5.1、说明**
+## **5.1 说明**
 乱码问题：
 
 - 获取请求参数中的乱码问题
@@ -719,7 +719,7 @@ JavaEE已经给我们提供了一个HttpServletRequestWrapper类，它就是Http
 
 HttpServletRequestWrapper类虽然是HttpServletRequest的装饰类，但它不是用来直接使用的，而是用来让我们去继承的！当我们想写一个装饰类时，还要对所有不需要增强的方法做一次实现是很心烦的事情，但如果你去继承HttpServletRequestWrapper类，那么就只需要重写需要增强的方法即可了。
 
-## **5.3、代码**
+## **5.3 代码**
 
 EncodingRequest
 

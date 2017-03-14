@@ -429,6 +429,7 @@ ResultSet还提供了一套通过列名称来获取列数据的方法
   - 调用Connection的PreparedStatement prepareStatement(String sql模板)
   - 调用pstmt的setXxx()系列方法sql模板中的?赋值！
   - 调用pstmt的executeUpdate()或executeQuery()，但它的方法都没有参数
+
 ## **6.1 预处理的原理**
 
 服务器的工作：

@@ -221,6 +221,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)
 ```
 
 # **3. Cookie的path**
+
 ## **3.1 什么是Cookie的路径**
 
 现在有WEB应用A，向客户端发送了10个Cookie，这就说明客户端无论访问应用A的哪个Servlet都会把这10个Cookie包含在请求中！但是也许只有AServlet需要读取请求中的Cookie，而其他Servlet根本就不会获取请求中的Cookie。这说明客户端浏览器有时发送这些Cookie是多余的！
@@ -238,7 +239,7 @@ c:　/cookietest/jsp
 
 下面是浏览器请求的URL：
 
-A:　http://localhost:8080/cookietest/AServlet
+A:　http://localhost:8080/cookietest/AServlet 
 B:　http://localhost:8080/cookietest/servlet/BServlet
 C:　http://localhost:8080/cookietest/jsp/CServlet
 
@@ -430,7 +431,9 @@ public class CookieUtils {
 # 7. HttpSession
 
 ## **7.1 HttpSession概述**
+
 ### **7.1.1 什么是HttpSesssion**
+
 javax.servlet.http.HttpSession接口表示一个会话，我们可以把一个会话内需要共享的数据保存到HttSession对象中！
 
 ### **7.1.2 获取HttpSession对象**
@@ -440,6 +443,7 @@ javax.servlet.http.HttpSession接口表示一个会话，我们可以把一个�
 - HttpSession request.getSession(boolean)：当参数为true时，与requeset.getSession()相同。如果参数为false，那么如果当前会话中存在Session则返回，不存在返回null
 
 ###**7.1.3 HttpSession是域对象**
+
 我们已经学习过HttpServletRequest、ServletContext，它们都是域对象，现在我们又学习了一个HttpSession，它也是域对象。它们三个是Servlet中可以使用的域对象，而JSP中可以多使用一个域对象，明天我们再讲解JSP的第四个域对象
 
 - HttpServletRequest：一个请求创建一个request对象，所以在同一个请求中可以共享request，例如一个请求从AServlet转发到BServlet，那么AServlet和BServlet可以共享request域中的数据
@@ -450,15 +454,22 @@ javax.servlet.http.HttpSession接口表示一个会话，我们可以把一个�
 
 下面是session的域方法：
 
-- void setAttribute(String name, Object value)：用来存储一个对象，也可以称之为存储一个域属性，例如：session.setAttribute(“xxx”, “XXX”)，在session中保存了一个域属性，域属性名称为xxx，域属性的值为XXX。请注意，如果多次调用该方法，并且使用相同的name，那么会覆盖上一次的值，这一特性与Map相同
+- void setAttribute(String name, Object value)
 
-- Object getAttribute(String name)：用来获取session中的数据，当前在获取之前需要先去存储才行，例如：String value = (String) session.getAttribute(“xxx”);，获取名为xxx的域属性
+用来存储一个对象，也可以称之为存储一个域属性，例如：session.setAttribute(“xxx”, “XXX”)，在session中保存了一个域属性，域属性名称为xxx，域属性的值为XXX。请注意，如果多次调用该方法，并且使用相同的name，那么会覆盖上一次的值，这一特性与Map相同
 
-- void removeAttribute(String name)：用来移除HttpSession中的域属性，如果参数name指定的域属性不存在，那么本方法什么都不做
+- Object getAttribute(String name)
+
+用来获取session中的数据，当前在获取之前需要先去存储才行，例如：String value = (String) session.getAttribute(“xxx”);，获取名为xxx的域属性
+
+- void removeAttribute(String name)：
+
+用来移除HttpSession中的域属性，如果参数name指定的域属性不存在，那么本方法什么都不做
 
 - Enumeration getAttributeNames()：获取所有域属性的名称
 
 ## **7.2 登录案例**
+
 ![session](http://img.blog.csdn.net/20161028232631839)
 
 需要的页面：
@@ -564,6 +575,7 @@ public class LoginServlet extends HttpServlet {
 }
 ```
 ## **7.3 Session的实现原理**
+
 session底层是依赖Cookie的！我们来理解一下session的原理吧！
 
 当我首次去银行时，因为还没有账号，所以需要开一个账号，我获得的是银行卡，而银行这边的数据库中留下了我的账号，我的钱是保存在银行的账号中，而我带走的是我的卡号
@@ -595,7 +607,7 @@ session是依赖Cookie实现的。session是服务器端对象
 session保存在服务器，而sessionId通过Cookie发送给客户端，但这个Cookie的生命不为-1，即只在浏览器内存中存在，也就是说如果用户关闭了浏览器，那么这个Cookie就丢失了
 
 当用户再次打开浏览器访问服务器时，就不会有sessionId发送给服务器，那么服务器会认为你没有session，所以服务器会创建一个session，并在响应中把sessionId保存到Cookie中发送给客户端
-　　　　　
+
 你可能会说，那原来的session对象会怎样？当一个session长时间没人使用的话，服务器会把session删除了！这个时长在Tomcat中配置是30分钟，可以在${CATALANA}/conf/web.xml找到这个配置，当然你也可以在自己的web.xml中覆盖这个配置！
 
 web.xml
@@ -652,6 +664,7 @@ index.jsp
 ## **8.1 验证码有啥用**
 
 在我们注册时，如果没有验证码的话，我们可以使用URLConnection来写一段代码发出注册请求。甚至可以使用while(true)来注册！那么服务器就废了！
+
 验证码可以去识别发出请求的是人还是程序！当然，如果聪明的程序可以去分析验证码图片！但分析图片也不是一件容易的事，因为一般验证码图片都会带有干扰线，人都看不清，那么程序一定分析不出来。
 
 ## **8.2 VerifyCode类**

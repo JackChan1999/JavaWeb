@@ -78,7 +78,7 @@ quit;
 # 2. JDBC事务
 在jdbc中处理事务，都是通过Connection完成的！同一事务中所有的操作，都在使用同一个Connection对象！
 
-## **2.1、JDBC中的事务**
+## **2.1 JDBC中的事务**
 Connection的三个方法与事务相关：
 
 - setAutoCommit(boolean)：设置是否为自动提交事务，如果true（默认值就是true）表示自动提交，也就是每条执行的SQL语句都是一个单独的事务，如果设置false，那么就相当于开启了事务了
@@ -309,6 +309,7 @@ Connection类的设置保存点，以及回滚到指定保存点方法：
 ### **4.3.3 READ COMMITTED（读已提交数据）（Oracle）**
 - 防止脏读，没有处理不可重复读，也没有处理幻读；
 - 性能比REPEATABLE READ好
+
 ### **4.3.4 READ UNCOMMITTED（读未提交数据）**
 - 可能出现任何事务并发问题
 - 性能最好

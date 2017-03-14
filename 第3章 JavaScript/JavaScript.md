@@ -53,7 +53,7 @@ ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳
 # **5. js和html的结合方式**
 第一种：使用一个标签
 ```javascript
- <script type="text/javascript">  js代码; </script>
+<script type="text/javascript"> js代码; </script>
 ```
 第二种：使用script标签，引入一个外部的js文件
 
@@ -109,6 +109,7 @@ alert(oStringObject instanceof String);	//输出 "true"
 ### **6.2.5 区分 undefined 和 null**
 - undefined：变量定义了未初始化或访问对象不存在属性
 - null：表示访问的对象不存在
+
 ```javascript
 //var div1 = document.getElementById("div1111");
 //alert(div1);  // null
@@ -504,11 +505,7 @@ dom：document object model: 文档对象模型
 - 常见的标记型文档包括：HTML   XML。
 - DOM要操作标记型文档必须先进行解析。
 
-DOM：将文档解析成内存中的树状结构。通过树状结构对文档进行添加节点删除节点修改节点 查找节点
-
-DOM 是 W3C（万维网联盟）的标准
-
-DOM 定义了访问 HTML 和 XML 文档的标准：
+DOM：将文档解析成内存中的树状结构。通过树状结构对文档进行添加节点删除节点修改节点 查找节点；DOM 是 W3C（万维网联盟）的标准；DOM 定义了访问 HTML 和 XML 文档的标准：
 
 "W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。"
 

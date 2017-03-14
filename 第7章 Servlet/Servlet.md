@@ -110,7 +110,9 @@ javac -classpath F:/tomcat6/lib/servlet-api.jar -d . HelloServlet.java
 - /helloservlet/WEB-INF/classes/cn/itcast/servlet/HelloServlet.class；
 
 # 2. Servlet接口
+
 ## **2.1 Servlet的生命周期**
+
 所谓xxx的生命周期，就是说xxx的出生、服务，以及死亡。Servlet生命周期也是如此！与Servlet的生命周期相关的方法有：
 
 - void init(ServletConfig)
@@ -118,6 +120,7 @@ javac -classpath F:/tomcat6/lib/servlet-api.jar -d . HelloServlet.java
 - void destroy()
 
 ### **2.1.1 Servlet的出生**
+
 服务器会在Servlet第一次被访问时创建Servlet，或者是在服务器启动时创建Servlet。如果服务器启动时就创建Servlet，那么还需要在web.xml文件中配置。也就是说默认情况下，Servlet是在第一次被访问时由服务器创建的。
 
 而且一个Servlet类型，服务器只创建一个实例对象，例如在我们首次访问 http://localhost:8080/helloservlet/helloworld 时，服务器通过“/helloworld”找到了绑定的Servlet名称为cn.itcast.servlet.HelloServlet，然后服务器查看这个类型的Servlet是否已经创建过，如果没有创建过，那么服务器才会通过反射来创建HelloServlet的实例。当我们再次访问 http://localhost:8080/helloservlet/helloworld 时，服务器就不会再次创建HelloServlet实例了，而是直接使用上次创建的实例。
@@ -127,12 +130,15 @@ javac -classpath F:/tomcat6/lib/servlet-api.jar -d . HelloServlet.java
 我们可以把一些对Servlet的初始化工作放到init方法中！
 
 ### **2.1.2 Servlet服务**
+
 当服务器每次接收到请求时，都会去调用Servlet的service()方法来处理请求。服务器接收到一次请求，就会调用service() 方法一次，所以service()方法是会被调用多次的。正因为如此，所以我们才需要把处理请求的代码写到service()方法中！
 
 ### **2.1.3 Servlet的离去**
+
 Servlet是不会轻易离去的，通常都是在服务器关闭时Servlet才会离去！在服务器被关闭时，服务器会去销毁Servlet，在销毁Servlet之前服务器会先去调用Servlet的destroy()方法，我们可以把Servlet的临终遗言放到destroy()方法中，例如对某些资源的释放等代码放到destroy()方法中。
 
 ### **2.1.4 测试生命周期方法**
+
 修改HelloServlet如下，然后再去访问 http://localhost:8080/helloservlet/helloworld
 
 ```java
@@ -156,6 +162,7 @@ public class HelloServlet implements Servlet {
 在首次访问HelloServlet时，init方法会被执行，而且也会执行service方法。再次访问时，只会执行service方法，不再执行init方法。在关闭Tomcat时会调用destroy方法。
 
 ## **2.2 Servlet接口相关类型**
+
 在Servlet接口中还存在三个我们不熟悉的类型：
 
 - ServletRequest：service() 方法的参数，它表示请求对象，它封装了所有与请求相关的数据，它是由服务器创建的
@@ -163,6 +170,7 @@ public class HelloServlet implements Servlet {
 - ServletConfig：init()方法的参数，它表示Servlet配置对象，它对应Servlet的配置信息，对应web.xml文件中的&lt;servlet>元素
 
 ### **2.2.1 ServletRequest和ServletResponse**
+
 ServletRequest和ServletResponse是Servlet#service() 方法的两个参数，一个是请求对象，一个是响应对象，可以从ServletRequest对象中获取请求数据，可以使用ServletResponse对象完成响应。你以后会发现，这两个对象就像是一对恩爱的夫妻，永远不分离，总是成对出现。
 
 ServletRequest和ServletResponse的实例由服务器创建，然后传递给service()方法。如果在service() 方法中希望使用HTTP相关的功能，那么可以把ServletRequest和ServletResponse强转成HttpServletRequest和HttpServletResponse。这也说明我们经常需要在service()方法中对ServletRequest和ServletResponse进行强转，这是很心烦的事情。不过后面会有一个类来帮我们解决这一问题的。
@@ -181,24 +189,30 @@ HttpServletRequest方法：
 HttpServletResponse方法：
 
 - PrintWriter getWriter()
+
 获取字符响应流，使用该流可以向客户端输出响应信息。例如response.getWriter().print(“&lt;h1>Hello JavaWeb!&lt;/h1>”)
 
 - ServletOutputStream getOutputStream()
-获取字节响应流，当需要向客户端响应字节数据时，需要使用这个流，例如要向客户端响应图片
+  获取字节响应流，当需要向客户端响应字节数据时，需要使用这个流，例如要向客户端响应图片
 
 - void setCharacterEncoding(String encoding)
+
 用来设置字符响应流的编码，例如在调用setCharacterEncoding(“utf-8”);之后，再response.getWriter()获取字符响应流对象，这时的响应流的编码为utf-8，使用response.getWriter()输出的中文都会转换成utf-8编码后发送给客户端
 
 - void setHeader(String name, String value)
+
 向客户端添加响应头信息，例如setHeader(“Refresh”, “3;url=http://www.itcast.cn”)，表示3秒后自动刷新到http://www.itcast.cn
 
 - void setContentType(String contentType)
+
 该方法是setHeader(“content-type”, “xxx”)的简便方法，即用来添加名为content-type响应头的方法。content-type响应头用来设置响应数据的MIME类型，例如要向客户端响应jpg的图片，那么可以setContentType(“image/jepg”)，如果响应数据为文本类型，那么还要台同时设置编码，例如setContentType(“text/html;chartset=utf-8”)表示响应数据类型为文本类型中的html类型，并且该方法会调用setCharacterEncoding(“utf-8”)方法
 
 - void sendError(int code, String errorMsg)
+
 向客户端发送状态码，以及错误消息。例如给客户端发送404：response(404, “您要查找的资源不存在！”)
 
 ### **2.2.2 ServletConfig**
+
 ![servlet](http://img.blog.csdn.net/20161101095914427)
 
 ServletConfig对象对应web.xml文件中的&lt;servlet>元素。例如你想获取当前Servlet在web.xml文件中的配置名，那么可以使用servletConfig.getServletName()方法获取！
@@ -236,6 +250,7 @@ String value1 = servletConfig.getInitParameter(“paramName1”);//获取到para
 # 3. GenericServlet
 
 ## **3.1 GenericServlet概述**
+
 GenericServlet是Servlet接口的实现类，我们可以通过继承GenericServlet来编写自己的Servlet。下面是GenericServlet类的源代码：
 
 GenericServlet.java
@@ -398,10 +413,10 @@ public class BServlet extends HttpServlet {
 
 在&lt;servlet>元素中配置&lt;load-on-startup>元素可以让服务器在启动时就创建该Servlet，其中&lt;load-on-startup>元素的值必须是大于等于的整数，它的使用是服务器启动时创建Servlet的顺序。上例中，根据&lt;load-on-startup>的值可以得知服务器创建Servlet的顺序为Hello1Servlet、Hello2Servlet、Hello3Servlet。
 
-## **5.3 <url-pattern>**
+## **5.3 &lt;url-pattern>**
 &lt;url-pattern>是&lt;servlet-mapping>的子元素，用来指定Servlet的访问路径，即URL。它必须是以“/”开头！
 
-3.1 可以在&lt;servlet-mapping>中给出多个&lt;url-pattern>，例如：
+5.3.1 可以在<servlet-mapping>中给出多个<url-pattern>，例如：
 
 ```xml
 <servlet-mapping>
@@ -413,9 +428,9 @@ public class BServlet extends HttpServlet {
 
 那么这说明一个Servlet绑定了两个URL，无论访问/AServlet还是/BServlet，访问的都是AServlet。
 
-3.2 还可以在&lt;url-pattern>中使用通配符，所谓通配符就是星号"*"，星号可以匹配任何URL前缀或后缀，使用通配符可以命名一个Servlet绑定一组URL，例如：
+5.3.2 还可以在&lt;url-pattern>中使用通配符，所谓通配符就是星号"*"，星号可以匹配任何URL前缀或后缀，使用通配符可以命名一个Servlet绑定一组URL，例如：
 
-```
+```xml
 <url-pattern>/servlet/*<url-patter>：/servlet/a、/servlet/b，都匹配/servlet/*
 <url-pattern>*.do</url-pattern>：/abc/def/ghi.do、/a.do，都匹配*.do
 <url-pattern>/*<url-pattern>：匹配所有URL
