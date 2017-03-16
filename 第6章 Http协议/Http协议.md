@@ -293,3 +293,95 @@ Date: Tue, 11 Jul 2000 18:23:51 GMT 当前时间
 ## **7.5 HTML中指定响应头**
 
 在HTMl页面中可以使用<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">来指定响应头，例如在index.html页面中给出<meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">，表示浏览器只会显示index.html页面3秒，然后自动跳转到http://www.itcast.cn。
+
+# 8. 模拟网络请求
+
+restClient，这个是firefox上的一个插件，对应chrome浏览器叫做postman，这个插件主要用作和服务器开发人员联调协议
+
+## postman
+
+![postman](http://upload-images.jianshu.io/upload_images/3981391-02e99251afe0bdb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## restClient
+
+![](http://upload-images.jianshu.io/upload_images/3981391-a0c088ae331915b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 9. 测试请求的地址
+
+http://httpbin.org
+
+![httpbin](http://upload-images.jianshu.io/upload_images/3981391-96524f3229518fc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 10. gzip压缩
+一种压缩格式，一种压缩方式，可以对网络传输的数据进行压缩。减少网络传输的大小
+
+为什么需要压缩?因为经过压缩，可以减少体积，提高传输速度,提高用户体验
+
+## 10.1 浏览器发送器请求的过程
+
+- 1.发送请求头:Accept-Encoding:gzip
+- 2.服务器压缩数据,返回数据,在响应头里面添加Content-Encoding:gzip
+- 3.客户端,根据Content-Encoding这个响应头,对应解压
+  - 有Content-Encoding:gzip-->gzip解压
+  - 没有Content-Encoding:gzip-->标准解压
+
+app使用gzip压缩：返回的json/xml(文本信息)其实就是个特殊的网页,其实也是可以进行gzip压缩
+
+## 10.2 gzip压缩效果
+
+![gzip压缩效果](http://upload-images.jianshu.io/upload_images/3981391-318969a8bc5b1c54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+通过数据，我们得知，文本的压缩率，大概可以达到70%左右。压缩率很高
+
+## 10.3 gzip压缩的实现
+
+```java
+try {
+	boolean isGzip = false;
+	//1.创建httpclient
+	DefaultHttpClient httpClient = new DefaultHttpClient();
+	//2.创建get请求
+	HttpGet get = new HttpGet("http://httpbin.org/gzip");
+	//① 添加请求头 Accept-Encoding:"gzip, deflate"
+	get.addHeader("Accept-Encoding", "gzip");
+	//3.执行请求
+	HttpResponse response = httpClient.execute(get);
+	if (response.getStatusLine().getStatusCode() == 200) {
+		//② 得到响应头,Content-Encoding:"gzip"
+		Header[] headers = response.getHeaders("Content-Encoding");
+		for (Header header : headers) {
+			if (header.getValue().equals("gzip")) {//后台server把数据进行了gzip压缩
+				isGzip = true;
+			}
+		}
+		String result = "";
+		HttpEntity entity = response.getEntity();
+		//③根据是否使用gzip压缩.采取不同的解压方式
+		if (isGzip) {
+			//④进行gzip的解压
+			GZIPInputStream in = new GZIPInputStream(response.getEntity().getContent());
+			//in-->string
+			result = convertStreamToString(in);
+		} else {
+			//4.打印结果
+			result = EntityUtils.toString(entity);
+		}
+		System.out.println("result:" + result);
+	}
+} catch (Exception e) {
+	e.printStackTrace();
+}
+```
+# 11. 抓包
+
+## [11.1 Fiddler](http://www.telerik.com/fiddler)
+只能抓浏览器返回的包，即只可以抓PC上的包，无法抓手机上的包
+![Fiddler](http://upload-images.jianshu.io/upload_images/3981391-a253c69288b70c37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## [11.2 Wireshark](https://www.wireshark.org/)
+世界上最流行的网络协议分析器，[抓包工具Wireshark基本介绍和学习TCP三次握手](http://blog.csdn.net/axi295309066/article/details/62141352)
+
+![Wireshark](http://upload-images.jianshu.io/upload_images/3981391-ddb7479bc322b078.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+通过ping命令拿到网址的IP
+![Wireshark](http://upload-images.jianshu.io/upload_images/3981391-67e132b813b85c7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
