@@ -1,7 +1,7 @@
-{ 
-"description": "JavaWeb开发",
-"title" : "JavaWeb开发",
-"language": "zh-hans",
-"author" : "AllenIverson",
-"gitbook": "3.2.2"
+{
+    "author": "AllenIverson",
+    "description": "JavaWeb开发",
+    "gitbook": "3.2.2",
+    "language": "zh-hans",
+    "title": "JavaWeb开发"
 }
