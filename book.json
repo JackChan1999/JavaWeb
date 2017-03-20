@@ -3,5 +3,8 @@
     "description": "JavaWeb开发",
     "gitbook": "3.2.2",
     "language": "zh-hans",
-    "title": "JavaWeb开发"
+    "title": "JavaWeb开发",
+    "pdf": {
+        "fontFamily": "等线"
+    }
 }
