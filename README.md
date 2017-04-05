@@ -1,14 +1,14 @@
-# GitHub托管
+## GitHub托管
 
 **https://github.com/JackChen1999/JavaWeb**
 
 请读者点击Star进行关注并支持！
 
-# 在线阅读
+## 在线阅读
 
 **https://alleniverson.gitbooks.io/javaweb/content**
 
-# 课程结构
+## 目录
 
 * [1. JavaScript](https://alleniverson.gitbooks.io/javaweb/content/第3章%20JavaScript/JavaScript.html)
 * [2. XML解析器](https://alleniverson.gitbooks.io/javaweb/content/第4章%20XML基础/XML解析器.html)
@@ -33,3 +33,17 @@
 * [21. MVC设计模式](https://alleniverson.gitbooks.io/javaweb/content/第17章%20JavaWeb开发/MVC设计模式.html)
 * [22. 在线支付](https://alleniverson.gitbooks.io/javaweb/content/第17章%20JavaWeb开发/在线支付.html)
 * [23. Jquery](https://alleniverson.gitbooks.io/javaweb/content/第17章%20JavaWeb开发/Jquery.html)
+
+## 关注我
+
+- Email：<815712739@qq.com>
+- CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
+- 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
+- GitHub：[JackChen1999](https://github.com/JackChen1999)
+- GitBook：[alleniverson](https://www.gitbook.com/@alleniverson)
+
+如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！
+
+|                  微信赞赏支持                  |                 支付宝赞赏支持                  |
+| :--------------------------------------: | :--------------------------------------: |
+| <img src="assets/weixin.png" width="300" /> | <img src="assets/支付宝.jpg" width="300" /> |
