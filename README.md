@@ -2,8 +2,8 @@
 
 ![](assets/note.jpg)
 
-> 十年生死两茫茫，不思量，自难忘，华年短暂，陈辞岁月悠悠伤，	
-> 满腔热血已芜荒，展未来，后生强，战战兢兢，如履薄冰心彷徨，	
+> 十年生死两茫茫，不思量，自难忘，华年短暂，陈辞岁月悠悠伤，
+> 满腔热血已芜荒，展未来，后生强，战战兢兢，如履薄冰心彷徨，
 > 青丝化雪、鬓角成霜，已是英雄迟暮，人生怎慷慨激昂？
 
 ## GitHub托管
@@ -22,6 +22,8 @@
 * [2. XML解析器](https://alleniverson.gitbooks.io/javaweb/content/第4章%20XML基础/XML解析器.html)
 * [3. JavaWeb开发入门](https://alleniverson.gitbooks.io/javaweb/content/第5章%20Tomcat开发Web站点/JavaWeb开发入门.html)
 * [4. Http协议](https://alleniverson.gitbooks.io/javaweb/content/第6章%20Http协议/Http协议.html)
+* [HTTP协议详解](第6章 Http协议/HTTP协议详解.md)
+* [HTTP响应报文与工作原理详解](第6章 Http协议/HTTP响应报文与工作原理详解.md)
 * [5. Servlet](https://alleniverson.gitbooks.io/javaweb/content/第7章%20Servlet/Servlet.html)
 * [6. 请求和响应](https://alleniverson.gitbooks.io/javaweb/content/第8章%20请求响应/HttpServletResponse和HttpServletRequest.html)
 * [7. Cookie和Session](https://alleniverson.gitbooks.io/javaweb/content/第9章%20会话及其会话技术/Cookie和Session.html)
@@ -47,7 +49,7 @@
 - Email：<815712739@qq.com>
 - CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
 - 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
-- GitHub：[JackChen1999](https://github.com/JackChen1999)
+- GitHub：[JackChan1999](https://github.com/JackChan1999)
 - GitBook：[alleniverson](https://www.gitbook.com/@alleniverson)
 
 如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！

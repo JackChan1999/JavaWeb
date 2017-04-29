@@ -5,6 +5,8 @@
 * [2. XML解析器](第4章 XML基础/XML解析器.md)
 * [3. JavaWeb开发入门](第5章 Tomcat开发Web站点/JavaWeb开发入门.md)
 * [4. Http协议](第6章 Http协议/Http协议.md)
+* [HTTP协议详解](第6章 Http协议/HTTP协议详解.md)
+* [HTTP响应报文与工作原理详解](第6章 Http协议/HTTP响应报文与工作原理详解.md)
 * [5. Servlet技术](第7章 Servlet/Servlet.md)
 * [6. 请求和响应](第8章 请求响应/HttpServletResponse和HttpServletRequest.md)
 * [7. Cookie和Session](第9章 会话及其会话技术/Cookie和Session.md)
@@ -24,4 +26,3 @@
 * [21. MVC设计模式](第17章 JavaWeb开发/MVC设计模式.md)
 * [22. 在线支付](第17章 JavaWeb开发/在线支付.md)
 * [23. Jquery](第17章 JavaWeb开发/Jquery.md)
-
