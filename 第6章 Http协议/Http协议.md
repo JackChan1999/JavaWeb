@@ -19,7 +19,7 @@ HTTP协议是学习JavaWEB开发的基石，不深入了解HTTP协议，就不�
 
 ## OSI网络七层协议
 
-应用层（HTTP、FTP、SMTP、POP3、TELNET）->表示层->会话层->传输层（TCP、UDP）->网络层（IP）->数据链路层->物理层
+应用层（HTTP、FTP、SMTP、POP3、TELNET）→ 表示层 → 会话层 → 传输层（TCP、UDP）→ 网络层（IP）→ 数据链路层 → 物理层
 
 # **2. HTTP协议简介**
 
@@ -89,25 +89,25 @@ Connection: keep-alive
 Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
 ```
 
-- GET /hello/index.jsp HTTP/1.1：GET请求，请求服务器路径为/hello/index.jsp，协议为1.1
+- `GET /hello/index.jsp HTTP/1.1`：GET请求，请求服务器路径为/hello/index.jsp，协议为1.1
 
-- Host:localhost：请求的主机名为localhost
+- `Host:localhost`：请求的主机名为localhost
 
-- User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0：
+- `User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0`：
   与浏览器和OS相关的信息。有些网站会显示用户的系统版本和浏览器版本信息，这都是通过获取User-Agent头信息而来的
 
-- Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8：
+- `Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8`：
   告诉服务器，当前客户端可以接收的文档类型，其实这里包含了*/*，就表示什么都可以接收
 
-- Accept-Language: zh-cn,zh;q=0.5
+- `Accept-Language: zh-cn,zh;q=0.5`
   当前客户端支持的语言，可以在浏览器的工具选项中找到语言相关信息
-- Accept-Encoding: gzip, deflate：支持的压缩格式。数据在网络上传递时，可能服务器会把数据压缩后再发送
+- `Accept-Encoding: gzip, deflate`：支持的压缩格式。数据在网络上传递时，可能服务器会把数据压缩后再发送
 
-- Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7：客户端支持的编码
+- `Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7`：客户端支持的编码
 
-- Connection: keep-alive：客户端支持的链接方式，保持一段时间链接，默认为3000ms
+- `Connection: keep-alive`：客户端支持的链接方式，保持一段时间链接，默认为3000ms
 
-- Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
+- `Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98`
   因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID，然后在讲会话是讲究它！
 
 ## **6.2 POST请求**
@@ -144,7 +144,7 @@ POST请求是可以有体的，而GET请求不能有请求体。
 
 - `Referer: http://localhost:8080/hello/index.jsp`
 
-  请求来自哪个页面，例如你在百度上点击链接到了这里，那么Referer:http://www.baidu.com；如果你是在浏览器的地址栏中直接输入的地址，那么就没有Referer这个请求头了
+  请求来自哪个页面，例如你在百度上点击链接到了这里，那么`Referer:http://www.baidu.com`；如果你是在浏览器的地址栏中直接输入的地址，那么就没有Referer这个请求头了
 
 - `Content-Type: application/x-www-form-urlencoded`
 
@@ -239,8 +239,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 | Last-Modified                            | 最后修改时间                      |
 | Refresh                                  | 自动刷新，n秒后跳转到另一个页面            |
 | Set-Cookie                               | 发送Cookie信息                  |
-<br>
-Location: http://www.it315.org/index.jsp  配合302实现请求重定向
+`Location: http://www.it315.org/index.jsp`  配合302实现请求重定向
 
 ![http](http://img.blog.csdn.net/20161030185328767)
 
