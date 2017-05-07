@@ -288,11 +288,11 @@ Date: Tue, 11 Jul 2000 18:23:51 GMT 当前时间
 
 2、自动刷新响应头，浏览器会在3秒之后请求http://www.itcast.cn：
 
-- Refresh: 3;url=http://www.itcast.cn
+- `Refresh: 3;url=http://www.itcast.cn`
 
 ## **7.5 HTML中指定响应头**
 
-在HTMl页面中可以使用<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">来指定响应头，例如在index.html页面中给出<meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">，表示浏览器只会显示index.html页面3秒，然后自动跳转到http://www.itcast.cn。
+在HTMl页面中可以使用`<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">`来指定响应头，例如在index.html页面中给出`<meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">`，表示浏览器只会显示index.html页面3秒，然后自动跳转到http://www.itcast.cn
 
 # 8. 模拟网络请求
 
