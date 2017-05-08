@@ -21,6 +21,10 @@ HTTP协议是学习JavaWEB开发的基石，不深入了解HTTP协议，就不�
 
 应用层（HTTP、FTP、SMTP、POP3、TELNET）→ 表示层 → 会话层 → 传输层（TCP、UDP）→ 网络层（IP）→ 数据链路层 → 物理层
 
+![](img/网络协议.jpg)
+
+![](img/http.png)
+
 # **2. HTTP协议简介**
 
 HTTP使用请求-响应的方式进行传输，一个请求对应一个响应，并且请求只能是由客户端发起的。
@@ -75,11 +79,11 @@ HttpWatch和FireBug这些工具对浏览器而言不是必须的，但对我们�
 
 ## **6.1 GET请求**
 
-Get是常用的方法，它的作用是获取服务器中的某个资源。客户端用Get方法发起一次Http请求，服务器将对应的资源返回给客户端。
+Get是最常用的方法，它的作用是获取服务器中的某个资源。客户端用Get方法发起一次Http请求，服务器将对应的资源返回给客户端。
 
-需要注意的是，Get请求的参数都需要放到请求的URL中，第一个参数之前有一个"?"，参数的格式为：参数名=参数值，参数之前用"&"链接
+需要注意的是，Get请求的参数都需要放到请求的URL中，第一个参数之前有一个"?"，参数的格式为：参数名=参数值，参数之间用"&"链接
 
-打开IE，在访问hello项目的index.jsp之间打开HttpWatch，并点击“Record”按钮。然后访问index.jsp页面。查看请求内容如下：
+打开IE，在访问hello项目的index.jsp之前打开HttpWatch，并点击“Record”按钮。然后访问index.jsp页面。查看请求内容如下：
 
 ```
 GET /hello/index.jsp HTTP/1.1
@@ -104,7 +108,7 @@ Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
   告诉服务器，当前客户端可以接收的文档类型，其实这里包含了*/*，就表示什么都可以接收
 
 - `Accept-Language: zh-cn,zh;q=0.5`
-  当前客户端支持的语言，可以在浏览器的工具选项中找到语言相关信息
+  当前客户端支持的语言，可以在浏览器的工具→选项中找到语言相关信息
 - `Accept-Encoding: gzip, deflate`：支持的压缩格式。数据在网络上传递时，可能服务器会把数据压缩后再发送
 
 - `Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7`：客户端支持的编码
@@ -112,7 +116,7 @@ Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
 - `Connection: keep-alive`：客户端支持的链接方式，保持一段时间链接，默认为3000ms
 
 - `Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98`
-  因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID，然后在讲会话是讲究它！
+  因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID
 
 ## **6.2 POST请求**
 
@@ -146,7 +150,7 @@ Cookie: JSESSIONID=E365D980343B9307023A1D271CC48E7D
 
 keyword=hello
 ```
-POST请求是可以有体的，而GET请求不能有请求体。
+POST请求是可以有请求体的，而GET请求不能有请求体。
 
 - `Referer: http://localhost:8080/hello/index.jsp`
 
@@ -240,7 +244,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 - Server: Apache-Coyote/1.1：服务器的版本信息
 - Content-Type: text/html;charset=UTF-8：响应体使用的编码为UTF-8
 - Content-Length: 724：响应体为724字节
-- Set-Cookie: JSESSIONID=C97E2B4C55553EAB46079A4F263435A4; Path=/hello：响应给客户端的Cookie；
+- Set-Cookie: JSESSIONID=C97E2B4C55553EAB46079A4F263435A4; Path=/hello：响应给客户端的Cookie
 - Date: Wed, 25 Sep 2012 04:15:03 GMT：响应的时间，这可能会有8小时的时区差
 
 ## **7.2 若干响应头**
@@ -267,7 +271,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 
 `Content-Type: text/html; charset=GB2312` 当前所发送的数据的基本信息，（数据的类型，所使用的编码）
 
-`Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT` 缓存相关的头
+`Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT` 最后的修改时间
 
 `Refresh: 1;url=http://www.it315.org` 通知浏览器进行定时刷新，此值可以是一个数字指定多长时间以后刷新当前页面，这个数字之后也可以接一个分号后跟一个URL地址指定多长时间后刷新到哪个URL
 
@@ -314,13 +318,15 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 
 以上三个头都是用来控制缓存的，是因为历史原因造成的，不同的浏览器认识不同的头，我们通常三个一起使用保证通用性
 
-2、自动刷新响应头，浏览器会在3秒之后请求http://www.itcast.cn
+2、自动刷新响应头，浏览器会在3秒之后请求`http://www.itcast.cn`
 
 - `Refresh: 3;url=http://www.itcast.cn`
 
 ## **7.5 HTML中指定响应头**
 
-在HTMl页面中可以使用`<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">`来指定响应头，例如在index.html页面中给出`<meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">`，表示浏览器只会显示index.html页面3秒，然后自动跳转到http://www.itcast.cn
+在HTMl页面中可以使用`<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">`来指定响应头，例如在index.html页面中给出`<meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">`，表示浏览器只会显示index.html页面3秒，然后自动跳转到`http://www.itcast.cn`
+
+![](img/header.png)
 
 # 8. 模拟网络请求
 

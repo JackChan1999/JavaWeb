@@ -27,6 +27,8 @@
 * [6. HTTP协议详解](第6章 Http协议/HTTP协议详解.md)
 * [7. HTTP响应报文与工作原理详解](第6章 Http协议/HTTP响应报文与工作原理详解.md)
 * [8. 写给那些让我糊里糊涂的HTTP、TCP、UDP、Socket](第6章 Http协议/写给那些让我糊里糊涂的HTTP、TCP、UDP、Socket.md)
+* [Wireshark基本介绍和学习TCP三次握手](第6章 Http协议/Wireshark基本介绍和学习TCP三次握手.md)
+* [Wireshark抓包实战](第6章 Http协议/Wireshark抓包实战.md)
 * [9. Servlet技术](第7章 Servlet/Servlet.md)
 * [10. 请求和响应](第8章 请求响应/HttpServletResponse和HttpServletRequest.md)
 * [11. Cookie和Session](第9章 会话及其会话技术/Cookie和Session.md)
