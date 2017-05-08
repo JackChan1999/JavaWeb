@@ -513,3 +513,43 @@ public class MultipartEntity implements HttpEntity {
     }
 }
 ```
+```java
+/**
+     * 发送MultipartRequest,可以传字符串参数、文件、Bitmap等参数,这种请求为POST类型
+     */
+    protected void sendMultiRequest() {
+        // 2、创建请求
+        MultipartRequest multipartRequest = new MultipartRequest("你的url",
+                new RequestListener<String>() {
+                    @Override
+                    public void onComplete(int stCode, String response, String errMsg) {
+                        // 该方法执行在UI线程
+                    }
+                });
+
+        // 3、添加各种参数
+        // 添加header
+        multipartRequest.addHeader("header-name", "value");
+
+        // 通过MultipartEntity来设置参数
+        MultipartEntity multi = multipartRequest.getMultiPartEntity();
+        // 文本参数
+        multi.addStringPart("location", "模拟的地理位置");
+        multi.addStringPart("type", "0");
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+        // 直接从上传Bitmap
+        multi.addBinaryPart("images", bitmapToBytes(bitmap));
+        // 上传文件
+        multi.addFilePart("imgfile", new File("storage/emulated/0/test.jpg"));
+
+        // 4、将请求添加到队列中
+        mQueue.addRequest(multipartRequest);
+    }
+
+    private byte[] bitmapToBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+```
