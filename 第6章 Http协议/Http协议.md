@@ -75,6 +75,10 @@ HttpWatch和FireBug这些工具对浏览器而言不是必须的，但对我们�
 
 ## **6.1 GET请求**
 
+Get是常用的方法，它的作用是获取服务器中的某个资源。客户端用Get方法发起一次Http请求，服务器将对应的资源返回给客户端。
+
+需要注意的是，Get请求的参数都需要放到请求的URL中，第一个参数之前有一个"?"，参数的格式为：参数名=参数值，参数之前用"&"链接
+
 打开IE，在访问hello项目的index.jsp之间打开HttpWatch，并点击“Record”按钮。然后访问index.jsp页面。查看请求内容如下：
 
 ```
@@ -111,6 +115,8 @@ Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
   因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID，然后在讲会话是讲究它！
 
 ## **6.2 POST请求**
+
+POST方法起初是用来向服务器传递数据的，实际上，POST请求通常会用来提交HTML的表单数据。表单中填好的数据会传输给服务器，然后由服务器对这些数据进行处理。
 
 为了演示POST请求，我们需要修改index.jsp页面，即添加一个表单：
 
@@ -163,6 +169,22 @@ Referer请求头是比较有用的一个请求头，它可以用来做统计工�
 ## **6.4 防盗链**
 
 我公司网站上有一个下载链接，而其他网站盗链了这个地址，例如在我网站上的index.html页面中有一个链接，点击即可下载JDK7.0，但有某个人的微博中盗链了这个资源，它也有一个链接指向我们网站的JDK7.0，也就是说登录它的微博，点击链接就可以从我网站上下载JDK7.0，这导致我们网站的广告没有看，但下载的却是我网站的资源。这时可以使用Referer进行防盗链，在资源被下载之前，我们对Referer进行判断，如果请求来自本网站，那么允许下载，如果非本网站，先跳转到本网站看广告，然后再允许下载
+
+### PUT请求
+
+与GET请求从服务器读取数据相反，PUT方法会向服务器写入资源。
+
+### DELETE
+
+顾名思义，delete方法所做的事情就是请服务器删除请求url中指定的资源
+
+### HEAD
+
+head方法与get方法类似，但服务器在响应中只返回首部
+
+### TRACE
+
+### OPTIONS
 
 # **7. 响应协议**
 
@@ -393,3 +415,305 @@ try {
 通过ping命令拿到网址的IP
 
 ![Wireshark](http://upload-images.jianshu.io/upload_images/3981391-67e132b813b85c7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 简单模拟Http服务器
+
+Http实际上是基于TCP的应用层协议，它在更高的层次封装了TCP的使用细节，使网络请求操作更为简易。
+
+## 简单的服务器实现
+
+```java
+public class SimpleHttpServer extends Thread {
+
+    public static void main(String[] args) {
+        new SimpleHttpServer().start();
+    }
+
+    public static final int HTTP_PORT = 8000;
+    ServerSocket mSocket = null;
+
+    public SimpleHttpServer() {
+        try {
+            mSocket = new ServerSocket(HTTP_PORT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (mSocket == null) {
+            throw new RuntimeException("服务器Socket初始化失败");
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                System.out.println("等待连接中");
+                new DeliverThread(mSocket.accept()).start(); // accept() 会阻塞
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static class DeliverThread extends Thread {
+        Socket mClientSocket;
+        BufferedReader mInputStream;
+        PrintStream mOutputStream;
+        /**
+         * 请求方法,GET、POST等
+         */
+        String httpMethod;
+        /**
+         * 子路径
+         */
+        String subPath;
+        /**
+         * 分隔符
+         */
+        String boundary;
+
+        /**
+         * 请求参数
+         */
+        Map<String, String> mParams = new HashMap<String, String>();
+        // 请求headers
+        Map<String, String> mHeaders = new HashMap<String, String>();
+        /**
+         * 是否已经解析完Header
+         */
+        boolean isParseHeader = false;
+
+        public DeliverThread(Socket socket) {
+            mClientSocket = socket;
+        }
+
+        @Override
+        public void run() {
+            try {
+                mInputStream = new BufferedReader(new InputStreamReader(
+                        mClientSocket.getInputStream()));
+                mOutputStream = new PrintStream(mClientSocket.getOutputStream());
+                parseRequest();
+                handleResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                IoUtils.closeQuitly(mInputStream);
+                IoUtils.closeQuitly(mOutputStream);
+                IoUtils.closeSocket(mClientSocket);
+            }
+        }
+
+        private void parseRequest() {
+            String line;
+            try {
+                int lineNum = 0;
+                while ((line = mInputStream.readLine()) != null) {
+                    // 接收从客户端发送过来的数据
+                    if (lineNum == 0) {
+                        parseRequestLine(line);
+                    }
+                    if (isEnd(line)) {
+                        break;
+                    }
+
+                    if (lineNum != 0 && !isParseHeader) {
+                        parseHeaders(line);
+                    }
+                    if (isParseHeader) {
+                        parseRequestParams(line);
+                    }
+
+                    lineNum++;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // 是否是结束行
+        private boolean isEnd(String line) {
+            return line.equals("--" + boundary + "--");
+        }
+
+        // 解析请求行
+        private void parseRequestLine(String lineOne) {
+            String[] tempStrings = lineOne.split(" ");
+            httpMethod = tempStrings[0];
+            subPath = tempStrings[1];
+            System.out.println("请求行,请求方式 : " + tempStrings[0] + ", 子路径 : " + tempStrings[1]
+                    + ",HTTP版本 : " + tempStrings[2]);
+            System.out.println();
+        }
+
+        // 解析header,参数为每个header的字符串
+        private void parseHeaders(String headerLine) {
+            
+            if (headerLine.equals("")) {
+                isParseHeader = true;
+                System.out.println("-----------> header解析完成\n");
+                return;
+            } else if (headerLine.contains("boundary")) {
+                boundary = parseSecondField(headerLine);
+                System.out.println("分隔符 : " + boundary);
+            } else {
+                parseHeaderParam(headerLine);
+            }
+        }
+
+        private void parseHeaderParam(String headerLine) {
+            String[] keyvalue = headerLine.split(":");
+            mHeaders.put(keyvalue[0].trim(), keyvalue[1].trim());
+            System.out.println("header参数名 : " + keyvalue[0].trim() + ", 参数值 : "
+                    + keyvalue[1].trim());
+        }
+
+        // 解析header中的第二个参数
+        private String parseSecondField(String line) {
+            String[] headerArray = line.split(";");
+            parseHeaderParam(headerArray[0]);
+            if (headerArray.length > 1) {
+                return headerArray[1].split("=")[1];
+            }
+            return "";
+        }
+
+        // 解析请求参数
+        private void parseRequestParams(String paramLine) throws IOException {
+            if (paramLine.equals("--" + boundary)) {
+                String ContentDisposition = mInputStream.readLine();
+                String paramName = parseSecondField(ContentDisposition);
+                mInputStream.readLine();
+                String paramValue = mInputStream.readLine();
+                mParams.put(paramName, paramValue);
+                System.out.println("参数名 : " + paramName + ", 参数值 : " + paramValue);
+            }
+        }
+
+        // 返回结果
+        private void handleResponse() {
+            sleep();
+            mOutputStream.println("HTTP/1.1 200 OK");
+            mOutputStream.println("Content-Type: application/json");
+            mOutputStream.println();
+            mOutputStream.println("{\"stCode\":\"success\"}");
+        }
+
+        private void sleep() {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+}
+```
+## http请求,客户端发送
+```java
+public class HttpPost {
+    public String url;
+    private Map<String, String> mParamsMap = new HashMap<String, String>();
+
+    Socket mSocket;
+
+    public static void main(String[] args) {
+        HttpPost httpPost = new HttpPost("127.0.0.1");
+        httpPost.addParam("username", "mr.simple");
+        httpPost.addParam("pwd", "my_pwd123");
+        httpPost.execute();
+    }
+
+    public HttpPost(String url) {
+        this.url = url;
+    }
+
+    public void addParam(String key, String value) {
+        mParamsMap.put(key, value);
+    }
+
+    public void execute() {
+        try {
+            mSocket = new Socket(this.url, SimpleHttpServer.HTTP_PORT);
+            PrintStream outputStream = new PrintStream(mSocket.getOutputStream());
+            BufferedReader inputStream = new BufferedReader(new InputStreamReader(
+                    mSocket.getInputStream()));
+            final String boundary = "my_boundary_123";
+            // 写入header
+            writeHeader(boundary, outputStream);
+            // 写入参数
+            writeParams(boundary, outputStream);
+            // 等待返回数据
+            waitResponse(inputStream);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            IoUtils.closeSocket(mSocket);
+        }
+    }
+
+    private void writeHeader(String boundary, PrintStream outputStream) {
+        outputStream.println("POST /api/login/ HTTP/1.1");
+        outputStream.println("content-length:123");
+        outputStream.println("Host:" + this.url + ":" + SimpleHttpServer.HTTP_PORT);
+        outputStream.println("Content-Type: multipart/form-data; boundary=" + boundary);
+        outputStream.println("User-Agent:android");
+        outputStream.println();
+    }
+
+    private void writeParams(String boundary, PrintStream outputStream) {
+        Iterator<String> paramsKeySet = mParamsMap.keySet().iterator();
+        while (paramsKeySet.hasNext()) {
+            String paramName = paramsKeySet.next();
+            outputStream.println("--" + boundary);
+            outputStream.println("Content-Disposition: form-data; name=" + paramName);
+            outputStream.println();
+            outputStream.println(mParamsMap.get(paramName));
+        }
+        // 结束符
+        outputStream.println("--" + boundary + "--");
+    }
+
+    private void waitResponse(BufferedReader inputStream) throws IOException {
+        System.out.println("请求结果: ");
+        String responseLine = inputStream.readLine();
+        while (responseLine == null || !responseLine.contains("HTTP")) {
+            responseLine = inputStream.readLine();
+        }
+
+        while ((responseLine = inputStream.readLine()) != null) {
+            System.out.println(responseLine);
+        }
+    }
+}
+```
+
+```java
+public class IoUtils {
+    public static void closeQuitly(Closeable closeable) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void closeSocket(Socket closeable) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
