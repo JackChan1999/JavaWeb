@@ -170,13 +170,13 @@ Filter栏上就多了个"Filter 102" 的按钮
 
 第二次握手的数据包
 
-服务器发回确认包， 标志位为 SYN，ACK. 将确认序号(Acknowledgement Number)设置为客户的I S N加1以.即0+1=1， 如下图
+服务器发回确认包， 标志位为 SYN，ACK。将确认序号(Acknowledgement Number)设置为客户的ISN加1，即0+1=1，如下图
 
 ![img](http://pic002.cnblogs.com/images/2012/263119/2012100723221390.png)
 
 第三次握手的数据包
 
-客户端再次发送确认包(ACK) SYN标志位为0，ACK标志位为1.并且把服务器发来ACK的序号字段+1，放在确定字段中发送给对方.并且在数据段放写ISN的+1， 如下图:
+客户端再次发送确认包(ACK) SYN标志位为0，ACK标志位为1。并且把服务器发来ACK的序号字段+1，放在确定字段中发送给对方。并且在数据段放写ISN的+1， 如下图:
 
 ![img](http://pic002.cnblogs.com/images/2012/263119/2012100723244189.png)
 
