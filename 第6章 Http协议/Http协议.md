@@ -47,6 +47,16 @@ HTTP1.1协议，允许客户端与web服务器建立连接后，在一个连接�
 
 一个web页面中，使用img标签引用了三幅图片，当客户端访问服务器中的这个web页面时，客户端总共会访问几次服务器，即向服务器发送了几次HTTP请求。
 
+## Http网络请求原理
+
+Http是一种应用层协议，它通过tcp实现了可靠的数据传输，能够保证数据的完整性、正确性，而tcp对于数据传输控制的优点也能够体现在Http上，使得Http的数据传输吞吐量、效率得到保证。
+
+对于移动开发来说，网络应用基本上都是C/S架构，也就是客户端/服务器架构。客户端通过向服务器发起特定的请求，服务器返回结果，客户端解析结果，再将结果展示在UI上。
+
+![](img/网络请求原理.png)
+
+HTTP实际上是基于TCP协议，而TCP协议又是基于Socket，Socket实际上操作的也就是输入、输出流，输出流是向服务器写数据，输入流是向服务器读取数据。
+
 # **4. 协议**
 
 协议：协议的甲乙双方，就是客户端（浏览器）和服务器！
@@ -188,7 +198,73 @@ head方法与get方法类似，但服务器在响应中只返回首部
 
 ### TRACE
 
+客户端发起一个请求时，这个请求可能要穿过防火墙、代理、网关或其他一些应用程序。每个中间节点都有可能修改原始的Http请求。TRACE方法允许客户端在最终将请求发给服务器时，看看它变成了什么样子。
+
+TRACE请求会在目的服务器发起一个“回环”诊断。
+
 ### OPTIONS
+
+OPTIONS方法请求Web服务器告知其支持的各种功能。
+
+### 请求头
+
+请求头通知服务器关于客户端请求的信息
+| 请求头字段                         | 作用              |
+| :---------------------------- | :-------------- |
+| User-Agent                    | 发出请求的浏览器类型和系统信息 |
+| Host                          | 请求的主机名，主机名：端口号  |
+| Accept-Encoding：gzip,compress | 支持的压缩格式         |
+| Accept：text/html              | 客户端可以接受的文档类型    |
+| Accept-Charset                | 客户端支持的编码格式      |
+| Accept-Language               | 客户端支持的语言        |
+| Authorization                 | 授权，用于设置身份认证信息   |
+| Range:bytes=100-1000          | 请求部分数据          |
+| Referer                       | 防盗链             |
+| Cookie                        |                 |
+
+###  通用头字段
+| 头字段              | 作用                                       |
+| :--------------- | :--------------------------------------- |
+| Date             | 时间                                       |
+| Cache-Control    | 取值为一般为no-cache或max-age=XX，XX为个整数，表示该资源缓存有效期(秒) |
+| Connection       | keep-alive，是否继续保持链接                      |
+| Content-Type     | 请求数据的格式，text/plain，application/json      |
+| Content-Length   | 消息长度，请求体/响应体的长度，单位字节                     |
+| Content-Encoding | 请求体/响应体的编码格式，如gzip                       |
+| Accept-Encoding  | 告知对方我方接受的Content-Encoding                |
+
+### Content-Type
+
+post的数据类型
+mime数据类型：a/b，a为主类型，b为子类型，image/gif，*/*：所有格式
+| 类型                                | 作用             |
+| :-------------------------------- | :------------- |
+| application/x-www-form-urlencoded | 表单数据，key-value |
+| application/octet-stream          | 字节流            |
+| application/json                  | json           |
+| multipart/form-data               | 二进制，file，文件上传  |
+| text/plain                        | 普通文本，默认类型      |
+| text/xml                          | xml类型的文本       |
+| text/html;charset=utf-8           | html类型的文本      |
+| image/png，image/jpeg，image/gif    | 图片             |
+
+```
+connection.setRequestProperty(“Content-Type”, “application/x-www-form-urlencoded");
+```
+
+### 实体头字段
+
+- 普通表单项
+
+Content-Disposition:form-data;name="username" 表单项名称
+
+- 文件表单项
+
+Content-Disposition:form-data;name="uploadFile";filename="a.txt" 表单项名称，上传文件名称
+
+- 下载文件
+
+Content-Disposition:attachment;filename="filename"让浏览器弹出下载框
 
 # **7. 响应协议**
 
@@ -271,7 +347,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 
 `Content-Type: text/html; charset=GB2312` 当前所发送的数据的基本信息，（数据的类型，所使用的编码）
 
-`Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT` 最后的修改时间
+`Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT` 缓存相关的头，最后的修改时间
 
 `Refresh: 1;url=http://www.it315.org` 通知浏览器进行定时刷新，此值可以是一个数字指定多长时间以后刷新当前页面，这个数字之后也可以接一个分号后跟一个URL地址指定多长时间后刷新到哪个URL
 
@@ -290,12 +366,16 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 | 响应码  | 描述                                       |
 | :--- | :--------------------------------------- |
 | 200  | 请求成功，浏览器会把响应体内容（通常是html）显示在浏览器中          |
-| 206  | 请求部分资源，和请求头Range使用                       |
+| 206  | 请求部分资源，和请求头Range使用，多线程下载的时候使用到           |
 | 302  | 重定向，当响应码为302时，表示服务器要求浏览器重新再发一个请求，<br/>服务器会发送一个响应头Location，它指定了新请求的URL地址 |
 | 304  | 服务器通知浏览器使用缓存                             |
 | 307  | 服务器通知浏览器使用缓存                             |
+| 400  | bad request 客户端请求有语法错误，不能被服务器理解          |
+| 401  | Unauthorized 请求未经授权                      |
+| 403  | Forbidden 服务器收到请求，但是拒绝提供服务               |
 | 404  | 请求的资源没有找到，说明客户端错误的请求了不存在的资源              |
 | 500  | 请求资源找到了，但服务器内部出现了错误                      |
+| 501  | server unavailable 服务器当前不能处理客户端的请求，一段时间后可能恢复正常 |
 304：当用户第一次请求index.html时，服务器会添加一个名为Last-Modified响应头，这个头说明了index.html的最后修改时间，浏览器会把index.html内容，以及最后响应时间缓存下来。当用户第二次请求index.html时，在请求中包含一个名为If-Modified-Since请求头，它的值就是第一次请求时服务器通过Last-Modified响应头发送给浏览器的值，即index.html最后的修改时间，If-Modified-Since请求头就是在告诉服务器，我这里浏览器缓存的index.html最后修改时间是这个，您看看现在的index.html最后修改时间是不是这个，如果还是，那么您就不用再响应这个index.html内容了，我会把缓存的内容直接显示出来。而服务器端会获取If-Modified-Since值，与index.html的当前最后修改时间比对，如果相同，服务器会发响应码304，表示index.html与浏览器上次缓存的相同，无需再次发送，浏览器可以显示自己的缓存页面，如果比对不同，那么说明index.html已经做了修改，服务器会响应200
 
 ![http](http://img.blog.csdn.net/20161028111022578)
@@ -424,7 +504,7 @@ try {
 
 # 12. 简单模拟Http服务器
 
-Http实际上是基于TCP的应用层协议，它在更高的层次封装了TCP的使用细节，使网络请求操作更为简易。
+Http实际上是基于TCP的应用层协议，它在更高的层次封装了TCP的使用细节，使网络请求操作更为简易。TCP链接是Internet上基于流的可靠链接，它为Http提供了一条可靠的比特传输管道。从TCP链接一端填入的字节会在另一端以原有的顺序、准确的传送出来
 
 ## 简单的服务器实现
 
