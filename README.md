@@ -33,6 +33,7 @@
   - [4.6 GET与POST的区别](第6章 Http协议/GET与POST的区别.md)
   - [4.7 Wireshark基本介绍和学习TCP三次握手](第6章 Http协议/Wireshark基本介绍和学习TCP三次握手.md)
   - [4.8 Wireshark抓包实战](第6章 Http协议/Wireshark抓包实战.md)
+  - [4.9 Fidder抓包](第6章 Http协议/Fidder.md)
 - [5. Servlet技术](第7章 Servlet/Servlet.md)
 - [6. 请求和响应](第8章 请求响应/HttpServletResponse和HttpServletRequest.md)
 - [7. Cookie和Session](第9章 会话及其会话技术/Cookie和Session.md)
