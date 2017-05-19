@@ -38,7 +38,7 @@ Fiddler 是以代理web服务器的形式工作的，它使用代理地址:127.0
 
 特别注意： 遇到这个Click请点击Click 
 
-![](img/01-keng.bmp)
+![](img/01-keng.png)
 
 # 模拟手机应用进行抓包
 
