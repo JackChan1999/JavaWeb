@@ -21,9 +21,9 @@ HTTP协议是学习JavaWEB开发的基石，不深入了解HTTP协议，就不�
 
 应用层（HTTP、FTP、SMTP、POP3、TELNET）→ 表示层 → 会话层 → 传输层（TCP、UDP）→ 网络层（IP）→ 数据链路层 → 物理层
 
-![](img/网络协议.jpg)
+![](img/网络模型.png)
 
-![](img/http.png)
+![](img/http协议.png)
 
 # **2. HTTP协议简介**
 
