@@ -724,7 +724,9 @@ password=123
 - 创建DaoFactory，提供getUserDao()
 
 ## **8.1 DAO模式**
-DAO（Data Access Object）模式就是写一个类，把访问数据库的代码封装起来。DAO在数据库与业务逻辑（Service）之间
+DAO(Data Access Object) 数据访问对象，是一个面向对象的数据库访问接口，数据访问：顾名思义就是与数据库打交道。夹在[业务逻辑](http://baike.baidu.com/item/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91)与数据库资源中间。
+
+DAO模式就是写一个类，把访问数据库的代码封装起来。DAO在数据库与业务逻辑（Service）之间
 
 - 实体域，即操作的对象，例如我们操作的表是user表，那么就需要先写一个User类
 - DAO模式需要先提供一个DAO接口

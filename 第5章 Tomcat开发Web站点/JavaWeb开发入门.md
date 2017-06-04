@@ -243,7 +243,10 @@ web.xml：整个web应用的配置文件,配置主页/Servlet的映射/过滤器
 
 ## **7.4 其它问题**
 
-- 打war包，方式一：jar -cvf news.war * 方式二：直接用压缩工具压缩为zip包，该后缀为.war
+- war包，可以把一个工程导出成为一个war包，把war包放到Tomcat的webapps目录下，Tomcat会自动解压war包
+- 打war包
+  - 方式一：jar -cvf news.war * 
+  - 方式二：直接用压缩工具压缩为zip包，该后缀为.war
 - 通用context和通用web.xml，所有的&lt;Context>都继承子conf/context.xml,所有的web.xml都继承自conf/web.xml
 - reloadable让tomcat自动加载更新后的web应用，当java程序修改后不用重启，服务器自动从新加载，开发时设为true方便开发，发布时设为false，提高性能
 - Tomcat管理平台，可以在conf/tomcat-users.xml下配置用户名密码及权限
