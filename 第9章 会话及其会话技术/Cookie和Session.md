@@ -172,6 +172,7 @@ Cookie不只是有name和value，Cookie还是生命。所谓生命就是Cookie�
 - cookie.setMaxAge(0)：cookie生命等于0是一个特殊的值，它表示cookie被作废！也就是说，如果原来浏览器已经保存了这个Cookie，那么可以通过Cookie的setMaxAge(0)来删除这个Cookie。无论是在浏览器内存中，还是在客户端硬盘上都会删除这个Cookie
 
 ###**2.7.2 浏览器查看Cookie**
+
 下面是浏览器查看Cookie的方式：
 
 IE查看Cookie文件的路径：C:\Documents and Settings\Administrator\Cookies
@@ -180,15 +181,17 @@ FireFox查看Cookie
 
 ![cookie](http://img.blog.csdn.net/20161028012420164)
 
-Google查看Cookie
+Google Chrome查看Cookie
 
-![cookie](http://img.blog.csdn.net/20161028012533088)
+![cookie](img/cookie1.png)
 
-![cookie](http://img.blog.csdn.net/20161028012543401)
+![cookie](img/cookie2.png)
 
-![cookie](http://img.blog.csdn.net/20161028012553666)
+![cookie](img/cookie3.png)
 
-![cookie](http://img.blog.csdn.net/20161028012603104)
+![cookie](img/cookie4.png)
+
+![cookie](img/cookie5.png)
 
 ###**2.7.3 案例：显示上次访问时间**
 
