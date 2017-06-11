@@ -465,7 +465,7 @@ javax.servlet.http.HttpSession接口表示一个会话，我们可以把一个�
 
 用来获取session中的数据，当前在获取之前需要先去存储才行，例如：String value = (String) session.getAttribute(“xxx”);，获取名为xxx的域属性
 
-- void removeAttribute(String name)：
+- void removeAttribute(String name)
 
 用来移除HttpSession中的域属性，如果参数name指定的域属性不存在，那么本方法什么都不做
 

@@ -12,7 +12,7 @@ Cookie就是这样的一种机制。它可以弥补HTTP协议无状态的不足�
 
 ### 1.1 什么是Cookie
 
-Cookie意为“甜饼”，是由W3C组织提出，最早由Netscape社区发展的一种机制。目前Cookie已经成为标准，所有的主流浏览器如IE、Netscape、Firefox、Opera等都支持Cookie。
+Cookie意为“甜饼”，是由W3C组织提出，最早由Netscape社区发展的一种机制。目前Cookie已经成为标准，所有的主流浏览器如Chrome、IE、Netscape、Firefox、Opera等都支持Cookie。
 
 由于HTTP是一种无状态的协议，服务器单从网络连接上无从知道客户身份。怎么办呢？就给客户端们颁发一个通行证吧，每人一个，无论谁访问都必须携带自己通行证。这样服务器就能从通行证上确认客户身份了。这就是Cookie的工作原理。
 
@@ -124,7 +124,7 @@ Cookie是不可跨域名的。域名www.google.com颁发的Cookie不会被提交
 
 正常情况下，同一个一级域名下的两个二级域名如www.helloweenvsfei.com和images.helloweenvsfei.com也不能交互使用Cookie，因为二者的域名并不严格相同。如果想所有helloweenvsfei.com名下的二级域名都可以使用该Cookie，需要设置Cookie的domain参数，例如：
 ```java
-Cookie cookie = new Cookie("time","20080808"); // 新建Cookie
+Cookie cookie = new Cookie("time","20080808");	   // 新建Cookie
 cookie.setDomain(".helloweenvsfei.com");           // 设置域名
 cookie.setPath("/");                              // 设置路径
 cookie.setMaxAge(Integer.MAX_VALUE);               // 设置有效期
@@ -138,7 +138,7 @@ response.addCookie(cookie);                       // 输出到客户端
 
 domain属性决定运行访问Cookie的域名，而path属性决定允许访问Cookie的路径（ContextPath）。例如，如果只允许/sessionWeb/下的程序使用Cookie，可以这么写：
 ```java
-Cookie cookie = new Cookie("time","20080808");     // 新建Cookie
+Cookie cookie = new Cookie("time","20080808");        // 新建Cookie
 cookie.setPath("/session/");                          // 设置路径
 response.addCookie(cookie);                           // 输出到客户端
 ```
@@ -150,7 +150,7 @@ response.addCookie(cookie);                           // 输出到客户端
 
 HTTP协议不仅是无状态的，而且是不安全的。使用HTTP协议的数据不经过任何加密就直接在网络上传播，有被截获的可能。使用HTTP协议传输很机密的内容是一种隐患。如果不希望Cookie在HTTP等非安全协议中传输，可以设置Cookie的secure属性为true。浏览器只会在HTTPS和SSL等安全协议中传输此类Cookie。下面的代码设置secure属性为true：
 ```java
-Cookie cookie = new Cookie("time", "20080808"); // 新建Cookie
+Cookie cookie = new Cookie("time", "20080808");   // 新建Cookie
 cookie.setSecure(true);                           // 设置安全属性
 response.addCookie(cookie);                        // 输出到客户端
 ```
@@ -366,7 +366,7 @@ Servlet中必须使用request来编程式获取HttpSession对象，而JSP中内�
 源代码如下：
 
 代码1.9  session.jsp
-```
+```jsp
 <% @ page language = "java" pageEncoding = "UTF-8" %> 
 <jsp : directive.page import = "com.helloweenvsfei.sessionWeb.bean.Person"/>
 <jsp:directive.page import="java.text.SimpleDateFormat"/> 
@@ -414,7 +414,7 @@ if (request.getMethod().equals("POST"))
 welcome.jsp代码如下：
 
 代码1.10  welcome.jsp
-```
+```jsp
 <% @ page language = "java" pageEncoding = "UTF-8" %> < jsp : directive.pageimport = "com.helloweenvsfei.sessionWeb.bean.Person"/>
 <jsp:directive.page import="java.text.SimpleDateFormat"/> < jsp : directive.page import = "java.text.DateFormat"/>
 <jsp:directive.page import="java.util.Date"/> <% ! DateFormat dateFormat = newSimpleDateFormat("yyyy-MM-dd");
@@ -520,17 +520,11 @@ URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写�
 如果是页面重定向（Redirection），URL地址重写可以这样写：
 ```
 <%
-
     if(“administrator”.equals(userName))
-
     {
-
-       response.sendRedirect(response.encodeRedirectURL(“administrator.jsp”));
-
+      	response.sendRedirect(response.encodeRedirectURL(“administrator.jsp”));
         return;
-
     }
-
 %>
 ```
 效果跟response.encodeURL(String url)是一样的：如果客户端支持Cookie，生成原URL地址，如果不支持Cookie，传回重写后的带有jsessionid字符串的地址。
