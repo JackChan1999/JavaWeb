@@ -597,7 +597,7 @@ DOM：将文档解析成内存中的树状结构。通过树状结构对文档�
 
 | 方法                     | 功能描述                          |
 | :--------------------- | :---------------------------- |
-| documentElement        | 获得文档的跟节点                      |
+| documentElement        | 获得文档的根节点                      |
 | getElementById()       | 通过ID获得元素                      |
 | getElementsByTagName() | 通过标签名获得元素.返回一个数组              |
 | getElementsByName()    | 通过name属性 获得元素                 |
