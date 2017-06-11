@@ -63,7 +63,7 @@ CSS将网页内容和显示样式进行分离，提高了显示功能。
 
 使用标签名作为选择器的名称 
 
-```
+```css
 div {
 	background-color:gray;	
 	color:white;
@@ -76,7 +76,9 @@ div {
 
 ```html
 <div class="haha">aaaaaaa</div>
+```
 
+```css
 .haha {
 	background-color: orange;
 }
@@ -88,7 +90,9 @@ div {
 
 ```html
 <div id="hehe">bbbbb</div>
+```
 
+```css
 #hehe {
 	background-color: #333300;
 }
