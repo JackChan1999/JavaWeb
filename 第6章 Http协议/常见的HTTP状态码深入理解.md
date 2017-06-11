@@ -44,6 +44,7 @@ RFC2616记录的HTTP状态码有37种，再加上「WebDAV」([RFC4918]()、[584
 ## 3XX Redirection
 
 ![img](http://mmbiz.qpic.cn/mmbiz/EibqicLiaLZ06c0o1v7RJ2HvDLdosE2DJjd6BJnrDIicjZME615qtQeWnpWAojqNfZruNxWWCnicvKfd1PDkjFkmvibA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
 3XX 响应结果表明浏览器需要执行某些特殊的处理以完成请求。
 
 ## 301 Movied Permanently
@@ -59,9 +60,11 @@ RFC2616记录的HTTP状态码有37种，再加上「WebDAV」([RFC4918]()、[584
 例如建立一个收藏的书签：
 
 ![img](http://mmbiz.qpic.cn/mmbiz/EibqicLiaLZ06c0o1v7RJ2HvDLdosE2DJjdffhKot0x2CunVicjgRqWTiajPWLDmsUfibEs3OaIcmYJQSMuaZa5HxQcg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
 当访问这个书签的时候，请求会被重定向到
 
 ![img](http://mmbiz.qpic.cn/mmbiz/EibqicLiaLZ06c0o1v7RJ2HvDLdosE2DJjdAOFwSvQS1qU5UuGmYnbGsvglv1YaxAJ08zmhtAOdXXT6AzMuFfcyVA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
 并且对应的书签会被改变，指向http://wan.meizu.com
 
 不信？Try yourself.
@@ -95,6 +98,7 @@ RFC2616记录的HTTP状态码有37种，再加上「WebDAV」([RFC4918]()、[584
 ## 4XX Client Error
 
 ![img](http://mmbiz.qpic.cn/mmbiz/EibqicLiaLZ06c0o1v7RJ2HvDLdosE2DJjdEctibMUsf4xicTYiaicFgvprMVTVRtwSGgIaL7bBT2c7uG9s5wf97FK6Vg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
 4XX 的响应结果表明客户端是发生错误的原因所在
 
 ## 400 Bad Request
@@ -122,6 +126,7 @@ RFC2616记录的HTTP状态码有37种，再加上「WebDAV」([RFC4918]()、[584
 ## 5XX Server Error
 
 ![img](http://mmbiz.qpic.cn/mmbiz/EibqicLiaLZ06c0o1v7RJ2HvDLdosE2DJjdRGa1PhnxFd4FGBwKRegp9grrfhibojR6r2iaULcJicfAxZ9AZoXice5VYg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
 5XX 的响应结果表明服务器本身发生错误，或者没有足够的能力来处理请求。
 
 ## 500 Internal Server Error
