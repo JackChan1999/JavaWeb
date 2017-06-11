@@ -460,9 +460,9 @@ http://httpbin.org
 
 ## 10.1 浏览器发送器请求的过程
 
-- 1.发送请求头:Accept-Encoding:gzip
-- 2.服务器压缩数据,返回数据,在响应头里面添加Content-Encoding:gzip
-- 3.客户端,根据Content-Encoding这个响应头,对应解压
+- 发送请求头:Accept-Encoding:gzip
+- 服务器压缩数据,返回数据,在响应头里面添加Content-Encoding:gzip
+- 客户端,根据Content-Encoding这个响应头,对应解压
   - 有Content-Encoding:gzip → gzip解压
   - 没有Content-Encoding:gzip → 标准解压
 
