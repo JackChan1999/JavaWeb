@@ -236,8 +236,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)
 下面我们来看看Cookie路径的作用：
 下面是客户端浏览器保存的3个Cookie的路径：
 
-a:　/cookietest
-b:　/cookietest/servlet
+a:　/cookietest		
+b:　/cookietest/servlet		
 c:　/cookietest/jsp
 
 下面是浏览器请求的URL：
@@ -269,12 +269,12 @@ cookie.setPath(“/cookietest/servlet”);
 
 # **4. Cookie的domain**
 
-Cookie的domain属性可以让网站中二级域共享Cookie，次要！
+Cookie的domain属性可以让网站中二级域共享Cookie，次要！		
 百度你是了解的对吧！
 
-http://www.baidu.com
-http://zhidao.baidu.com
-http://news.baidu.com
+http://www.baidu.com		
+http://zhidao.baidu.com		
+http://news.baidu.com		
 http://tieba.baidu.com
 
 现在我希望在这些主机之间共享Cookie（例如在www.baidu.com中响应的cookie，可以在news.baidu.com请求中包含）。很明显，现在不是路径的问题了，而是主机的问题，即域名的问题。处理这一问题其实很简单，只需要下面两步：
