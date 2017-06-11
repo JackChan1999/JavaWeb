@@ -29,6 +29,13 @@
 
 ## html中常用的标签
 
+- html：放在html文件的开头，但没有实质性的功能，即使没有这个标记，浏览器在碰到其他的html标记时也一样会进行解析。浏览器内置了html语言的解析器。
+- head：头标记，放置关于此html文件的信息，如提供索引，定义css等。
+- title：标题标记，包含在head标记内，它的作用是设定网页的标题。
+- body：主体标记，网页所需要显示的内容都放在这个标记内。
+- base：为页面上的所有链接规定默认地址或默认目标。 - 
+- link：定义文档与外部资源的关系。
+
 ### 1. 文字标签和注释标签
 
 文字标签：修改文字的样式，`<font color="red" size="5">文字</font>`
@@ -59,12 +66,16 @@ color：文字颜色， 两种表示方式
      &lt;hr size="5" color="blue"/>
 
 * 特殊字符
-  - 想要在页面上显示这样的内容 `<html>` :是网页的开始！
+  - 想要在页面上显示这样的内容 `<html> :是网页的开始！`
   - 需要对特殊字符进行转义
   * `< : &lt;`
   * `> : &gt;`
   * 空格：`&nbsp;`
   * &  :` &amp;`
+  * 双引号”：`&quot;`
+  * 注册符®：`&reg;`
+  * 版权符©：` &copy;`
+
 ```html
 <html>
  <head>
@@ -493,6 +504,30 @@ color：文字颜色， 两种表示方式
 </html>
 ```
 ## 表单标签
+
+- `<form>` 表单标签
+  - action 提交的地址，默认是当前页面
+  - method 提交方法，常用：get、post请求
+- `<input>` 输入项标签，必须有name属性，该name值就是url后面的参数值
+  - type 输入类型
+    - text 文本
+    - file 文件
+    - password 密码
+    - radio 单选，需要添加name属性且name的属性值必须相同，必须有value值
+    - checkbox 复选（多选），需要添加name属性且name的属性值必须相同，必须有value值
+    - submit 提交按钮，点击提交按钮后，表单中的数据会拼接在action地址的后面，然后提交到服务器
+    - reset 重置按钮，回到输入项的初始状态
+    - hidden 隐藏项
+    - button 按钮，和js结合使用
+    - image 使用图片提交表单
+  - name，url参数中的name值
+  - value，url参数中的value值
+  - src
+- select 下拉选择
+  - option
+- textarea 文本域
+  - cols 列数
+  - rows 行数
 
 ```html
 <html>
