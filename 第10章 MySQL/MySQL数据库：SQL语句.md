@@ -249,7 +249,6 @@ LIMIT offset_start, row_count;	/*结果限定*/
 | sname  | varchar(50) | 学生姓名 |
 | age    | int         | 学生年龄 |
 | gender | varchar(50) | 学生性别 |
-<br>
 ```mysql
 CREATE TABLE stu (
 	sid	CHAR(6),
@@ -282,8 +281,6 @@ INSERT INTO stu VALUES('S_1011', 'xxx', NULL, NULL);
 | sal      | decimal(7,2) | 月薪   |
 | comm     | decimal(7,2) | 奖金   |
 | deptno   | int          | 部分编号 |
-
-<br>
 
 ```mysql
 CREATE TABLE emp(
@@ -319,7 +316,6 @@ INSERT INTO emp values(7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,10);
 | deptno | int         | 部分编码   |
 | dname  | varchar(50) | 部分名称   |
 | loc    | varchar(50) | 部分所在地点 |
-<br>
 ```mysql
 CREATE TABLE dept(
 	deptno		INT,
@@ -716,14 +712,14 @@ SELECT * FROM emp LIMIT 3, 10;
 - UNION：去除重复记录，例如：SELECT * FROM t1 UNION SELECT * FROM t2；
 - UNION ALL：不去除重复记录，例如：SELECT * FROM t1 UNION ALL SELECT * FROM t2。
 
- ![mysql](http://img.blog.csdn.net/20161027160030684)
+ ![mysql](img/union1.png)
 
-![mysql](http://img.blog.csdn.net/20161027160100416)
+![mysql](img/union2.png)
 
 ## **10.2 连接查询**
 连接查询就是求出多个表的乘积，例如t1连接t2，那么查询出的结果就是t1*t2。
 
-![mysql](http://img.blog.csdn.net/20161027160128090)
+![mysql](img/连接查询.png)
 
 连接查询会产生笛卡尔积，假设集合A={a,b}，集合B={0,1,2}，则两个集合的笛卡尔积为{(a,0),(a,1),(a,2),(b,0),(b,1),(b,2)}。可以扩展到多个集合的情况。
 
@@ -733,13 +729,13 @@ SELECT * FROM emp LIMIT 3, 10;
 
 也就你只是想在查询emp表的同时，把每个员工的所在部门信息显示出来，那么就需要使用主外键来去除无用信息了。
 
-![mysql](http://img.blog.csdn.net/20161027160158793)
+![mysql](img/连接查询2.png)
 
 使用主外键关系做为条件来去除无用信息
 
 SELECT * FROM emp,dept WHERE emp.deptno=dept.deptno;
 
-![mysql](http://img.blog.csdn.net/20161027160220778)
+![mysql](img/连接查询3.png)
 
 上面查询结果会把两张表的所有列都查询出来，也许你不需要那么多列，这时就可以指定要查询的列了。
 ```mysql
@@ -747,7 +743,7 @@ SELECT emp.ename,emp.sal,emp.comm,dept.dname
 FROM emp,dept
 WHERE emp.deptno=dept.deptno;
 ```
- ![mysql](http://img.blog.csdn.net/20161027160246356)
+ ![mysql](img/连接查询4.png)
 
 还可以为表指定别名，然后在引用列时使用别名即可。
 
@@ -786,7 +782,7 @@ ON e.deptno=d.deptno;
 
 这么说你可能不太明白，我们还是用上面的例子来说明。其中emp表中“张三”这条记录中，部门编号为50，而dept表中不存在部门编号为50的记录，所以“张三”这条记录，不能满足e.deptno=d.deptno这条件。但在左连接中，因为emp表是左表，所以左表中的记录都会查询出来，即“张三”这条记录也会查出，但相应的右表部分显示NULL。
 
-![mysql](http://img.blog.csdn.net/20161027160312998)
+![mysql](img/外连接.png)
 
 ![mysql](http://www.runoob.com/wp-content/uploads/2014/03/img_leftjoin.gif)
 
@@ -799,7 +795,7 @@ RIGHT OUTER JOIN dept d
 ON e.deptno=d.deptno;
 ```
 
-![mysql](http://img.blog.csdn.net/20161027160334060)
+![mysql](img/右连接.png)
 
 连接查询心得：
 
