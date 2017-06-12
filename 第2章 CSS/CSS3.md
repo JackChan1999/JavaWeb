@@ -32,8 +32,8 @@
 
 | 元字符  | 含义    | 示例                                       |
 | ---- | ----- | ---------------------------------------- |
-| []   | 全部可选项 | padding: [\<length> \| \<percentage>]{1, 4} |
-| \|\| | 并列    | border: \<line-width> \|\| \<line-style> \|\|  \<color> |
+| []   | 全部可选项 | padding: [&lt;length> \| &lt;percentage>]{1, 4} |
+| \|\| | 并列    | border: &lt;line-width> \|\| &lt;line-style> \|\|  &lt;color> |
 | \|   | 多选一   | position: static \| relative \| absolute \| fixed |
 | ?    | 0个或1个 | \<shadow>: inset? && \<length>{2, 4} && \<color>? |
 | *    | 0个或多个 | box-shadow: none \| \<shadow>[, \<shadow>]* |
