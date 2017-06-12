@@ -140,4 +140,4 @@ div,p {
 - 原始状态:link
 - 鼠标放上去状态:hover
 - 点击:active
-- 点击之后:visited	                          
+- 点击之后:visited                          
