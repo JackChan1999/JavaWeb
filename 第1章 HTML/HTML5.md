@@ -280,13 +280,13 @@ HTML5则是通过增加语义化标签的形式来解决这个问题，例如&lt
 </html>
 ```
 
-本质上新语义标签与<div>、<span>没有区别，只是其具有语义性，使用时除了在HTML结构上需要注意外，其它和普通标签的使用无任何差别，可以理解成<divclass="nav"> 相当于 <nav>。不要好奇，它只是一个标签！
+本质上新语义标签与&lt;div>、&lt;span>没有区别，只是其具有语义性，使用时除了在HTML结构上需要注意外，其它和普通标签的使用无任何差别，可以理解成&lt;divclass="nav"> 相当于 &lt;nav>。不要好奇，它只是一个标签！
 
 尽量避免全局使用header、footer、aside等语义标签。
 
 ### 兼容处理
 
-在不支持HTML5新标签的浏览器里，会将这些新的标签解析成行内元素(inline)对待，所以我们只需要将其转换成块元素(block)即可使用，但是在IE9版本以下，并不能正常解析这些新标签，但是却可以识别通过`document.createElement('tagName')`创建的自定义标签，于是我们的解决方案就是将HTML5的新标签全部通过`document.createElement('tagName')`来创建一遍，这样IE低版本也能正常解析HTML5新标签了，但在实际开发中我们更多采用的是通过检测IE浏览器的版本来加载第三方的一个JS库来解决兼容问题，这个库文件会帮自动通过`document.createElement('tagName')`创建所有HTML5的新标签。
+在不支持HTML5新标签的浏览器里，会将这些新的标签解析成行内元素(inline)对待，所以我们只需要将其转换成块元素(block)即可使用，但是在IE9版本以下，并不能正常解析这些新标签，但是却可以识别通过`document.createElement('tagName')`创建的自定义标签，于是我们的解决方案就是将HTML5的新标签全部通过`document.createElement('tagName')`来创建一遍，这样IE低版本也能正常解析HTML5新标签了，但在实际开发中我们更多采用的是通过检测IE浏览器的版本来加载第三方的一个JS库 `html5shiv` 来解决兼容问题，这个库文件会帮自动通过`document.createElement('tagName')`创建所有HTML5的新标签。
 
 ![1497256101198](img/1497256101198.png)
 
@@ -691,7 +691,7 @@ WAI-ARIA[1][ ]() , 是WebAccessibility Initiative - Accessible Rich Internet App
 
 ### 音频
 
-HTML5通过<audio>标签来解决音频播放的问题。使用相当简单，如下图所示
+HTML5通过&lt;audio>标签来解决音频播放的问题。使用相当简单，如下图所示
 
 ![1497256460969](img/1497256460969.png) 
 
@@ -737,7 +737,7 @@ HTML5通过<audio>标签来解决音频播放的问题。使用相当简单，�
 
 ### 视频
 
-HTML5通过<video>标签来解决音频播放的问题。同音频播放一样，<video>使用也相当简单，如下图
+HTML5通过&lt;video>标签来解决音频播放的问题。同音频播放一样，&lt;video>使用也相当简单，如下图
 
 ![1497256567382](img/1497256567382.png) 
 

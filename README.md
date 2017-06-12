@@ -27,7 +27,7 @@
 * [2. 层叠样式表](第2章 CSS/README.md)
   * [CSS](第2章 CSS/CSS.md)
   * [CSS3](第2章 CSS/CSS3.md)
-* [3. JavaScript](第3章 JavaScript/README.md)
+* [3. 脚本语言](第3章 JavaScript/README.md)
   * [JavaScript基础入门](第3章 JavaScript/JavaScript.md)
   * [JavaScript 知识图谱](第3章 JavaScript/JavaScript 知识图谱.md)
 * [4. XML解析器](第4章 XML基础/XML解析器.md)
