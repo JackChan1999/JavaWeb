@@ -32,12 +32,12 @@
 
 | 元字符  | 含义    | 示例                                       |
 | ---- | ----- | ---------------------------------------- |
-| []   | 全部可选项 | padding: [&lt;length> \| &lt;percentage>]{1, 4} |
-| \|\| | 并列    | border: &lt;line-width> \|\| &lt;line-style> \|\|  &lt;color> |
-| \|   | 多选一   | position: static \| relative \| absolute \| fixed |
-| ?    | 0个或1个 | \<shadow>: inset? && \<length>{2, 4} && \<color>? |
-| *    | 0个或多个 | box-shadow: none \| \<shadow>[, \<shadow>]* |
-| {}   | 范围    | \<shadow>: inset? && \<length>{2, 4} && \<color>? |
+| []   | 全部可选项 | padding: [&lt;length> &#124; &lt;percentage>]{1, 4} |
+| &#124;&#124; | 并列    | border: &lt;line-width> &#124;&#124; &lt;line-style> &#124;&#124;  &lt;color> |
+| &#124;   | 多选一   | position: static &#124; relative &#124; absolute &#124; fixed |
+| ?    | 0个或1个 | &lt;shadow>: inset? && &lt;length>{2, 4} && &lt;color>? |
+| *    | 0个或多个 | box-shadow: none &#124; &lt;shadow>[, &lt;shadow>]* |
+| {}   | 范围    | &lt;shadow>: inset? && &lt;length>{2, 4} && &lt;color>? |
 
 学会查看手册，培养自主学习能力。
 
