@@ -712,7 +712,7 @@ SELECT * FROM emp LIMIT 3, 10;
 - UNION：去除重复记录，例如：SELECT * FROM t1 UNION SELECT * FROM t2；
 - UNION ALL：不去除重复记录，例如：SELECT * FROM t1 UNION ALL SELECT * FROM t2。
 
- ![mysql](img/union1.png)
+![mysql](img/union1.png)
 
 ![mysql](img/union2.png)
 
@@ -743,7 +743,7 @@ SELECT emp.ename,emp.sal,emp.comm,dept.dname
 FROM emp,dept
 WHERE emp.deptno=dept.deptno;
 ```
- ![mysql](img/连接查询4.png)
+![mysql](img/连接查询4.png)
 
 还可以为表指定别名，然后在引用列时使用别名即可。
 
