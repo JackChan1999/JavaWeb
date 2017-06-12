@@ -1,4 +1,4 @@
-# **1. JavaScript概述**
+# 1. JavaScript概述
 
 Javascript是基于对象和事件驱动的脚本语言，主要应用在客户端
 
@@ -21,7 +21,7 @@ javascript和java的区别（雷锋和雷峰塔）
 - js:  var i = 10; var m = "10";
 - JavaScript只需解析就可以执行，而java需要先编译成字节码文件，再执行
 
-# **2. JavaScript与java不同**
+# 2. JavaScript与java不同
 
 - Netscape公司开发的一种脚本语言 ，并且可在所有主要的浏览器中运行 ：IE、Firefox、Chorme、Opera
 - JavaScript 是基于对象的，java是面向对象
@@ -36,7 +36,7 @@ ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳
 
 在 1998 年，该标准成为了国际 ISO 标准 (ISO/IEC 16262)。这个标准仍然处于发展之中。
 
-# **3. JavaScript历史**
+# 3. JavaScript历史
 
 - 在早期浏览器竞争的背景下，各浏览器厂商标新立异，独树一帜，JavaScript 脚本编写者们苦不堪言
 
@@ -44,7 +44,7 @@ ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳
 
 ![JavaScript](http://img.blog.csdn.net/20161029121340002)
 
-# **4. JavaScript语言组成**
+# 4. JavaScript语言组成
 
 一个完整 JavaScript实现由以下3个部分组成
 
@@ -54,7 +54,7 @@ ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳
 
 ![JavaScript](http://img.blog.csdn.net/20161029121452424)
 
-# **5. js和html的结合方式**
+# 5. js和html的结合方式
 
 第一种：使用一个标签
 ```javascript
@@ -71,7 +71,7 @@ ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳
 
 # 6. JavaScript的基础
 
-## **6.1 JavaScript的变量**
+## 6.1 JavaScript的变量
 
 JavaScript是弱变量类型的语言。弱变量类型：定义变量的时候变量没有具体的类型，当变量被赋值的时候变量才会有具体的数据类型
 
@@ -90,23 +90,23 @@ alert(typeof(d));   //  output string
 
 // 在JavaScript中 定义字符串  可以使用单引号 或者 双引号
 ```
-## **6.2 JavaScript的数据类型**
+## 6.2 JavaScript的数据类型
 
-### **6.2.1 JavaScript和Java一样存在两种数据类型**
+### 6.2.1 JavaScript和Java一样存在两种数据类型
 
 - 原始值 （存储在栈Stack中简单数据）
 - 引用值 （存储在堆heap中对象）
 
-### **6.2.2 5种原始数据类型**
+### 6.2.2 5种原始数据类型
 
 - Undefined、Null、Boolean、Number 和 String
 - JavaScript中字符串是原始数据类型
 
-### **6.2.3 通过typeof运算符，查看变量类型**
+### 6.2.3 通过typeof运算符，查看变量类型
 
 所有引用类型都是object
 
-### **6.2.4 通过instanceof 运算符解决typeof对象类型判断问题**
+### 6.2.4 通过instanceof 运算符解决typeof对象类型判断问题
 
 在使用 typeof 运算符时采用引用类型存储值会出现一个问题，无论引用的是什么类型的对象，它都返回 "object"。ECMAScript 引入了另一个 Java 运算符 instanceof 来解决这个问题。instanceof 运算符与 typeof 运算符相似，用于识别正在处理的对象的类型。与 typeof 方法不同的是，instanceof 方法要求开发者明确地确认对象为某特定类型。例如：
 
@@ -116,7 +116,8 @@ alert(oStringObject instanceof String);	//输出 "true"
 
 ```
 
-### **6.2.5 区分 undefined 和 null**
+### 6.2.5 区分 undefined 和 null
+
 - undefined：变量定义了未初始化或访问对象不存在属性
 - null：表示访问的对象不存在
 
@@ -132,9 +133,9 @@ if(a == undefined){
 //var div1 = document.getElementById("div1")
 //alert(div1.href);
 ```
-## **6.3 JavaScript的语句**
+## 6.3 JavaScript的语句
 
-### **条件语句**
+### 条件语句
 
 两种：if语句  和 switch语句
 
@@ -246,7 +247,7 @@ alert(arr6.length);
         D.var a = {};
 */
 ```
-## **6.5 JavaScript的函数**
+## 6.5 JavaScript的函数
 
 ### 定义函数:
 
@@ -288,7 +289,7 @@ var 函数名 = function(参数列表){
 
 ## 6.6 JavaScript的内置对象
 
-### **Array**
+### Array
 
 Array对象属性
 
@@ -298,7 +299,7 @@ Array对象方法
 
 ![JavaScript](http://img.blog.csdn.net/20161029093721498)
 
-### **Boolean**
+### Boolean
 
 boolean对象属性
 
@@ -308,23 +309,23 @@ boolean对象方法
 
 ![JavaScript](http://img.blog.csdn.net/20161029094030672)
 
-### **Date**
+### Date
 
 ![JavaScript](http://img.blog.csdn.net/20161029234312145)
 
 ![JavaScript](http://img.blog.csdn.net/20161029234323713)
 
-### **Math**
+### Math
 
 ![JavaScript](http://img.blog.csdn.net/20161029094955660)
 
-### **String**
+### String
 
 ![JavaScript](http://img.blog.csdn.net/20161029234623553)
 
 ![JavaScript](http://img.blog.csdn.net/20161029234636850)
 
-### **Number**
+### Number
 
 Number对象属性
 
@@ -488,7 +489,7 @@ Window 对象是 JavaScript 层级中的顶层对象，Window 对象代表一个
 
 ![JavaScript](http://img.blog.csdn.net/20161103011909191)
 
-## **Window对象常用的方法**
+## Window对象常用的方法
 
 | 方法              | 功能描述                             |
 | :-------------- | :------------------------------- |
@@ -504,7 +505,7 @@ Window 对象是 JavaScript 层级中的顶层对象，Window 对象代表一个
 
 案例：open和showModalDialog
 
-## **History对象：浏览器的历史对象**
+## History对象：浏览器的历史对象
 
 History 对象包含用户（在浏览器窗口中）访问过的 URL
 
@@ -514,25 +515,29 @@ History 对象包含用户（在浏览器窗口中）访问过的 URL
 | go()      | 加载 history 列表中的某个具体页面  |
 | forward() | 加载 history 列表中的下一个 URL |
 
-## **Screen对象:屏幕对象**
+## Screen对象:屏幕对象
 
 常用的属性
-width
-height
 
-## **Location对象：地址对象**
+- width
+- height
 
-Location 对象包含有关当前 URL 的信息
+## Location对象：地址对象
 
-常用的属性 href = url，通过href属性完成超链接效果
+请求url地址，href属性
 
-## **Navigator对象：浏览器对象**
+- 获取到请求的url地址
+- 设置url地址
+
+## Navigator对象：浏览器对象
+
+获取客户机的信息（浏览器的信息），navigator.appName
 
 # 11. DOM对象
 
-Document Object Model
+当网页被加载时，浏览器会创建页面的文档对象模型(Document Object Model)
 
-## **11.1 DOM的介绍**
+## 11.1 DOM的介绍
 
 dom：document object model: 文档对象模型
 
@@ -549,11 +554,11 @@ DOM：将文档解析成内存中的树状结构。通过树状结构对文档�
 
 "W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。"
 
-## **11.2 DOM结构模型**
+## 11.2 DOM结构模型
 
 ![JavaScript](http://img.blog.csdn.net/20161105233044244)
 
-## **11.3 DOM三个级别和DHTML介绍**
+## 11.3 DOM三个级别和DHTML介绍
 
 ### DOM模型有三种
 
@@ -573,19 +578,19 @@ DOM：将文档解析成内存中的树状结构。通过树状结构对文档�
 - Dom：负责将标签及其内容解析，封装成对象，对象中具有属性和行为
 - Javascript：负责提供程序设计语言，对页面中的对象进行逻辑操作
 
-## **11.4 BOM 和HTML DOM关系图**
+## 11.4 BOM 和HTML DOM关系图
 
 ![JavaScript](http://img.blog.csdn.net/20161029110818210)
 
-## **11.5 Node接口属性和方法**
+## 11.5 Node接口属性和方法
 
 ![JavaScript](http://img.blog.csdn.net/20161111162222665)
 
-## **11.6 DOM中的Document对象**
+## 11.6 DOM中的Document对象
 
 每个载入浏览器的 HTML 文档都会成为 Document 对象，Document：代表整个文档
 
-### **11.6.1 常用属性**
+### 11.6.1 常用属性
 
 | 属性      | 描述                         |
 | :------ | :------------------------- |
@@ -593,7 +598,7 @@ DOM：将文档解析成内存中的树状结构。通过树状结构对文档�
 | forms[] | 返回对文档中所有 Form 对象引用         |
 | body    | 提供对 &lt;body> 元素的直接访问      |
 
-### **11.6.2 使用document查找标签**
+### 11.6.2 使用document查找标签
 
 | 方法                     | 功能描述                          |
 | :--------------------- | :---------------------------- |
@@ -620,7 +625,7 @@ for(var i=0;i<inputs.length;i++){
 }
 ```
 
-### **11.6.3 Document创建标签**
+### 11.6.3 Document创建标签
 
 | 方法               | 功能描述     |
 | :--------------- | :------- |
@@ -630,15 +635,15 @@ for(var i=0;i<inputs.length;i++){
 
 案例
 
-```javascript
- <BODY>
+```html
+ <body>
       <ul id="city">
             <li>北京</li>
             <li>上海</li>
             <li>广州</li>
       </ul>
- </BODY>
- <SCRIPT LANGUAGE="JavaScript">
+ </body>
+ <script LANGUAGE="JavaScript">
       // 需求:创建一个<li>深圳</li> 将其放在ul中
 
       // 1.创建li标签   <li></li>
@@ -650,12 +655,12 @@ for(var i=0;i<inputs.length;i++){
       // 4.将li添加到ul中.(查找ul.)
       var city = document.getElementById("city");
       city.appendChild(liElement);
- </SCRIPT>
+ </script>
 ```
 
-## **11.7 Element对象:元素(标签)**
+## 11.7 Element对象:元素(标签)
 
-### **11.7.1 元素对象操作属性**
+### 11.7.1 元素对象操作属性
 
 | 方法                       | 功能描述   |
 | :----------------------- | :----- |
@@ -689,7 +694,7 @@ input.removeAttribute("name");
 alert(input.getAttribute("name"));
 ```
 
-### **11.7.2 在标签下查找标签**
+### 11.7.2 在标签下查找标签
 childNodes：获得所有的子节点.属性不是所有的浏览器都兼容
 
 在标签下查找标签 只有getElementsByTagName()是有效的
@@ -706,20 +711,20 @@ var lis = city1.getElementsByTagName("li");
 alert(lis.length);
 ```
 
-## **11.8 Node对象:节点对象**
+## 11.8 Node对象:节点对象
 
-### **11.8.1 Node中的常用的属性**
+### 11.8.1 Node中的常用的属性
 
-- **nodeName**
+- nodeName
   - 如果节点是元素节点，nodeName返回这个元素的名称
   - 如果是属性节点，nodeName返回这个属性的名称
   - 如果是文本节点，nodeName返回一个内容为#text 的字符串
 
-- **nodeType**
-  - Node.ELEMENT_NODE    ---1    --- 元素节点
-  - Node.ATTRIBUTE_NODE  ---2    --- 属性节点
-  - Node.TEXT_NODE       ---3    --- 文本节点
-- **nodeValue**
+- nodeType
+  - Node.ELEMENT_NODE     ---1--- 元素节点
+  - Node.ATTRIBUTE_NODE  ---2--- 属性节点
+  - Node.TEXT_NODE             ---3--- 文本节点
+- nodeValue
   - 如果给定节点是一个属性节点，返回值是这个属性的值
   - 如果给定节点是一个文本节点，返回值是这个文本节点内容
   - 如果给定节点是一个元素节点，返回值是 null
@@ -754,46 +759,46 @@ alert(t.nodeName);              // output  #text
 alert(t.nodeType);              // output  3
 alert(t.nodeValue);             // output  文本
 ```
-### **11.8.2 节点名称、值和类型**
+### 11.8.2 节点名称、值和类型
 
-- **nodeName：其内容是给定节点的名字**
+- nodeName：其内容是给定节点的名字
   - 如果是元素节点，nodeName返回这个元素的名称(标签名)
   - 如果是属性节点，nodeName返回这个属性的名称(属性名)
   - 如果是文本节点，nodeName返回一个内容为#text 的字符串
 
-- **nodeType：返回一个整数，这个数值代表着给定节点的类型**
+- nodeType：返回一个整数，这个数值代表着给定节点的类型
   - Node.ELEMENT_NODE     ---1    --- 元素节点
   - Node.ATTRIBUTE_NODE  ---2    --- 属性节点
   - Node.TEXT_NODE             ---3    --- 文本节点
 
-- **nodeValue：返回给定节点的当前值（字符串）**
+- nodeValue：返回给定节点的当前值（字符串）
   - 如果给定节点是一个属性节点，返回值是这个属性的值
   - 如果给定节点是一个文本节点，返回值是这个文本节点内容
   - 如果给定节点是一个元素节点，返回值是 null
 
-### **11.8.3 节点对象的父节点、子节点及同辈节点**
+### 11.8.3 节点对象的父节点、子节点及同辈节点
 
-- **父节点： parentNode**
+- 父节点： parentNode
   - parentNode 属性返回的节点永远是一个元素节点，因为只有元素节点才有可能包含子节点
   - document 节点的没有父节点
 
-- **子节点**
+- 子节点
   - childNodes：获取指定节点的所有子节点集合
   - firstChild：获取指定节点的第一个子节点
   - lastChild：获取指定节点的最后一个子节点
 
-- **同辈节点**
+- 同辈节点
   - nextSibling: 返回一个给定节点的下一个兄弟节点
   - previousSibling：返回一个给定节点的上一个兄弟节点
 
-### **11.8.4 节点属性**
+### 11.8.4 节点属性
 
 - 节点属性attributes是Node接口定义的属性
 - 节点属性attributes就是节点（特别是元素节点）的属性
 - 事实上，attributes中包含的是一个节点的所有属性的集合
 - attributes.getNameItem()和Element对象的getAttribute()方法类似
 
-### **11.8.5 检测节点中是否有子节点和属性**
+### 11.8.5 检测节点中是否有子节点和属性
 
 - 查看是否存在子节点： hasChildNodes()
 
@@ -805,18 +810,18 @@ alert(t.nodeValue);             // output  文本
 
 - 在IE浏览器中，不存在hasAttributes()方法
 
-### **11.8.6 节点的插入**
+### 11.8.6 节点的插入
 
 - appendChild() 插入节点
 - insertBefore(newNode,oldNode)
 - 没有insertAfter()方法
 
-### **11.8.7 删除和替换节点**
+### 11.8.7 删除和替换节点
 
 - removeChild() 删除节点
 - replaceChild(newNode,oldNode) 替换节点
 
-### **11.8.8 移动节点**
+### 11.8.8 移动节点
 
 移动节点：由以下三种方法组合完成
 
@@ -831,11 +836,11 @@ alert(t.nodeValue);             // output  文本
 
 - 替换节点：replaceChild()方法
 
-### **11.8.9 复制节点**
+### 11.8.9 复制节点
 
 cloneNode(boolean)方法，其中，参数boolean是判断是否复制子节点
 
-## **11.9 innerHTML**
+## 11.9 innerHTML
 
 - 获得标签的html的内容及设置标签的html内容
 - 浏览器几乎都支持该属性，但不是 DOM 标准的组成部分
@@ -862,7 +867,7 @@ function createTable(){
 ```
 使用innerHTML生成动态的表格
 
-# **12. JS中的事件**
+# 12. JS中的事件
 
 HTML 4.0 的新特性之一是有能力使 HTML 事件触发浏览器中的动作（action），比如当用户点击某个 HTML 元素时启动一段 JavaScript。下面是一个属性列表，这些属性可插入 HTML 标签来定义事件动作。
 
@@ -884,6 +889,13 @@ HTML 4.0 的新特性之一是有能力使 HTML 事件触发浏览器中的动�
 | onfocus     | 获得焦点    |
 | onkeyup     | 键盘事件    |
 | onkeydown   | 键盘事件    |
+
+使用 HTML DOM 来分配事件
+```html
+<script>
+document.getElementById("myBtn").onclick=function(){displayDate()};
+</script>
+```
 
 ## 12.1 鼠标移动事件
 
