@@ -30,14 +30,14 @@
 
 学会使用工具，可以让我们事半功倍。
 
-| 元字符  | 含义    | 示例                                       |
-| ---- | ----- | ---------------------------------------- |
-| []   | 全部可选项 | padding: [&lt;length> &#124; &lt;percentage>]{1, 4} |
+| 元字符          | 含义    | 示例                                       |
+| ------------ | ----- | ---------------------------------------- |
+| []           | 全部可选项 | padding: [&lt;length> &#124; &lt;percentage>]{1, 4} |
 | &#124;&#124; | 并列    | border: &lt;line-width> &#124;&#124; &lt;line-style> &#124;&#124;  &lt;color> |
-| &#124;   | 多选一   | position: static &#124; relative &#124; absolute &#124; fixed |
-| ?    | 0个或1个 | &lt;shadow>: inset? && &lt;length>{2, 4} && &lt;color>? |
-| *    | 0个或多个 | box-shadow: none &#124; &lt;shadow>[, &lt;shadow>]* |
-| {}   | 范围    | &lt;shadow>: inset? && &lt;length>{2, 4} && &lt;color>? |
+| &#124;       | 多选一   | position: static &#124; relative &#124; absolute &#124; fixed |
+| ?            | 0个或1个 | &lt;shadow>: inset? && &lt;length>{2, 4} && &lt;color>? |
+| *            | 0个或多个 | box-shadow: none &#124; &lt;shadow>[, &lt;shadow>]* |
+| {}           | 范围    | &lt;shadow>: inset? && &lt;length>{2, 4} && &lt;color>? |
 
 学会查看手册，培养自主学习能力。
 
@@ -65,7 +65,7 @@ CSS3新增了许多灵活查找元素的方法，极大的提高了查找元素�
 
 除了以前学过的:link、:active、:visited、:hover，CSS3又新增了其它的伪类选择器。
 
-1、结构(位置)伪类
+#### 结构(位置)伪类
 
 以某元素（E）相对于其父元素或兄弟元素的位置来获取无素；
 
@@ -84,19 +84,19 @@ n可是多种形式：nth-child(2n+0)、nth-child(2n+1)、nth-child(-1n+3)等；
 
 见代码示例02 选择器-伪类.html
 
-2、空伪类
+#### 空伪类
 
 E:empty 选中没有任何子节点的E元素；（使用不是非常广泛）
 
 见代码示例03 选择器-伪类empty.html
 
-3、目标伪类
+#### 目标伪类
 
 E:target 结合锚点进行使用，处于当前锚点的元素会被选中；
 
 见代码示例04 选择器-伪类target.html
 
-4、排除伪类
+#### 排除伪类
 
 E:not(selector) 除selector（任意选择器）外的元素会被选中；
 
@@ -133,7 +133,7 @@ E:after、E:before后面的练习中会反复用到，目前只需要有个大�
 新增了RGBA、HSLA模式，其中的A 表示透明度通道，即可以设置颜色值的透明度，相较opacity，它们不具有继承性，即不会影响子元素的透明度。
 
 如下图所示为颜色表示方法：
-​                            
+
 Red、Green、Blue、Alpha即RGBA
 
 Hue、Saturation、Lightness、Alpha即HSLA
@@ -144,13 +144,10 @@ R、G、B 取值范围0~255
 
 见代码示例01 颜色-透明rgba.html
 
-H 色调 取值范围0~360，0/360表示红色、120表示绿色、240表示蓝色
-
-S 饱和度取值范围0%~100%
-
-L 亮度 取值范围0%~100%
-
-A 透明度取值范围0~1
+- H 色调 取值范围0~360，0/360表示红色、120表示绿色、240表示蓝色
+- S 饱和度取值范围0%~100%
+- L 亮度 取值范围0%~100%
+- A 透明度取值范围0~1
 
 见代码示例02 颜色-透明hsla.html
 
@@ -210,13 +207,10 @@ border-radius
 
 支持简写模式，具体如下：
 
-1、border-radius: 10px; 表示四个角的横纵轴半径都为10px；
-
-2、border-radius: 10px 5px; 表示1和3角横纵轴半径都为10px，2和4角横纵轴半径为5px；
-
-3、border-radius: 10px 5px 8px; 表示1角模纵轴半径都为10px，2和4角横纵轴半径都为8px，3角的横纵轴半径都为8px；
-
-4、border-radius: 10px 8px 6px 4px; 表示1角横纵轴半径都为10px，表示2角横纵轴半径都为8px，表示3角横纵轴半径都为6px，表示4角横纵轴半径都为6px；
+- border-radius: 10px; 表示四个角的横纵轴半径都为10px
+- border-radius: 10px 5px; 表示1和3角横纵轴半径都为10px，2和4角横纵轴半径为5px
+- border-radius: 10px 5px 8px; 表示1角模纵轴半径都为10px，2和4角横纵轴半径都为8px，3角的横纵轴半径都为8px
+- border-radius: 10px 8px 6px 4px; 表示1角横纵轴半径都为10px，表示2角横纵轴半径都为8px，表示3角横纵轴半径都为6px，表示4角横纵轴半径都为6px
 
 见代码示例02 边框-圆角-详解border-radius.html
 
@@ -277,49 +271,43 @@ b)  repeat单纯平铺,多余部分，会被“裁切”而不能完整显示。
 
 背景在CSS3中也得到很大程度的增强，比如背景图片尺寸、背景裁切区域、背景定位参照点、多重背景等。
 
-1、 background-size
+### background-size
 
 通过background-size设置背景图片的尺寸，就像我们设置img的尺寸一样，在移动Web开发中做屏幕适配应用非常广泛。
 
 其参数设置如下：
 
-a) 可以设置长度单位(px)或百分比（设置百分比时，参照盒子的宽高）
-
-b) 设置为cover时，会自动调整缩放比例，保证图片始终填充满背景区域，如有溢出部分则会被隐藏。
-
-c) 设置为contain会自动调整缩放比例，保证图片始终完整显示在背景区域。
+- 可以设置长度单位(px)或百分比（设置百分比时，参照盒子的宽高）
+- 设置为cover时，会自动调整缩放比例，保证图片始终填充满背景区域，如有溢出部分则会被隐藏。
+- 设置为contain会自动调整缩放比例，保证图片始终完整显示在背景区域。
 
 见代码示例01 背景-尺寸background-size.html
 
-2、background-origin
+### background-origin
 
 通过background-origin可以设置背景图片定位(background-position)的参照原点。
 
 其参数设置如下：
 
-border-box以边框做为参考原点；
-
-padding-box以内边距做为参考原点；
-
-content-box以内容区做为参考点；
+- border-box以边框做为参考原点；
+- padding-box以内边距做为参考原点；
+- content-box以内容区做为参考点；
 
 见代码示例02 背景-原点background-origin.html
 
-3、background-clip
+### background-clip
 
 通过background-clip，可以设置对背景区域进行裁切，即改变背景区域的大小。
 
 其参数设置如下：
 
-border-box裁切边框以内为背景区域；
-
-padding-box裁切内边距以内为背景区域；
-
-content-box裁切内容区做为背景区域；
+- border-box裁切边框以内为背景区域；
+- padding-box裁切内边距以内为背景区域；
+- content-box裁切内容区做为背景区域；
 
 见代码示例03 背景-裁切background-clip.html
 
-4、多背景
+### 多背景
 
 以逗号分隔可以设置多背景，可用于自适应布局
 
@@ -455,33 +443,28 @@ b) 调整顺序可以解决，把旋转放到最后
 
 ## 3D转换
 
-1、左手坐标系
+### 左手坐标系
 
 伸出左手，让拇指和食指成“L”形，大拇指向右，食指向上，中指指向前方。这样我们就建立了一个左手坐标系，拇指、食指和中指分别代表X、Y、Z轴的正方向。如下图
 
-2、CSS中的3D坐标系
+### CSS中的3D坐标系
 
 CSS3中的3D坐标系与上述的3D坐标系是有一定区别的，相当于其绕着X轴旋转了180度，如下图
 
 借助示例理解3D转换
 
-a) 绕X轴旋转，见代码示例013D转换-旋转rotateX.html
+- 绕X轴旋转，见代码示例013D转换-旋转rotateX.html
+- 绕Y轴旋转，见代码示例023D转换-旋转rotateY.html
+- 绕Z轴旋转，见代码示例033D转换-旋转rotateZ.html
+- 在X轴移动，见代码示例043D转换-移动translateX.html
+- 在Y轴移动，见代码示例053D转换-移动translateY.html
+- 在Z轴移动，见代码示例063D转换-移动translateZ.html
 
-b) 绕Y轴旋转，见代码示例023D转换-旋转rotateY.html
-
-c) 绕Z轴旋转，见代码示例033D转换-旋转rotateZ.html
-
-d) 在X轴移动，见代码示例043D转换-移动translateX.html
-
-d) 在Y轴移动，见代码示例053D转换-移动translateY.html
-
-d) 在Z轴移动，见代码示例063D转换-移动translateZ.html
-
-3、左手法则
+### 左手法则
 
 左手握住旋转轴，竖起拇指指向旋转轴正方向，正向就是其余手指卷曲的方向。
 
-4、透视（perspective）
+### 透视（perspective）
 
 电脑显示屏是一个2D平面，图像之所以具有立体感（3D效果），其实只是一种视觉呈现，通过透视可以实现此目的。
 
@@ -493,15 +476,15 @@ perspective有两种写法
 
 a) 作为一个属性，设置给父元素，作用于所有3D转换的子元素
 
-       b) 作为transform属性的一个值，做用于元素自身
+b) 作为transform属性的一个值，做用于元素自身
 
 见代码示例07 3D转换-透视perspective.html
 
-5、理解透视距离
+### 理解透视距离
 
 透视会产生“近大远小”的效果
 
-6、3D呈现（transform-style）
+### 3D呈现（transform-style）
 
 设置内嵌的元素在 3D 空间如何呈现，这些子元素必须为转换原素。
 
@@ -515,7 +498,7 @@ preserve-3d：保留3D空间
 
 见代码示例09 3D转换-练习-立方体.html
 
-7、backface-visibility
+### backface-visibility
 
 设置元素背面是否可见
 
@@ -578,14 +561,16 @@ CSS3在布局方面做了非常大的改进，使得我们对块级元素的布�
 
 ### 各属性详解
 
-- flex-direction调整主轴方向（默认为水平方向）
-- justify-content调整主轴对齐
-- align-items调整侧轴对齐
-- flex-wrap控制是否换行
-- align-content堆栈（由flex-wrap产生的独立行）对齐
-- flex-flow是flex-direction、flex-wrap的简写形式
-- flex子项目在主轴的缩放比例，不指定flex属性，则不参与伸缩分配
-- order控制子项目的排列顺序，正序方式排序，从小到大
+| 属性              | 说明                             |
+| :-------------- | :----------------------------- |
+| flex-direction  | 调整主轴方向（默认为水平方向）                |
+| justify-content | 调整主轴对齐                         |
+| align-items     | 调整侧轴对齐                         |
+| flex-wrap       | 控制是否换行                         |
+| align-content   | 堆栈（由flex-wrap产生的独立行）对齐         |
+| flex-flow       | 是flex-direction、flex-wrap的简写形式 |
+| flex            | 子项目在主轴的缩放比例，不指定flex属性，则不参与伸缩分配 |
+| order           | 控制子项目的排列顺序，正序方式排序，从小到大         |
 
 此知识点重在理解，要明确找出主轴、侧轴、方向，各属性对应的属性值可参考示例源码。
 
