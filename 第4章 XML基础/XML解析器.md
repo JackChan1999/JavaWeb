@@ -4,6 +4,8 @@
 2. [Xml 格式数据的生成和解析](http://blog.csdn.net/axi295309066/article/details/52760959)
 3. [XML解析器](http://blog.csdn.net/axi295309066/article/details/52761771)
 
+![](img/xml.png)
+
 # 1. 操作XML文档概述
 
 ## 1.1 如何操作XML文档
@@ -263,6 +265,7 @@ Node基本方法：
 获取当前节点的名字。如果当前节点是Element，那么返回元素名称。如果当前节点是Text那么返回#text。如果当前节点是Document那么返回#document
 
 - String getNodeValue()
+
 获取当前节点的值。只有文本节点有值，其它节点的值都为null
 
 - String getTextContent()
