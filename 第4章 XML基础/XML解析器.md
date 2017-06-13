@@ -266,9 +266,11 @@ Node基本方法：
 获取当前节点的值。只有文本节点有值，其它节点的值都为null
 
 - String getTextContent()
+
 获取当前节点的文本字符串。如果当前节点为Text，那么获取节点内容。如果当前节点为Element，那么获取元素中所有Text子节点的内容。例如当前节点为：&lt;name>zhangSan&lt;/name>，那么本方法返回zhangSan。如果当前节点为：&lt;student>&lt;name>zhangSan&lt;/name>&lt;age>23&lt;/age>&lt;sex>male&lt;/sex>&lt;/student>，那么本方法返回zhangSan23male。
 
 - short getNodeType()
+
 获取当前节点的类型。Node中有很多short类型的常量，可以通过与这些常量的比较来判断当前节点的类型。if(node.getNodeType() == Node.ELEMENT_NODE)；
 
 Node获取子节点和父节点方法，只有Document和Element才能使用这些方法：
@@ -296,15 +298,19 @@ Node获取弟兄节点的方法，只有Element才能使用这些方法：
 Node添加、替换、删除子节点方法：
 
 - Node appendChild(Node newChild)
+
 把参数节点newChild添加到当前节点的子节点列表的末尾处。返回值为被添加的子节点newChild对象，方便使用链式操作。如果newChild在添加之前已经在文档中存在，那么就是修改节点的位置了；
 
 - Node insertBefore(Node newChild, Node refNode)
+
 把参数节点newChild添加到当前节点的子节点refNode之前。返回值为被添加的子节点newChild对象，方便使用链式操作。如果refNode为null，那么本方法与appendNode()方法功能相同。如果newChild节点在添加之前已经在文档中存在，那么就是修改节点的位置了。
 
 - Node removeNode(Node oldChild)
+
 从当前节点中移除子元素oldChild。返回值为被添加的子节点oldChild对象，方便使用链式操作。
 
 - Node replaceNode(Node newChild, Node oldChild)
+
 将当前节点的子节点oldChild替换为newChild。
 
 Node获取属性集合方法，只有Element可以使用：
@@ -328,9 +334,11 @@ Node的判断方法：
 获取子元素方法：
 
 - Element getElementById(String elementId)
+
 通过元素的ID属性获取元素节点，如果没有DTD指定属性类型为ID，那么这个方法将返回null
 
 - NodeList getElementsByTagName(String tagName)
+
 获取指定元素名称的所有元素
 
 - Element getDocumentElement()：获取文档元素，即获取根元素
@@ -349,9 +357,11 @@ Node的判断方法：
 获取方法：
 
 - NodeList getElementsByTagName(String tagName)
+
 获取当前元素的指定元素名称的所有子元素
 
 - String getTagName()
+
 获取当前元素的元素名。调用元素节点的getNodeName()也是返回名
 
 属性相关方法
@@ -1139,9 +1149,9 @@ Schema文档的扩展名为xsd，即XML Schema Definition。
     </student>
 </students>
 ```
-名称空间相关内容
-XSD文档中是创建元素和属性的地方；
-XML文档中是使用元素和属性的地方。
+名称空间相关内容        
+XSD文档中是创建元素和属性的地方；      
+XML文档中是使用元素和属性的地方。      
 所以在XML文档中需要说明使用了哪些XSD文档。
 
 ## 11.4 什么是名称空间
