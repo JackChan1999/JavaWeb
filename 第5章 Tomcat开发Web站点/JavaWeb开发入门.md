@@ -165,7 +165,7 @@ startup.bat会调用catalina.bat，而catalina.bat会调用setclasspath.bat，se
 
 http默认端口号为80，也就是说在URL中不给出端口号时就表示使用80端口。当然你也可以修改为其它端口号。
 
-当把端口号修改为80后，在浏览器中只需要输入：http://localhost就可以访问Tomcat主页了
+当把端口号修改为80后，在浏览器中只需要输入：`http://localhost` 就可以访问Tomcat主页了
 
 
 # **6. 虚似主机**
@@ -218,7 +218,9 @@ web资源不能直接交给虚拟主机，需要按照功能组织用目录成�
 WEB-INF：可以没有，但是最好有，如果有则一定要保证他的目录结构是完整的。放置在WEB-INF目录下的所有资源浏览器没有办法直接进行访问
 
 classes：动态web资源运行时的class文件要放在这个目录下
+
 lib：动态web资源运行时所依赖的jar包要放在这个目录下
+
 web.xml：整个web应用的配置文件,配置主页/Servlet的映射/过滤器监听器的配置都需要依赖这个文件进行
 
 ## **7.2 web.xml文件的作用**
