@@ -182,7 +182,7 @@ HTTPS相对于HTTP有哪些不同呢？其实就是在HTTP跟TCP中间加多了�
 
 ### 证书格式
 
-先无耻的贴上一大段内容，证书格式来自这篇不错的文章《[OpenSSL 与 SSL 数字证书概念贴](http://seanlook.com/2015/01/15/openssl-certificate-encryption/)》
+先无耻的贴上一大段内容，证书格式来自这篇不错的文章[《OpenSSL 与 SSL 数字证书概念贴》](http://seanlook.com/2015/01/15/openssl-certificate-encryption/)
 
 内容非常多，这里我们需要关注的有几个点：
 
@@ -320,4 +320,4 @@ example: sha256WithRSAEncryption
 
 ## 写在后面
 
-科普性文章，部分内容不够严谨，如有错漏请指出 :)
+科普性文章，部分内容不够严谨，如有错漏请指出
