@@ -30,6 +30,7 @@
 * [3. JavaScript](第3章 JavaScript/README.md)
   * [JavaScript基础入门](第3章 JavaScript/JavaScript.md)
   * [JavaScript 知识图谱](第3章 JavaScript/JavaScript 知识图谱.md)
+  * [JavaScript常用代码集合](第3章 JavaScript/JavaScript常用代码集合.md)
 * [4. XML解析器](第4章 XML基础/XML解析器.md)
 * [5. JavaWeb开发入门](第5章 Tomcat开发Web站点/JavaWeb开发入门.md)
 * [6. 网络编程](第6章 Http协议/README.md)
