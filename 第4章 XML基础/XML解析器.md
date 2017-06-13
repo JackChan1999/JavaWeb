@@ -4,9 +4,9 @@
 2. [Xml 格式数据的生成和解析](http://blog.csdn.net/axi295309066/article/details/52760959)
 3. [XML解析器](http://blog.csdn.net/axi295309066/article/details/52761771)
 
-# **1. 操作XML文档概述**
+# 1. 操作XML文档概述
 
-## **1.1 如何操作XML文档**
+## 1.1 如何操作XML文档
 
 XML文档也是数据的一种，对数据的操作也不外乎是“增删改查”。也被大家称之为“CRUD”
 
@@ -15,7 +15,7 @@ XML文档也是数据的一种，对数据的操作也不外乎是“增删改�
 - U：Update
 - D：Delete
 
-## **1.2 XML解析技术**
+## 1.2 XML解析技术
 
 XML解析方式分为两种：DOM（Document Object Model）和SAX（Simple API for XML）。这两种方式不是针对Java语言来解析XML的技术，而是跨语言的解析方式。例如DOM还在Javascript中存在！
 
@@ -23,9 +23,9 @@ DOM是W3C组织提供的解析XML文档的标准接口，而SAX是社区讨论�
 
 DOM和SAX只是定义了一些接口，以及某些接口的缺省实现，而这个缺省实现只是用空方法来实现接口。一个应用程序如果需要DOM或SAX来访问XML文档，还需要一个实现了DOM或SAX的解析器，也就是说这个解析器需要实现DOM或SAX中定义的接口。提供DOM或SAX中定义的功能。
 
-# **2. 解析原理**
+# 2. 解析原理
 
-## **2.1 DOM解析原理**
+## 2.1 DOM解析原理
 
 使用DOM要求解析器把整个XML文档装载到一个Document对象中。Document对象包含文档元素，即根元素，根元素包含N多个子元素…
 
@@ -35,7 +35,7 @@ DOM和SAX只是定义了一些接口，以及某些接口的缺省实现，而�
 
 缺点：如果XML文档过大，那么把整个XML文档装载进内存，可能会出现内存溢出的现象！
 
-## **2.2 设置Java最大内存**
+## 2.2 设置Java最大内存
 
 运行Java程序，指定初始内存大小，以及最大内存大小。
 
@@ -43,7 +43,7 @@ java -Xms20m -Xmx100m MyClass
 
 ![设置Java最大内存](http://img.blog.csdn.net/20161008232212197)
 
-## **2.3 SAX解析原理**
+## 2.3 SAX解析原理
 
 DOM会一行一行的读取XML文档，最终会把XML文档所有数据存放到Document对象中。SAX也是一行一行的读取XML文档，但是当XML文档读取结束后，SAX不会保存任何数据，同时整个解析XML文档的工作也就结束了。
 
@@ -55,7 +55,7 @@ DOM会一行一行的读取XML文档，最终会把XML文档所有数据存放�
 
 ![sax](http://img.blog.csdn.net/20161016085213108)
 
-## **2.4 SAX解析过程**
+## 2.4 SAX解析过程
 
 采用事件驱动，边读边解析：从上到下，一行一行的解析，解析到某一个对象，把对象名称返回
 
@@ -63,21 +63,21 @@ DOM会一行一行的读取XML文档，最终会把XML文档所有数据存放�
 
 使用DOM方式解析XML时，如果文件过大，会造成内存溢出，优点是DOM方式很方便的实现增删改操作
 
-# **3. 解析器概述**
+# 3. 解析器概述
 
-## **3.1 什么是XML解析器**
+## 3.1 什么是XML解析器
 
 DOM、SAX都是一组解析XML文档的规范，其实就是接口，这说明需要有实现者能使用，而解析器就是对DOM、SAX的实现了。一般解析器都会实现DOM、SAX两个规范！
 
-- **Crimson(sun)**：JDK1.4之前，Java使用的解析器。性能效差，可以忘记它了！
+- Crimson(sun)：JDK1.4之前，Java使用的解析器。性能效差，可以忘记它了！
 
-- **Xerces(IBM)**：IBM开发的DOM、SAX解析器，现在已经由Apache基金会维护。是当前最为流行的解析器之一！在1.5之后，已经添加到JDK之中，也是JAXP的默认使用解析器，但不过在JDK中的包名与Xerces不太一样。例如：org.apache.xerces包名改为了com.sun.org.apache.xerces.internal包名，也就是说JDK1.5中的Xerces是被包装后的XML解析器，但二者区别很小。
+- Xerces(IBM)：IBM开发的DOM、SAX解析器，现在已经由Apache基金会维护。是当前最为流行的解析器之一！在1.5之后，已经添加到JDK之中，也是JAXP的默认使用解析器，但不过在JDK中的包名与Xerces不太一样。例如：org.apache.xerces包名改为了com.sun.org.apache.xerces.internal包名，也就是说JDK1.5中的Xerces是被包装后的XML解析器，但二者区别很小。
 
-- **Aelfred2(dom4j)**：DOM4J默认解析器，当DOM4J找不到解析器时会使用他自己的解析器。
+- Aelfred2(dom4j)：DOM4J默认解析器，当DOM4J找不到解析器时会使用他自己的解析器。
 
-# **4. JAXP概述**
+# 4. JAXP概述
 
-## **4.1 什么是JAXP**
+## 4.1 什么是JAXP
 
 JAXP是由Java提供的，用于隐藏底层解析器的实现。Java要求XML解析器去实现JAXP提供的接口，这样可以让用户使用解析器时不依赖特定的XML解析器。
 
@@ -87,7 +87,7 @@ JAXP本身不是解析器（不是Xerces），也不是解析方式（DOM或SAX�
 
 ![JAXP](http://img.blog.csdn.net/20161008232634305)
 
-## **4.2 JAXP对DOM的支持**
+## 4.2 JAXP对DOM的支持
 
 ```java
 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -121,7 +121,7 @@ javax.xml.parsers.DocumentBuilderFactory=工厂实现类名字
 
 在获取到某个特定解析器厂商的DocumentBuilderFactory后，那么这个工厂对象创建出来的解析器对象当然就是自己厂商的解析器对象了。
 
-## **4.3 JAXP对SAX的支持**
+## 4.3 JAXP对SAX的支持
 
 ```java
 SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -159,19 +159,19 @@ parser.parse("src/students.xml", new DefaultHandler() {
 ```
 JAXP对SAX的支持与JAXP对DOM的支持是相同的，这里就不在赘述！
 
-# **5. JDOM和DOM4J**
+# 5. JDOM和DOM4J
 
-## **5.1 JDOM和DOM4J概述**
+## 5.1 JDOM和DOM4J概述
 
 JDOM和DOM4J都是针对Java解析XML设计的方式，它们与DOM相似。但DOM不是只针对Java，DOM是跨语言的，DOM在Javascript中也可以使用。而JDOM和DOM4J都是专业为Java而设计的，使用JDOM和DOM4J，对Java程序员而言会更加方便。
 
-## **5.2 JDOM和DOM4J比较**
+## 5.2 JDOM和DOM4J比较
 
 JDOM与DOM4J相比，DOM4J完胜！！！所以，我们应该在今后的开发中，把DOM4J视为首选。
 
 在2000年，JDOM开发过程中，因为团队建议不同，分离出一支队伍，开发了DOM4J。DOM4J要比JDOM更加全面。
 
-## **5.3 DOM4J查找解析器的过程**
+## 5.3 DOM4J查找解析器的过程
 
 DOM4J首先会去通过JAXP的查找方法去查找解析器，如果找到解析器，那么就使用之；否则会使用自己的默认解析器Aelfred2。
 
@@ -181,19 +181,19 @@ DOM4J使用SAX解析器把XML文档加载到内存，生成DOM对象。当然也
 
 # 6. XML解析之JAXP（DOM）
 
-##**6.1 JAXP获取解析器**
+##6.1 JAXP获取解析器
 
-### **6.1.1 JAXP相关包**
+### 6.1.1 JAXP相关包
 
 - JAXP相关开发包：javax.xml
 - DOM相关开发包：org.w3c.dom
 - SAX相关开发包：org.xml.sax
 
-### **6.1.2 JAXP与DOM、SAX解析器的关系**
+### 6.1.2 JAXP与DOM、SAX解析器的关系
 
 JAXP的作用只是为了让使用者不依赖某一特定DOM、SAX的解析器实现，当使用JAXP API时，使用者直接接触的就是JAXP API，而不用接触DOM、SAX的解析器实现API。
 
-### **6.1.3 JAXP获取DOM解析器**
+### 6.1.3 JAXP获取DOM解析器
 
 当我们需要解析XML文档时，首先需要通过JAXP API解析XML文档，获取Document对象。然后用户就需要使用DOM API来操作Document对象了。
 ```java
@@ -202,7 +202,7 @@ factory.setValidating(false);
 DocumentBuilder builder = factory.newDocumentBuilder();
 Document doc = builder.parse("src/students.xml");
 ```
-### **6.1.4 JAXP保存Document**
+### 6.1.4 JAXP保存Document
 
 当我们希望把Document保存到文件中去时，可以使用Transformer对象的transform()方法来完成。想获取Transformer对象，需要使用TransformerFactory对象。
 与JAXP获取DOM解析器一样，隐藏了底层解析器的实现。也是通过抽象工厂来完成的，这里就不在赘述了。
@@ -218,7 +218,7 @@ transformer.transform(source, result);
 ```
 Transformer类的transform()方法的两个参数类型为：Source和Result，DOMSource是Source的实现类，StreamResult是Result的实现类。
 
-### **6.1.5 JAXP创建Document**
+### 6.1.5 JAXP创建Document
 
 有时我们需要创建一个Document对象，而不是从XML文档解析而来。这需要使用DocumentBuider对象的newDocument()方法。
 ```java
@@ -228,56 +228,63 @@ Document doc = builder.newDocument();
 doc.setXmlVersion("1.0");
 doc.setXmlStandalone(true);
 ```
-### **6.1.6 学习DOM之前，先写两个方法**
+### 6.1.6 学习DOM之前，先写两个方法
 
 - Document getDocument(String xmlName)：通过xmlName获取Document对象；
 - void saveDocument(Document doc, String xmlName)：保存doc到xmlName文件中。
 
-# **7. DOM API概述**
+# 7. DOM API概述
 
-## **7.1 Document对应XML文档**
+## 7.1 Document对应XML文档
 无论使用什么DOM解析器，最终用户都需要获取到Document对象，一个Document对象对应整个XML文档。也可以这样说，Document对象就是XML文档在内存中的表示形式。
 
 通常我们最为“关心”的就是文档的根元素。所以我们必须要把Document获取根元素的方法记住：Element getDocumentElement()。然后通过根元素再一步步获取XML文档中的数据。
 
-## **7.2 DOM API中的类**
-在DOM中提供了很多接口，用来描述XML文档中的组成部分。其中包括：文档（Document）、元素（Element）、属性（Attr）、文本（Text）、注释（Comment）、CDATA段（CDATASection）等等。无论是哪种XML文档组成部分，都是节点（Node）的子接口。
+## 7.2 DOM API中的类
+在DOM中提供了很多接口，用来描述XML文档中的组成部分。其中包括：
+
+- 文档（Document）
+- 元素（Element）
+- 属性（Attr）
+- 文本（Text）
+- 注释（Comment）
+- CDATA段（CDATASection）
+
+等等。无论是哪种XML文档组成部分，都是节点（Node）的子接口。
 
 ![DOM](http://img.blog.csdn.net/20161009000722318)
 
-## **7.3 Node方法介绍**
+## 7.3 Node方法介绍
 
 Node基本方法：
 
-- **String getNodeName()**
+- String getNodeName()
   获取当前节点的名字。如果当前节点是Element，那么返回元素名称。如果当前节点是Text那么返回#text。如果当前节点是Document那么返回#document
 
-- **String getNodeValue()**
+- String getNodeValue()
   获取当前节点的值。只有文本节点有值，其它节点的值都为null
 
-- **String getTextContent()**
+- String getTextContent()
   获取当前节点的文本字符串。如果当前节点为Text，那么获取节点内容。如果当前节点为Element，那么获取元素中所有Text子节点的内容。例如当前节点为：&lt;name>zhangSan&lt;/name>，那么本方法返回zhangSan。如果当前节点为：&lt;student>&lt;name>zhangSan&lt;/name>&lt;age>23&lt;/age>&lt;sex>male&lt;/sex>&lt;/student>，那么本方法返回zhangSan23male。
 
-- **short getNodeType()**
+- short getNodeType()
   获取当前节点的类型。Node中有很多short类型的常量，可以通过与这些常量的比较来判断当前节点的类型。if(node.getNodeType() == Node.ELEMENT_NODE)；
 
 Node获取子节点和父节点方法，只有Document和Element才能使用这些方法：
 
 
-|      返回值 | 方法              | 说明                             |
-| -------: | :-------------- | :----------------------------- |
+| 返回值      | 方法              | 说明                             |
+| :------- | :-------------- | :----------------------------- |
 | NodeList | getChildNodes() | 获取当前节点的所有子节点                   |
-|     Node | getFirstNode()  | 获取当前节点的第一个子节点                  |
-|     Node | getLastNode()   | 获取当前节点的最后一个子节点                 |
-|     Node | getParentNode() | 获取当前节点的父节点。注意Document的父节点为null |
-<br>
+| Node     | getFirstNode()  | 获取当前节点的第一个子节点                  |
+| Node     | getLastNode()   | 获取当前节点的最后一个子节点                 |
+| Node     | getParentNode() | 获取当前节点的父节点。注意Document的父节点为null |
 NodeList表示节点列表，它有两个方法
 
-|  返回值 | 方法              | 说明        |
-| ---: | :-------------- | :-------- |
-|  int | getLength()     | 获取集合长度    |
+| 返回值  | 方法              | 说明        |
+| :--- | :-------------- | :-------- |
+| int  | getLength()     | 获取集合长度    |
 | Node | item(int index) | 获取指定下标的节点 |
-<br>
 Node获取弟兄节点的方法，只有Element才能使用这些方法：
 
 - Node getNextSibling()：获取当前节点的下一个兄弟节点；
@@ -285,16 +292,16 @@ Node获取弟兄节点的方法，只有Element才能使用这些方法：
 
 Node添加、替换、删除子节点方法：
 
-- **Node appendChild(Node newChild)**
+- Node appendChild(Node newChild)
   把参数节点newChild添加到当前节点的子节点列表的末尾处。返回值为被添加的子节点newChild对象，方便使用链式操作。如果newChild在添加之前已经在文档中存在，那么就是修改节点的位置了；
 
-- **Node insertBefore(Node newChild, Node refNode)**
+- Node insertBefore(Node newChild, Node refNode)
   把参数节点newChild添加到当前节点的子节点refNode之前。返回值为被添加的子节点newChild对象，方便使用链式操作。如果refNode为null，那么本方法与appendNode()方法功能相同。如果newChild节点在添加之前已经在文档中存在，那么就是修改节点的位置了。
 
-- **Node removeNode(Node oldChild)**
+- Node removeNode(Node oldChild)
   从当前节点中移除子元素oldChild。返回值为被添加的子节点oldChild对象，方便使用链式操作。
 
-- **Node replaceNode(Node newChild, Node oldChild)**
+- Node replaceNode(Node newChild, Node oldChild)
   将当前节点的子节点oldChild替换为newChild。
 
 Node获取属性集合方法，只有Element可以使用：
@@ -307,8 +314,8 @@ NamedNodeMap表示属性的集合，方法如下：
 
 Node的判断方法：
 
-- boolean hasChildNodes()：判断当前节点是否有子节点；
-- boolean hasAttribute()：判断当前节点是否有属性。
+- boolean hasChildNodes()：判断当前节点是否有子节点
+- boolean hasAttribute()：判断当前节点是否有属性
 
 ## 7.4 Docment方法介绍
 创建节点方法：
@@ -318,55 +325,55 @@ Node的判断方法：
 获取子元素方法：
 
 - Element getElementById(String elementId)
-  通过元素的ID属性获取元素节点，如果没有DTD指定属性类型为ID，那么这个方法将返回null；
+  通过元素的ID属性获取元素节点，如果没有DTD指定属性类型为ID，那么这个方法将返回null
 
 - NodeList getElementsByTagName(String tagName)
-  获取指定元素名称的所有元素；
+  获取指定元素名称的所有元素
 
-- Element getDocumentElement()：获取文档元素，即获取根元素。
+- Element getDocumentElement()：获取文档元素，即获取根元素
 
 文档声明相关方法
 
-|    返回值 | 方法                 | 说明                   |
-| -----: | :----------------- | :------------------- |
+| 返回值    | 方法                 | 说明                   |
+| :----- | :----------------- | :------------------- |
 | String | getXmlVersion()    | 获取文档声明的version属性值    |
 | String | getXmlEncoding()   | 获取文档声明的encoding属性值   |
 | String | getXmlStandalone() | 获取文档声明的standalone属性值 |
-|   void | setXmlVersion()    | 设置文档声明version属性值     |
-|   void | setXmlStandalone() | 设置文档声明standalone属性值  |
+| void   | setXmlVersion()    | 设置文档声明version属性值     |
+| void   | setXmlStandalone() | 设置文档声明standalone属性值  |
 
-## **7.5 Element方法介绍**
+## 7.5 Element方法介绍
 获取方法：
 
-- NodeList getElementsByTagName(String tagName)：
-  获取当前元素的指定元素名称的所有子元素；
+- NodeList getElementsByTagName(String tagName)
+  获取当前元素的指定元素名称的所有子元素
 
 - String getTagName()
-  获取当前元素的元素名。调用元素节点的getNodeName()也是返回名；
+  获取当前元素的元素名。调用元素节点的getNodeName()也是返回名
 
 属性相关方法
 
-|     返回值 | 方法                                      | 说明                     |
-| ------: | :-------------------------------------- | :--------------------- |
-|  String | getAttribute(String name)               | 获取当前元素指定属性名的属性值        |
-|    Attr | getAttributeNode(String name)           | 获取当前元素指定属性名的属性节点       |
+| 返回值     | 方法                                      | 说明                     |
+| :------ | :-------------------------------------- | :--------------------- |
+| String  | getAttribute(String name)               | 获取当前元素指定属性名的属性值        |
+| Attr    | getAttributeNode(String name)           | 获取当前元素指定属性名的属性节点       |
 | boolean | hasAttribute(String name)               | 判断当前元素是否有指定属性          |
-|    void | removeAttribute(String name)            | 移除当前元素的指定属性            |
-|    void | removeAttributeNode(Attr attr)          | 移除当前元素的指定属性            |
-|    void | setAttribute(String name, String value) | 为当前元素添加或修改属性           |
-|    Attr | setAttributeNode(Attr attr)             | 为当前元素添加或修改属性，返回值为添加的属性 |
+| void    | removeAttribute(String name)            | 移除当前元素的指定属性            |
+| void    | removeAttributeNode(Attr attr)          | 移除当前元素的指定属性            |
+| void    | setAttribute(String name, String value) | 为当前元素添加或修改属性           |
+| Attr    | setAttributeNode(Attr attr)             | 为当前元素添加或修改属性，返回值为添加的属性 |
 
-## **7.6 Attr方法介绍**
+## 7.6 Attr方法介绍
 
-|     返回值 | 方法                     | 说明                |
-| ------: | :--------------------- | :---------------- |
-|  String | getName()              | 获取当前属性节点的属性名      |
-|  String | getValue()             | 获取当前属性节点的属性值      |
-|    void | setValue(String value) | 设置当前属性节点的属性值      |
+| 返回值     | 方法                     | 说明                |
+| :------ | :--------------------- | :---------------- |
+| String  | getName()              | 获取当前属性节点的属性名      |
+| String  | getValue()             | 获取当前属性节点的属性值      |
+| void    | setValue(String value) | 设置当前属性节点的属性值      |
 | boolean | isId()                 | 判断当前属性节点是否为ID类型属性 |
-<br>实现代码
+实现代码
 ```java
-/**
+/
  * 实现jaxp操作xml
  *
  */
@@ -579,12 +586,11 @@ public class TestJaxp {
         }
     }
 }
-
 ```
 
-# **8.  SAX**
+# 8.  SAX
 
-## **8.1 SAX解析原理**
+## 8.1 SAX解析原理
 
 首先我们想一下，DOM解析器是不是需要把XML文档遍历一次，然后把每次读取到的数据转换成节点对象（到底哪一种节点对象，这要看解析时遇到了什么东西）保存起来，最后生成一个Document对象返回。也就是说，当你调用了builder.parse(“a.xml”)后，这个方法就会把XML文档中的数据转换成节点对象保存起来，然后生成一个Document对象。这个解析XML文档的过程在parse()方法调用结束后也就结束了。我们的工作是在解析之后，开始对Document对象进行操作。
 
@@ -594,7 +600,7 @@ SAX解析器在解析XML文档的过程中，读取到XML文档的一个部分�
 
 ContentHandler是一个接口，我们的工作是编写该接口的实现类，然后创建实现类的对象，在SAX解析器开始解析之前，把我们写的内容处理类对象交给SAX解析器，这样在解析过程中，我们的内容处理中的方法就会被调用了。
 
-## **8.2 获取SAX解析器**
+## 8.2 获取SAX解析器
 
 与DOM相同，你应该通过JAXP获取SAX解析器，而不是直接使用特定厂商的SAX解析器。JAXP查找特定厂商的SAX解析器实现的方式与查找DOM解析器实现的方式完全相同，这里就不在赘述了。
 
@@ -605,7 +611,7 @@ parser.parse("src/students.xml", new MyContentHandler());
 ```
 上面代码中，MyContentHandler就是我们自己需要编写的ContentHandler的实现类对象。
 
-## **8.3 内容处理器**
+## 8.3 内容处理器
 
 org.xml.sax.ContentHandler中的方法：
 
@@ -613,9 +619,9 @@ org.xml.sax.ContentHandler中的方法：
 
 org.xml.sax.helpers.DefualtHandler对ContentHandler做了空实现，所以我们可以自定义内容处理器时可以继承DefaultHandler类。
 
-## **8.4 SAX应用**
+## 8.4 SAX应用
 
-## **8.5 测试SAX**
+## 8.5 测试SAX
 
 ```java
 public class SAXTest {
@@ -666,7 +672,7 @@ public class SAXTest {
 	}
 }
 ```
-## **8.6 使用SAX打印XML文档**
+## 8.6 使用SAX打印XML文档
 
 ```java
 public class SAXTest2 {
@@ -715,9 +721,9 @@ ParserConfigurationException, SAXException, IOException {
 }
 ```
 
-# **9. DOM4J**
+# 9. DOM4J
 
-## **9.1 DOM4J是什么**
+## 9.1 DOM4J是什么
 
 DOM4J是针对Java开发人员专门提供的XML文档解析规范，它不同与DOM，但与DOM相似。DOM4J针对Java开发人员而设计，所以对于Java开发人员来说，使用DOM4J要比使用DOM更加方便。
 
@@ -727,7 +733,7 @@ DOM4J对DOM和SAX提供了支持，使用DOM4J可以把org.dom4j.document转换�
 
 DOM4J使用JAXP来查找SAX解析器，然后把XML文档解析为org.dom4j.Document对象。它还支持使用org.w3c.Document来转换为org.dom4j.Docment对象。
 
-## **9.2 DOM4J中的类结构**
+## 9.2 DOM4J中的类结构
 
 在DOM4J中，也有Node、Document、Element等接口，结构上与DOM中的接口比较相似。但还是有很多的区别：
 
@@ -737,7 +743,7 @@ Attribute是属性节点，CharacterData是文本节点，文本节点有三个�
 
 ![DOM4J](http://img.blog.csdn.net/20161009000821304)
 
-## **9.3 DOM4J获取Document对象**
+## 9.3 DOM4J获取Document对象
 
 使用DOM4J来加载XML文档，需要先获取SAXReader对象，然后通过SAXReader对象的read()方法来加载XML文档：
 
@@ -747,7 +753,7 @@ SAXReader reader = new SAXReader();
 Document doc = reader.read("src/students.xml");
 ```
 
-## **9.4 DOM4J保存Document对象**
+## 9.4 DOM4J保存Document对象
 
 保存Document对象需要使用XMLWriter对象的write()方法来完成，在创建XMLWriter时还可以为其指定XML文档的格式（缩进字符串以及是否换行），这需要使用OutputFormat来指定。
 ```java
@@ -758,137 +764,137 @@ XMLWriter writer = new XMLWriter(new FileWriter(xmlName), format);
 writer.write(doc);
 writer.close();
 ```
-## **9.5 DOM4J创建Document对象**
+## 9.5 DOM4J创建Document对象
 DocumentHelper类有很多的createXXX()方法，用来创建各种Node对象。
 ```java
 Document doc = DocumentHelper.createDocument();
 ```
-# **10. Document操作**
+# 10. Document操作
 
-## **10.1 遍历students.xml**
+## 10.1 遍历students.xml
 涉及的相关方法：
 
-|     返回值 | 方法                          | 说明                              |
-| ------: | :-------------------------- | :------------------------------ |
+| 返回值     | 方法                          | 说明                              |
+| :------ | :-------------------------- | :------------------------------ |
 | Element | getRootElement()            | Document的方法，用来获取根元素             |
-|    List | elements()                  | Element的方法，用来获取所有子元素            |
-|  String | attributeValue(String name) | Element的方法，用来获取指定名字的属性值         |
+| List    | elements()                  | Element的方法，用来获取所有子元素            |
+| String  | attributeValue(String name) | Element的方法，用来获取指定名字的属性值         |
 | Element | element(String name)        | Element的方法，用来获取第一个指定名字的子元素      |
 | Element | elementText(String name)    | Element的方法，用来获取第一个指定名字的子元素的文本内容 |
-<br>
+
 分析步骤：
 
-- 获取Document对象；
-- 获取root元素；
+- 获取Document对象
+- 获取root元素
 - 获取root所有子元素
-- 遍历每个student元素；
-- 打印student元素number属性；
-- 打印student元素的name子元素内容；
-- 打印student元素的age子元素内容；
-- 打印student元素的sex子元素内容。
+- 遍历每个student元素
+- 打印student元素number属性
+- 打印student元素的name子元素内容
+- 打印student元素的age子元素内容
+- 打印student元素的sex子元素内容
 
-## **10.2 给学生元素添加< score>子元素**
+## 10.2 给学生元素添加&lt;score>子元素``
 涉及的相关方法：
 
-|     返回值 | 方法                      | 说明                                   |
-| ------: | :---------------------- | :----------------------------------- |
+| 返回值     | 方法                      | 说明                                   |
+| :------ | :---------------------- | :----------------------------------- |
 | Element | addElement(String name) | Element的方法，为当前元素添加指定名字子元素。返回值为新建元素对象 |
-|    void | setText(String text)    | Element的方法，为当前元素设置文本内容               |
-<br>
+| void    | setText(String text)    | Element的方法，为当前元素设置文本内容               |
+
 分析步骤：
 
-- 获取Document对象；
-- 获取root对象；
-- 获取root所有子元素；
-- 遍历所有学生子元素；
-- 创建&lt;score>元素，为&lt;score>添加文本内容；
-- 把&lt;score>元素添加到学生元素中。
-- 保存Document对象。
+- 获取Document对象
+- 获取root对象
+- 获取root所有子元素
+- 遍历所有学生子元素
+- 创建&lt;score>元素，为&lt;score>添加文本内容
+- 把&lt;score>元素添加到学生元素中
+- 保存Document对象
 
-## **10.3 为张三添加friend属性，指定为李四学号**
+## 10.3 为张三添加friend属性，指定为李四学号
 涉及方法：
 
 - addAttribute(String name, String value)：Element的方法，为当前元素添加属性。
 
 分析步骤：
 
-- 获取Document对象；
-- 获取root对象；
-- 获取root所有子元素；
-- 创建两个Element引用：zhangSanEle、liSiEle，赋值为null；
-- 遍历所有学生子元素；
-- 如果zhangSanEle和liSiEle都不是null，break；
-- 判断当前学生元素的name子元素文本内容是zhangSan，那么把当前学生元素赋给zhangSanEle；
-- 判断当前学生元素的name子元素文本内容是liSi，那么把当前学生元素赋给liSiEle。
-- 判断zhangSanEle和liSiEle都不为null时：
-- 获取liSiEle的number属性。
-- 为zhangSanEle添加friend属性，属性值为liSi的number属性值。
-- 保存Document对象。
+- 获取Document对象
+- 获取root对象
+- 获取root所有子元素
+- 创建两个Element引用：zhangSanEle、liSiEle，赋值为null
+- 遍历所有学生子元素
+- 如果zhangSanEle和liSiEle都不是null，break
+- 判断当前学生元素的name子元素文本内容是zhangSan，那么把当前学生元素赋给zhangSanEle
+- 判断当前学生元素的name子元素文本内容是liSi，那么把当前学生元素赋给liSiEle
+- 判断zhangSanEle和liSiEle都不为null时
+- 获取liSiEle的number属性
+- 为zhangSanEle添加friend属性，属性值为liSi的number属性值
+- 保存Document对象
 
-## **10.4 删除number为ID_1003的学生元素**
+## 10.4 删除number为ID_1003的学生元素
 涉及方法：
 
-- boolean remove(Element e)：Element和Document的方法，移除指定子元素；
-- Element getParent()：获取父元素，根元素的父元素为null。
+- boolean remove(Element e)：Element和Document的方法，移除指定子元素
+- Element getParent()：获取父元素，根元素的父元素为null
 
 分析步骤：
 
-- 获取Document对象；
-- 获取root对象；
-- 获取root所有子元素；
-- 遍历所有学生子元素；
-- 判断当前学生元素的number属性是否为ID_1003；
-- 获取当前元素的父元素；
-- 父元素中删除当前元素；
-- 保存Document对象.
+- 获取Document对象
+- 获取root对象
+- 获取root所有子元素
+- 遍历所有学生子元素
+- 判断当前学生元素的number属性是否为ID_1003
+- 获取当前元素的父元素
+- 父元素中删除当前元素
+- 保存Document对象
 
-## **10.5 通过List<Student>生成Document并保存**
+## 10.5 通过List&lt;Student>生成Document并保存
 涉及方法：
 
-- DocumentHelper.createDocument()：创建Document对象；
-- DocumentHelper.createElement(String name)：创建指定名称的Element元素。
+- DocumentHelper.createDocument()：创建Document对象
+- DocumentHelper.createElement(String name)：创建指定名称的Element元素
 
 分析步骤：
 
-- 创建Document对象；
-- 为Document添加根元素<students>；
-- 循环遍历学生集合List<Student>；
-- 把当前学生对象转换成Element元素；
-- 把Element元素添加到根元素中；
-- 保存Document对象。
+- 创建Document对象
+- 为Document添加根元素&lt;students>
+- 循环遍历学生集合List&lt;Student>
+- 把当前学生对象转换成Element元素
+- 把Element元素添加到根元素中
+- 保存Document对象
 
 把学生转换成Element步骤分析：
 
-- 创建Element对象；
-- 为Element添加number属性，值为学生的number；
-- 为Element添加name子元素，文本内容为学生的name；
-- 为Element添加age子元素，文本内容为学生的age；
-- 为Element添加sex子元素，文本内容为学生的sex。
+- 创建Element对象
+- 为Element添加number属性，值为学生的number
+- 为Element添加name子元素，文本内容为学生的name
+- 为Element添加age子元素，文本内容为学生的age
+- 为Element添加sex子元素，文本内容为学生的sex
 
-## **10.6 新建赵六学生元素，插入到李四之前**
+## 10.6 新建赵六学生元素，插入到李四之前
 涉及方法：
 
 - int indexOf(Node node)：Branch的方法，查找指定节点，在当前Branch的子节点集合中的下标位置。
 
 分析步骤：
 
-- 创建赵六学生对象；
-- 通过学生对象创建赵六学生元素；
-- 通过名称查找李四元素；
-- 查看李四元素在其父元素中的位置；
-- 获取学生子元素List；
-- 将赵六元素插入到List中。
+- 创建赵六学生对象
+- 通过学生对象创建赵六学生元素
+- 通过名称查找李四元素
+- 查看李四元素在其父元素中的位置
+- 获取学生子元素List
+- 将赵六元素插入到List中
 
 通过名字查找元素：
 
-- 获取Document；
-- 获取根元素；
-- 获取所有学生元素；
-- 遍历学生元素；
-- 获取学生元素name子元素的文本内容，与指定名称比较；
-- 返回当前学生元素。
+- 获取Document
+- 获取根元素
+- 获取所有学生元素
+- 遍历学生元素
+- 获取学生元素name子元素的文本内容，与指定名称比较
+- 返回当前学生元素
 
-## **10.7 其它方法介绍**
+## 10.7 其它方法介绍
 Node接口
 
 ![Node](http://img.blog.csdn.net/20161009144859638)
@@ -899,27 +905,27 @@ Branch接口，实现了Node接口
 
 Document
 
-|     返回值 | 方法声明             | 功能描述       |
-| ------: | :--------------- | :--------- |
+| 返回值     | 方法声明             | 功能描述       |
+| :------ | :--------------- | :--------- |
 | Element | getRootElement() | 获取根元素      |
-|    void | setRootElement() | 设置根元素      |
-|  String | getXmlEncoding() | 获取XML文档的编码 |
-|    void | setXmlEncoding() | 设置XML文档的编码 |
-<br>
+| void    | setRootElement() | 设置根元素      |
+| String  | getXmlEncoding() | 获取XML文档的编码 |
+| void    | setXmlEncoding() | 设置XML文档的编码 |
+
 Element方法：
 
 ![Element](http://img.blog.csdn.net/20161009154118951)
 
 DocumentHelper静态方法介绍：
 
-|       返回值 | 方法                                       | 说明                   |
-| --------: | :--------------------------------------- | :------------------- |
-|  Document | createDocument()                         | 创建Dcoument对象         |
-|   Element | createElement(String name)               | 创建指定名称的元素对象          |
+| 返回值       | 方法                                       | 说明                   |
+| :-------- | :--------------------------------------- | :------------------- |
+| Document  | createDocument()                         | 创建Dcoument对象         |
+| Element   | createElement(String name)               | 创建指定名称的元素对象          |
 | Attribute | createAttrbute(Element owner, String name, String value) | 创建属性对象               |
-|      Text | createText(String text)                  | 创建文本对象               |
-|  Document | parseText(String text)                   | 通过给定的字符串生成Document对象 |
-<br>
+| Text      | createText(String text)                  | 创建文本对象               |
+| Document  | parseText(String text)                   | 通过给定的字符串生成Document对象 |
+
 ```java
 public class StuService {
 
@@ -1044,12 +1050,12 @@ public class StuService {
 }
 ```
 
-# **11. Schema**
+# 11. Schema
 
 我们学习Schema的第一目标是：参照Schema的要求可以编写XML文档；
 第二目标是：可以自己来定义Schema文档。
 
-## **11.1 Schema是什么**
+## 11.1 Schema是什么
 
 XML文档的约束，用来替代DTD。
 DTD文档不是XML语法，而Schema本身也是XML文档，这对解析器来说不用再去处理非XML的文档了；
@@ -1060,7 +1066,7 @@ DTD不只约束元素或属性的类型，但Schema可以。例如让age属性�
 
 Schema文档的扩展名为xsd，即XML Schema Definition。
 
-## **11.2 为students.xml编写DTD**
+## 11.2 为students.xml编写DTD
 
 ```xml
 < !ELEMENT students (student+)>
@@ -1070,7 +1076,7 @@ Schema文档的扩展名为xsd，即XML Schema Definition。
 < !ELEMENT sex (#PCDATA)>
 < !ATTLIST student number CDATA #REQUIRED>
 ```
-## **11.3 为students.xml编写schema**
+## 11.3 为students.xml编写schema
 
 ```xml
 <?xml version="1.0"?>
@@ -1135,7 +1141,7 @@ XSD文档中是创建元素和属性的地方；
 XML文档中是使用元素和属性的地方。
 所以在XML文档中需要说明使用了哪些XSD文档。
 
-## **11.4 什么是名称空间**
+## 11.4 什么是名称空间
 
 名称空间是用来处理XML元素或属性的名字冲突问题。你可以理解为Java中的包！包的作用就是用来处理类的名字冲突问题。
 
@@ -1143,34 +1149,34 @@ XML文档中是使用元素和属性的地方。
 
 我们在下面讲解XML名称空间时，会使用Java包的概念来理解XML的名称空间的概念，所以现在大家就要注意这么几个特性：
 
-- import：导包，声明名称空间；
-- package：定义包，指定目标名称空间；
+- import：导包，声明名称空间
+- package：定义包，指定目标名称空间
 - classpath：添加到类路径，关联XSD文件
 
-## **11.5 声明名称空间（导包）**
+## 11.5 声明名称空间（导包）
 
 无论是在XML中，还是在XSD中，都需要声明名称空间。这与Java中使用import来导包是一个道理。当然，前提是有包（创建类是使用了package）才可以导，没包就不能导了。如果被定义的元素在声明时没有指定目标名称空间，那么就是在无名称空间中，那么我们在使用这些在无名称空间中的元素时，就不用再去声明名称空间了。
 
-声明名称空间使用xmlns，例如：xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"。 这表示声明了一个名称空间，相当与Java中的import。但是，Java中的import的含义是在下面使用的类，如果没有给出包名，那么就是import导入的这个类。而xmlns表示，下面使用xsi为前缀的元素或属性，都是来自http://www.w3.org/2001/XMLSchema-instance 名称空间。也就是说给名称空间起了一个简称，这就相当于我们称呼“北京传智播客教育科技有限公司”为“传智”一样。“传智”就是简称。
+声明名称空间使用xmlns，例如：`xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"`。 这表示声明了一个名称空间，相当与Java中的import。但是，Java中的import的含义是在下面使用的类，如果没有给出包名，那么就是import导入的这个类。而xmlns表示，下面使用xsi为前缀的元素或属性，都是来自`http://www.w3.org/2001/XMLSchema-instance` 名称空间。也就是说给名称空间起了一个简称，这就相当于我们称呼“北京传智播客教育科技有限公司”为“传智”一样。“传智”就是简称。
 
-例如在XSD文件中，xmlns:xsd="http://www.w3.org/2001/XMLSchema" 就是声明名称空间，而这个名称空间是W3C的名称空间，无需关联文件就可以直接声明！在XSD文件中所有使用xsd为前面的元素和属性都是来自 http://www.w3.org/2001/XMLSchema 名称空间。
+例如在XSD文件中，`xmlns:xsd="http://www.w3.org/2001/XMLSchema"` 就是声明名称空间，而这个名称空间是W3C的名称空间，无需关联文件就可以直接声明！在XSD文件中所有使用xsd为前面的元素和属性都是来自 `http://www.w3.org/2001/XMLSchema` 名称空间。
 
 名称空间命名：一般名称空间都是以公司的URL来命名，即网址！当然也可以给名称空间命名为aa、bb之类的名字，但这可能会导致名称空间的重名问题。
 
-前缀命名：前缀的命名没有什么要求，但一般对 http://www.w3.org/2001/XMLSchema名称空间的前缀都是使用xs或xsd。http://www.w3.org/2001/XMLSchema-instance 的前缀使用xsi。
+前缀命名：前缀的命名没有什么要求，但一般对 `http://www.w3.org/2001/XMLSchema`名称空间的前缀都是使用xs或xsd。`http://www.w3.org/2001/XMLSchema-instance` 的前缀使用xsi。
 
-在XML文档中声明 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 名称空间的目的是使用xsi中的一个属性：xsi:noNamespaceSchemaLocation，它是用W3C提供的库属性，用来关联XSD文件用的。当然，它只能关联那些没有“目标名称空间”的XSD文件。下面会讲解目标名称空间！
+在XML文档中声明 `xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"` 名称空间的目的是使用xsi中的一个属性：xsi:noNamespaceSchemaLocation，它是用W3C提供的库属性，用来关联XSD文件用的。当然，它只能关联那些没有“目标名称空间”的XSD文件。下面会讲解目标名称空间！
 
-## **11.6 默认名称空间**
+## 11.6 默认名称空间
 所谓默认名称空间就是在声明名称空间时，不指定前缀，也可以理解为前缀为空字符串的意思。这样定义元素时，如果没有指定前缀的元素都是在使用默认名称空间中的元素。
 
-xmlns=”http://www.itcast.cn” 当在文档中使用<xxx>时，那么<xxx>元素就是 http://www.itcast.cn 名称空间中声明的元素。
+`xmlns=”http://www.itcast.cn”` 当在文档中使用&lt;xxx>时，那么&lt;xxx>元素就是 `http://www.itcast.cn` 名称空间中声明的元素。
 
 注意：没有指定前缀的属性不表示在默认名称空间中，而是表示没有名称空间。也就是说，默认名称空间不会涉及到属性，只对元素有效！
 
-# **12. XPath（扩展）**
+# 12. XPath（扩展）
 
-## **12.1 什么是XPath**
+## 12.1 什么是XPath
 XPath即为XML路径语言（XML Path Language），它是一种用来确定XML文档中某部分位置的语言，使用XPath可以直接获取到某个元素。XPath基于XML的树状结构，提供在数据结构树中找寻节点的能力。起初 XPath 的提出的初衷是将其作为一个通用的、介于XPointer与XSL间的语法模型。但是 XPath 很快的被开发者采用来当作小型查询语言。
 
 - 第一种形式，/AAA/DDD/BBB： 表示一层一层的，AAA下面 DDD下面的BBB
@@ -1201,7 +1207,7 @@ BBB[last()]：表示最后一个BBB元素
 
 ![XPath](http://img.blog.csdn.net/20161103152916155)
 
-## **12.2 DOM4J对XPath的支持**
+## 12.2 DOM4J对XPath的支持
 
 默认的情况下，dom4j不支持xpath，如果想要在dom4j里面是有xpath，第一步需要，引入支持xpath的jar包，使用 jaxen-1.1-beta-6.jar
 
