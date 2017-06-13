@@ -259,16 +259,16 @@ doc.setXmlStandalone(true);
 Node基本方法：
 
 - String getNodeName()
-  获取当前节点的名字。如果当前节点是Element，那么返回元素名称。如果当前节点是Text那么返回#text。如果当前节点是Document那么返回#document
+获取当前节点的名字。如果当前节点是Element，那么返回元素名称。如果当前节点是Text那么返回#text。如果当前节点是Document那么返回#document
 
 - String getNodeValue()
-  获取当前节点的值。只有文本节点有值，其它节点的值都为null
+获取当前节点的值。只有文本节点有值，其它节点的值都为null
 
 - String getTextContent()
-  获取当前节点的文本字符串。如果当前节点为Text，那么获取节点内容。如果当前节点为Element，那么获取元素中所有Text子节点的内容。例如当前节点为：&lt;name>zhangSan&lt;/name>，那么本方法返回zhangSan。如果当前节点为：&lt;student>&lt;name>zhangSan&lt;/name>&lt;age>23&lt;/age>&lt;sex>male&lt;/sex>&lt;/student>，那么本方法返回zhangSan23male。
+获取当前节点的文本字符串。如果当前节点为Text，那么获取节点内容。如果当前节点为Element，那么获取元素中所有Text子节点的内容。例如当前节点为：&lt;name>zhangSan&lt;/name>，那么本方法返回zhangSan。如果当前节点为：&lt;student>&lt;name>zhangSan&lt;/name>&lt;age>23&lt;/age>&lt;sex>male&lt;/sex>&lt;/student>，那么本方法返回zhangSan23male。
 
 - short getNodeType()
-  获取当前节点的类型。Node中有很多short类型的常量，可以通过与这些常量的比较来判断当前节点的类型。if(node.getNodeType() == Node.ELEMENT_NODE)；
+获取当前节点的类型。Node中有很多short类型的常量，可以通过与这些常量的比较来判断当前节点的类型。if(node.getNodeType() == Node.ELEMENT_NODE)；
 
 Node获取子节点和父节点方法，只有Document和Element才能使用这些方法：
 
