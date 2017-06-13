@@ -766,7 +766,7 @@ ON e.deptno=d.deptno;
 
 其中deptno为50，而在dept表中只有10、20、30、40部门，那么上面的查询结果中就不会出现“张三”这条记录，因为它不能满足e.deptno=d.deptno这个条件。
 
-![mysql](http://www.runoob.com/wp-content/uploads/2014/03/img_innerjoin.gif)
+![mysql](img/inner_join.gif)
 
 ### **10.2.2 外连接（左连接、右连接）**
 外连接的特点：查询出的结果存在不满足条件的可能。
@@ -784,7 +784,7 @@ ON e.deptno=d.deptno;
 
 ![mysql](img/外连接.png)
 
-![mysql](http://www.runoob.com/wp-content/uploads/2014/03/img_leftjoin.gif)
+![mysql](img/left_join.gif)
 
 ### **10.2.3 右连接**
 右连接就是先把右表中所有记录都查询出来，然后左表满足条件的显示，不满足显示NULL。例如在dept表中的40部门并不存在员工，但在右连接中，如果dept表为右表，那么还是会查出40部门，但相应的员工信息为NULL。
@@ -805,10 +805,10 @@ ON e.deptno=d.deptno;
 
 读取右边数据表的全部数据，即便左边边表无对应数据
 
-![mysql](http://www.runoob.com/wp-content/uploads/2014/03/img_rightjoin.gif)
+![mysql](img/right_join.gif)
 
 ## **10.3 全外连接**
-![mysql](http://www.w3cschool.cn/attachments/day_160815/201608151947092720.gif)
+![mysql](img/full_join.gif)
 
 全外连接（MySQL不支持）：只要某一个表存在匹配，就返回行；可以使用UNION来完成全链接
 
@@ -998,4 +998,4 @@ ALTER TABLE tbl_name ADD INDEX index_name (column_list);
 ALTER TABLE tbl_name ADD FULLTEXT index_name (column_list);
 ```
 
-![mysql](http://img.blog.csdn.net/20161031103446888)
+![mysql](img/mysql.png)
