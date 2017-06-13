@@ -31,7 +31,7 @@ DOM和SAX只是定义了一些接口，以及某些接口的缺省实现，而�
 
 一个XML文档解析后对应一个Document对象，这说明使用DOM解析XML文档方便使用，因为元素与元素之间还保存着结构关系。
 
-优先：使用DOM，XML文档的结构在内存中依然清晰。元素与元素之间的关系保留了下来！
+优点：使用DOM，XML文档的结构在内存中依然清晰。元素与元素之间的关系保留了下来！
 
 缺点：如果XML文档过大，那么把整个XML文档装载进内存，可能会出现内存溢出的现象！
 
@@ -49,7 +49,7 @@ DOM会一行一行的读取XML文档，最终会把XML文档所有数据存放�
 
 但是，SAX在读取一行XML文档数据后，就会给感兴趣的用户一个通知！例如当SAX读取到一个元素的开始时，会通知用户当前解析到一个元素的开始标签。而用户可以在整个解析的过程中完成自己的业务逻辑，当SAX解析结束，不会保存任何XML文档的数据。
 
-优先：使用SAX，不会占用大量内存来保存XML文档数据，效率也高。
+优点：使用SAX，不会占用大量内存来保存XML文档数据，效率也高。
 
 缺点：当解析到一个元素时，上一个元素的信息已经丢弃，也就是说没有保存元素与元素之间的结构关系，这也大大限制了SAX的使用范围。如果只是想查询XML文档中的数据，那么使用SAX是最佳选择！
 
@@ -59,7 +59,7 @@ DOM会一行一行的读取XML文档，最终会把XML文档所有数据存放�
 
 采用事件驱动，边读边解析：从上到下，一行一行的解析，解析到某一个对象，把对象名称返回
 
-使用SAX方式不会曹成内存溢出，实现查询；使用SAX方式不能实现增删改操纵
+使用SAX方式不会造成内存溢出，实现查询；使用SAX方式不能实现增删改操纵
 
 使用DOM方式解析XML时，如果文件过大，会造成内存溢出，优点是DOM方式很方便的实现增删改操作
 
@@ -250,16 +250,16 @@ doc.setXmlStandalone(true);
 Node基本方法：
 
 - **String getNodeName()**
-获取当前节点的名字。如果当前节点是Element，那么返回元素名称。如果当前节点是Text那么返回#text。如果当前节点是Document那么返回#document
+  获取当前节点的名字。如果当前节点是Element，那么返回元素名称。如果当前节点是Text那么返回#text。如果当前节点是Document那么返回#document
 
 - **String getNodeValue()**
-获取当前节点的值。只有文本节点有值，其它节点的值都为null
+  获取当前节点的值。只有文本节点有值，其它节点的值都为null
 
 - **String getTextContent()**
-获取当前节点的文本字符串。如果当前节点为Text，那么获取节点内容。如果当前节点为Element，那么获取元素中所有Text子节点的内容。例如当前节点为：&lt;name>zhangSan&lt;/name>，那么本方法返回zhangSan。如果当前节点为：&lt;student>&lt;name>zhangSan&lt;/name>&lt;age>23&lt;/age>&lt;sex>male&lt;/sex>&lt;/student>，那么本方法返回zhangSan23male。
+  获取当前节点的文本字符串。如果当前节点为Text，那么获取节点内容。如果当前节点为Element，那么获取元素中所有Text子节点的内容。例如当前节点为：&lt;name>zhangSan&lt;/name>，那么本方法返回zhangSan。如果当前节点为：&lt;student>&lt;name>zhangSan&lt;/name>&lt;age>23&lt;/age>&lt;sex>male&lt;/sex>&lt;/student>，那么本方法返回zhangSan23male。
 
 - **short getNodeType()**
-获取当前节点的类型。Node中有很多short类型的常量，可以通过与这些常量的比较来判断当前节点的类型。if(node.getNodeType() == Node.ELEMENT_NODE)；
+  获取当前节点的类型。Node中有很多short类型的常量，可以通过与这些常量的比较来判断当前节点的类型。if(node.getNodeType() == Node.ELEMENT_NODE)；
 
 Node获取子节点和父节点方法，只有Document和Element才能使用这些方法：
 
@@ -286,16 +286,16 @@ Node获取弟兄节点的方法，只有Element才能使用这些方法：
 Node添加、替换、删除子节点方法：
 
 - **Node appendChild(Node newChild)**
-把参数节点newChild添加到当前节点的子节点列表的末尾处。返回值为被添加的子节点newChild对象，方便使用链式操作。如果newChild在添加之前已经在文档中存在，那么就是修改节点的位置了；
+  把参数节点newChild添加到当前节点的子节点列表的末尾处。返回值为被添加的子节点newChild对象，方便使用链式操作。如果newChild在添加之前已经在文档中存在，那么就是修改节点的位置了；
 
 - **Node insertBefore(Node newChild, Node refNode)**
-把参数节点newChild添加到当前节点的子节点refNode之前。返回值为被添加的子节点newChild对象，方便使用链式操作。如果refNode为null，那么本方法与appendNode()方法功能相同。如果newChild节点在添加之前已经在文档中存在，那么就是修改节点的位置了。
+  把参数节点newChild添加到当前节点的子节点refNode之前。返回值为被添加的子节点newChild对象，方便使用链式操作。如果refNode为null，那么本方法与appendNode()方法功能相同。如果newChild节点在添加之前已经在文档中存在，那么就是修改节点的位置了。
 
 - **Node removeNode(Node oldChild)**
-从当前节点中移除子元素oldChild。返回值为被添加的子节点oldChild对象，方便使用链式操作。
+  从当前节点中移除子元素oldChild。返回值为被添加的子节点oldChild对象，方便使用链式操作。
 
 - **Node replaceNode(Node newChild, Node oldChild)**
-将当前节点的子节点oldChild替换为newChild。
+  将当前节点的子节点oldChild替换为newChild。
 
 Node获取属性集合方法，只有Element可以使用：
 
@@ -318,10 +318,10 @@ Node的判断方法：
 获取子元素方法：
 
 - Element getElementById(String elementId)
-通过元素的ID属性获取元素节点，如果没有DTD指定属性类型为ID，那么这个方法将返回null；
+  通过元素的ID属性获取元素节点，如果没有DTD指定属性类型为ID，那么这个方法将返回null；
 
 - NodeList getElementsByTagName(String tagName)
-获取指定元素名称的所有元素；
+  获取指定元素名称的所有元素；
 
 - Element getDocumentElement()：获取文档元素，即获取根元素。
 
@@ -339,10 +339,10 @@ Node的判断方法：
 获取方法：
 
 - NodeList getElementsByTagName(String tagName)：
-获取当前元素的指定元素名称的所有子元素；
+  获取当前元素的指定元素名称的所有子元素；
 
 - String getTagName()
-获取当前元素的元素名。调用元素节点的getNodeName()也是返回名；
+  获取当前元素的元素名。调用元素节点的getNodeName()也是返回名；
 
 属性相关方法
 
@@ -768,7 +768,7 @@ Document doc = DocumentHelper.createDocument();
 ## **10.1 遍历students.xml**
 涉及的相关方法：
 
-|     返回值 | 方法    | 说明    |
+|     返回值 | 方法                          | 说明                              |
 | ------: | :-------------------------- | :------------------------------ |
 | Element | getRootElement()            | Document的方法，用来获取根元素             |
 |    List | elements()                  | Element的方法，用来获取所有子元素            |
@@ -790,8 +790,8 @@ Document doc = DocumentHelper.createDocument();
 ## **10.2 给学生元素添加< score>子元素**
 涉及的相关方法：
 
-|     返回值 | 方法        | 说明     |
-| ------: | :-------- | :--------- |
+|     返回值 | 方法                      | 说明                                   |
+| ------: | :---------------------- | :----------------------------------- |
 | Element | addElement(String name) | Element的方法，为当前元素添加指定名字子元素。返回值为新建元素对象 |
 |    void | setText(String text)    | Element的方法，为当前元素设置文本内容               |
 <br>
@@ -916,7 +916,7 @@ DocumentHelper静态方法介绍：
 | --------: | :--------------------------------------- | :------------------- |
 |  Document | createDocument()                         | 创建Dcoument对象         |
 |   Element | createElement(String name)               | 创建指定名称的元素对象          |
-| Attribute | createAttrbute(Element owner, String name, String value) | 创建属性对象    |
+| Attribute | createAttrbute(Element owner, String name, String value) | 创建属性对象               |
 |      Text | createText(String text)                  | 创建文本对象               |
 |  Document | parseText(String text)                   | 通过给定的字符串生成Document对象 |
 <br>

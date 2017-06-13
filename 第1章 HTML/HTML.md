@@ -10,15 +10,14 @@
 - Html是通过标签来定义的语言，代码都是由标签所组成
 
 ## html的规范（遵循）
-1、一个html文件开始标签和结束的标签  `<html>...</html>`		
-2、html包含两部分内容 
 
-- `<head>` 设置相关信息`</head>`
-- `<body>` 显示在页面上的内容都写在body里面`</body>`
-
-3、html的标签有开始标签，也要有结束标签，`<head></head>`
-4、html的代码不区分大小写的
-5、有些标签，没有结束标签 ，在标签内结束，比如：换行  `<br/> <hr/>`
+1. 一个html文件开始标签和结束的标签  `<html>...</html>`		
+2. html包含两部分内容
+  - `<head>` 设置相关信息`</head>`
+  - `<body>` 显示在页面上的内容都写在body里面`</body>`
+3. html的标签有开始标签，也要有结束标签，`<head></head>`    
+4. html的代码不区分大小写的    
+5. 有些标签，没有结束标签 ，在标签内结束，比如：换行  `<br/> <hr/>`
 
 ## html的操作思想
 
@@ -51,7 +50,7 @@ color：文字颜色， 两种表示方式
 
 ### 2. 标题标签、水平线标签和特殊字符
 
-标题标签 
+标题标签
 
 - `<h1></h1>  <h2></h2>  <h3></h3> ....... <h6></h6>`
 - 从h1到h6，大小是依次变小，同时会自动换行
@@ -81,7 +80,7 @@ color：文字颜色， 两种表示方式
   <title>HTML示例</title>
  </head>
  <body>
-	
+
 	<!--  演示标题标签  -->
 	<h1>标题一</h1>
 
@@ -107,7 +106,7 @@ color：文字颜色， 两种表示方式
 ```html
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <style type="text/css">
         div#container {
@@ -148,14 +147,14 @@ color：文字颜色， 两种表示方式
         }
         </style>
     </head>
-    
+
     <body>
         <div id="container">
             <div id="header">
-                 <h1>Main Title of Web Page</h1> 
+                 <h1>Main Title of Web Page</h1>
             </div>
             <div id="menu">
-                 <h2>Menu</h2> 
+                 <h2>Menu</h2>
                 <ul>
                     <li>HTML</li>
                     <li>CSS</li>
@@ -256,7 +255,7 @@ color：文字颜色， 两种表示方式
   <title>HTML示例</title>
  </head>
  <body>
-	
+
 	<a href="hello.html" target="_self">这是一个超链接2</a>
 
 	<br/>
@@ -679,7 +678,7 @@ color：文字颜色， 两种表示方式
 				<frame name="left" src="b.html"/>
 				<frame name="right"/>
 			</frameset>
-			
+
 	</frameset>
 
 </html>
