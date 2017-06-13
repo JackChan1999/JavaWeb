@@ -259,6 +259,7 @@ doc.setXmlStandalone(true);
 Node基本方法：
 
 - String getNodeName()
+
 获取当前节点的名字。如果当前节点是Element，那么返回元素名称。如果当前节点是Text那么返回#text。如果当前节点是Document那么返回#document
 
 - String getNodeValue()
@@ -279,12 +280,14 @@ Node获取子节点和父节点方法，只有Document和Element才能使用这�
 | Node     | getFirstNode()  | 获取当前节点的第一个子节点                  |
 | Node     | getLastNode()   | 获取当前节点的最后一个子节点                 |
 | Node     | getParentNode() | 获取当前节点的父节点。注意Document的父节点为null |
+
 NodeList表示节点列表，它有两个方法
 
 | 返回值  | 方法              | 说明        |
 | :--- | :-------------- | :-------- |
 | int  | getLength()     | 获取集合长度    |
 | Node | item(int index) | 获取指定下标的节点 |
+
 Node获取弟兄节点的方法，只有Element才能使用这些方法：
 
 - Node getNextSibling()：获取当前节点的下一个兄弟节点；
@@ -293,16 +296,16 @@ Node获取弟兄节点的方法，只有Element才能使用这些方法：
 Node添加、替换、删除子节点方法：
 
 - Node appendChild(Node newChild)
-  把参数节点newChild添加到当前节点的子节点列表的末尾处。返回值为被添加的子节点newChild对象，方便使用链式操作。如果newChild在添加之前已经在文档中存在，那么就是修改节点的位置了；
+把参数节点newChild添加到当前节点的子节点列表的末尾处。返回值为被添加的子节点newChild对象，方便使用链式操作。如果newChild在添加之前已经在文档中存在，那么就是修改节点的位置了；
 
 - Node insertBefore(Node newChild, Node refNode)
-  把参数节点newChild添加到当前节点的子节点refNode之前。返回值为被添加的子节点newChild对象，方便使用链式操作。如果refNode为null，那么本方法与appendNode()方法功能相同。如果newChild节点在添加之前已经在文档中存在，那么就是修改节点的位置了。
+把参数节点newChild添加到当前节点的子节点refNode之前。返回值为被添加的子节点newChild对象，方便使用链式操作。如果refNode为null，那么本方法与appendNode()方法功能相同。如果newChild节点在添加之前已经在文档中存在，那么就是修改节点的位置了。
 
 - Node removeNode(Node oldChild)
-  从当前节点中移除子元素oldChild。返回值为被添加的子节点oldChild对象，方便使用链式操作。
+从当前节点中移除子元素oldChild。返回值为被添加的子节点oldChild对象，方便使用链式操作。
 
 - Node replaceNode(Node newChild, Node oldChild)
-  将当前节点的子节点oldChild替换为newChild。
+将当前节点的子节点oldChild替换为newChild。
 
 Node获取属性集合方法，只有Element可以使用：
 
@@ -325,10 +328,10 @@ Node的判断方法：
 获取子元素方法：
 
 - Element getElementById(String elementId)
-  通过元素的ID属性获取元素节点，如果没有DTD指定属性类型为ID，那么这个方法将返回null
+通过元素的ID属性获取元素节点，如果没有DTD指定属性类型为ID，那么这个方法将返回null
 
 - NodeList getElementsByTagName(String tagName)
-  获取指定元素名称的所有元素
+获取指定元素名称的所有元素
 
 - Element getDocumentElement()：获取文档元素，即获取根元素
 
@@ -346,10 +349,10 @@ Node的判断方法：
 获取方法：
 
 - NodeList getElementsByTagName(String tagName)
-  获取当前元素的指定元素名称的所有子元素
+获取当前元素的指定元素名称的所有子元素
 
 - String getTagName()
-  获取当前元素的元素名。调用元素节点的getNodeName()也是返回名
+获取当前元素的元素名。调用元素节点的getNodeName()也是返回名
 
 属性相关方法
 
