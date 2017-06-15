@@ -436,11 +436,11 @@ public class BServlet extends HttpServlet {
 
 那么这说明一个Servlet绑定了两个URL，无论访问/AServlet还是/BServlet，访问的都是AServlet。
 
-5.3.2 还可以在&lt;url-pattern>中使用通配符，所谓通配符就是星号""，星号可以匹配任何URL前缀或后缀，使用通配符可以命名一个Servlet绑定一组URL，例如：
+5.3.2 还可以在&lt;url-pattern>中使用通配符，所谓通配符就是星号 `*` ，星号可以匹配任何URL前缀或后缀，使用通配符可以命名一个Servlet绑定一组URL，例如：
 
-- &lt;url-pattern&gt;/servlet/*&lt;url-patter&gt;：/servlet/a、/servlet/b，都匹配/servlet/\*
-- &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;：/abc/def/ghi.do、/a.do，都匹配 *.do
-- &lt;url-pattern&gt;/*&lt;url-pattern&gt;：匹配所有URL
+- `<url-pattern>/servlet/*<url-patter>`：/servlet/a、/servlet/b，都匹配/servlet/*
+- `<url-pattern>*.do</url-pattern>`：/abc/def/ghi.do、/a.do，都匹配 *.do
+- `<url-pattern>/*<url-pattern>`：匹配所有URL
 
 请注意，通配符要么为前缀，要么为后缀，不能出现在URL中间位置，也不能只有通配符。例如：`/*.do`就是错误的，因为星号出现在URL的中间位置上了。`*.*`也是不对的，因为一个URL中最多只能出现一个通配符。
 
@@ -463,7 +463,7 @@ public class BServlet extends HttpServlet {
 		<url-pattern>/servlet/</url-pattern>
 	</servlet-mapping>
 ```
-当访问路径为http://localhost:8080/hello/servlet/hello1时，因为访问路径即匹配hello1的&lt;url-pattern>，又匹配hello2的&lt;url-pattern>，但因为hello1的&lt;url-pattern>中没有通配符，所以优先匹配，即设置hello1。
+当访问路径为 http://localhost:8080/hello/servlet/hello1 时，因为访问路径即匹配hello1的&lt;url-pattern>，又匹配hello2的&lt;url-pattern>，但因为hello1的&lt;url-pattern>中没有通配符，所以优先匹配，即设置hello1。
 
 ## 5.4 web.xml文件的继承
 在${CATALINA_HOME}\conf\web.xml中的内容，相当于写到了每个项目的web.xml中，它是所有web.xml的父文件。
