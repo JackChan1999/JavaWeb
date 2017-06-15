@@ -48,7 +48,7 @@ MySQL就是关系型数据库！
 # 5. 理解数据库
 - RDBMS = 管理员（manager）+仓库（database）
 - database = N个table
-- table：
+- table：表
 - 表结构：定义表的列名和列类型！
 - 表记录：一行一行的记录！表的一行称之为一条记录，表中一条记录对应一个java对象的数据
 

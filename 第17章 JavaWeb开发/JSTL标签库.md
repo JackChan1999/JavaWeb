@@ -26,7 +26,7 @@ JSTL一共包含四大标签库：
 ```
 
 - prefix="c"：指定标签库的前缀，这个前缀可以随便给值，但大家都会在使用core标签库时指定前缀为c
-- uri="http://java.sun.com/jstl/core"：指定标签库的uri，它不一定是真实存在的网址，但它可以让JSP找到标签库的描述文件
+- `uri="http://java.sun.com/jstl/core"` ：指定标签库的uri，它不一定是真实存在的网址，但它可以让JSP找到标签库的描述文件
 
 # **4. core标签库常用标签**
 ## **4.1 out和set**

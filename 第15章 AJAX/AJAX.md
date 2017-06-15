@@ -564,7 +564,7 @@ list.add(p2);
 ```
 
 ### **3.2.1 XStream相关JAR包**
-我们可以到http://xstream.codehaus.org/地址去下载XStream安装包！
+我们可以到 http://xstream.codehaus.org/ 地址去下载XStream安装包！
 XStream的必导JAR包：
 
 - 核心JAR包：xstream-1.4.7.jar

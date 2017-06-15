@@ -100,7 +100,7 @@ public class ItcastConnection extends ConnectionWrapper {
 ## **5.1 什么是DBCP？**
 DBCP是Apache提供的一款开源免费的数据库连接池！
 
-Hibernate3.0之后不再对DBCP提供支持！因为Hibernate声明DBCP有致命的缺欠！DBCP因为Hibernate的这一毁谤很是生气，并且说自己没有缺欠
+Hibernate3.0之后不再对DBCP提供支持！因为Hibernate声明DBCP有致命的缺欠！DBCP因为Hibernate的这一毁谤很是生气，并且说自己没有欠缺
 
 ## **5.2 DBCP的使用**
 
@@ -369,7 +369,7 @@ public class JdbcUtils {
 
 # 8. ThreadLocal
 
-Thread ->人类
+Thread ->人类		
 Runnable -> 任务类
 
 | key     | value |
@@ -379,7 +379,7 @@ Runnable -> 任务类
 | thread3 | ccc   |
 
 ## **8.1 ThreadLocal API**
-ThreadLocal类只有三个方法
+线程范围内共享数据，ThreadLocal类只有三个方法
 
 | 返回值  | 方法说明         | 功能描述 |
 | :--- | :----------- | :--- |

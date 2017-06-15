@@ -1,4 +1,4 @@
-[HTTP POST请求报文格式分析与Java实现文件上传](http://blog.csdn.net/bboyfeiyu/article/details/41863951)
+## [HTTP POST请求报文格式分析与Java实现文件上传](http://blog.csdn.net/bboyfeiyu/article/details/41863951)
 
 在开发中，我们使用的比较多的HTTP请求方式基本上就是GET、POST。其中GET用于从服务器获取数据，POST主要用于向服务器提交一些表单数据，例如文件上传等。而我们在使用HTTP请求时中遇到的比较麻烦的事情就是构造文件上传的HTTP报文格式，这个格式虽说也比较简单，但也比较容易出错。今天我们就一起来学习HTTP POST的报文格式以及通过Java来模拟文件上传的请求。
 

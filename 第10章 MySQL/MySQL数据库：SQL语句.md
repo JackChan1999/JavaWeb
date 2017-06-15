@@ -6,7 +6,7 @@
 5. [MySQL数据库：编码](http://blog.csdn.net/axi295309066/article/details/52947876)
 
 # 1. SQL概述
-## **1.1 什么是SQL**
+## 1.1 什么是SQL
 
 SQL（Structured Query Language）是“结构化查询语言”，它是对关系型数据库的操作语言。它可以应用到所有关系型数据库中，例如：MySQL、Oracle、SQL Server等。SQ标准（ANSI/ISO）有：
 
@@ -20,7 +20,7 @@ SQL（Structured Query Language）是“结构化查询语言”，它是对关�
 
 SQL的作用：客户端使用SQL来操作服务器
 
-## **1.2 语法要求**
+## 1.2 语法要求
 
 SQL标准(例如SQL99，即1999年制定的标准)：由国际标准化组织(ISO)制定的，对DBMS的统一操作方式(例如相同的语句可以操作：mysql、oracle等)。
 
@@ -39,11 +39,11 @@ SQL语法
 - DQL（Data Query Language）：数据查询语言，用来查询记录（数据）
 
 # 3. DDL：数据定义语言
-## **3.1 基本操作**
+## 3.1 基本操作
 - 查看所有数据库名称：SHOW DATABASES；　
 - 切换数据库：USE mydb1，切换到mydb1数据库；
 
-## **3.2 操作数据库**
+## 3.2 操作数据库
 - 创建数据库：CREATE DATABASE [IF NOT EXISTS] mydb1；
 
 例如：CREATE DATABASE mydb1，创建一个名为mydb1的数据库。如果这个数据已经存在，那么会报错。例如CREATE DATABASE IF NOT EXISTS mydb1，在名为mydb1的数据库不存在时创建该库，这样可以避免报错
@@ -56,14 +56,14 @@ SQL语法
 
 修改数据库mydb1的编码为utf8。注意，在MySQL中所有的UTF-8编码都不能使用中间的“-”，即UTF-8要书写为UTF8
 
-## **3.3 数据类型**
+## 3.3 数据类型
 MySQL与Java一样，也有数据类型。MySQL中数据类型主要应用在列上。常用类型如下：
 
 | 类型        | 说明                                       |
 | :-------- | :--------------------------------------- |
 | int       | 整型                                       |
 | double    | 浮点型，例如double(5,2)表示最多5位，其中必须有2位小数，即最大值为999.99 |
-| decimal   | 浮点型，在表单钱方面使用该类型，因为不会出现精度缺失问题             |
+| decimal   | 浮点型，在表示钱方面使用该类型，因为不会出现精度缺失问题             |
 | char      | 固定长度字符串类型                                |
 | varchar   | 可变长度字符串类型                                |
 | text      | 字符串类型                                    |
@@ -72,9 +72,9 @@ MySQL与Java一样，也有数据类型。MySQL中数据类型主要应用在列
 | time      | 时间类型，格式为：hh:mm:ss                        |
 | timestamp | 时间戳类型                                    |
 
-## **3.4 操作表**
+## 3.4 操作表
 创建表：
-```mysql
+```sql
 CREATE TABLE 表名(
   列名 列类型,
   列名 列类型,
@@ -104,7 +104,7 @@ CREATE TABLE emp(
 );
 ```
 
-```mysql
+```sql
 SHOW TABLES; /*查看当前数据库中所有表名称*/
 
 SHOW CREATE TABLE emp;/*查看emp表的创建语句*/
@@ -114,7 +114,7 @@ DESC emp; /*查看emp表结构*/
 DROP TABLE emp;	/*删除emp表*/
 ```
 修改表：add，modify，change，drop
-```mysql
+```sql
 /*修改之添加列：给stu表添加classname列*/
 ALTER TABLE stu ADD (classname varchar(100));
 
@@ -131,8 +131,8 @@ ALTER TABLE stu DROP classname;
 ALTER TABLE stu RENAME TO student;
 ```
 
-# **4. DML：数据操作语言**
-## **4.1 插入数据**
+# 4. DML：数据操作语言
+## 4.1 插入数据
 语法：INSERT INTO 表名(列名1,列名2, …) VALUES(值1, 值2)
 ```sql
 INSERT INTO stu(sid, sname,age,gender) VALUES('s_1001', 'zhangSan', 23, 'male');
@@ -144,15 +144,15 @@ INSERT INTO stu(sid, sname) VALUES('s_1001', 'zhangSan');
 
 因为没有指定要插入的列，表示按创建表时列的顺序插入所有列的值：
 
-```mysql
+```sql
 INSERT INTO stu VALUES('s_1002', 'liSi', 32, 'female');
 ```
 注意：所有字符串数据必须使用单引用！
 
-## **4.2 修改数据**
+## 4.2 修改数据
 语法：UPDATE 表名 SET 列名1=值1, … 列名n=值n [WHERE 条件]
 
-```mysql
+```sql
 UPDATE stu SET sname=’zhangSanSan’, age=’32’, gender=’female’ WHERE sid=’s_1001’;
 UPDATE stu SET sname=’liSi’, age=’20’ WHERE age>50 AND gender=’male’;
 UPDATE stu SET sname=’wangWu’, age=’30’ WHERE age>60 OR gender=’female’;
@@ -160,16 +160,16 @@ UPDATE stu SET gender=’female’ WHERE gender IS NULL
 UPDATE stu SET age=age+1 WHERE sname=’zhaoLiu’;
 ```
 
-## **4.3 删除数据**
+## 4.3 删除数据
 语法：DELETE FROM 表名 [WHERE 条件]
 
-```mysql
+```sql
 DELETE FROM stu WHERE sid=’s_1001’003B
 DELETE FROM stu WHERE sname=’chenQi’ OR age > 30;
 DELETE FROM stu;
 ```
 语法：TRUNCATE TABLE 表名
-```mysql
+```sql
 TRUNCATE TABLE stu;
 ```
 虽然TRUNCATE和DELETE都可以删除表的所有记录，但有原理不同。DELETE的效率没有TRUNCATE高！
@@ -177,54 +177,54 @@ TRUNCATE TABLE stu;
 TRUNCATE其实属性DDL语句，因为它是先DROP TABLE，再CREATE TABLE。而且TRUNCATE删除的记录是无法回滚的，但DELETE删除的记录是可以回滚的（回滚是事务的知识！）。
 
 # 5. DCL：数据控制语言
-## **5.1 创建用户**
+## 5.1 创建用户
 语法：CREATE USER 用户名@地址 IDENTIFIED BY '密码';
 
-```mysql
+```sql
 CREATE USER user1@localhost IDENTIFIED BY ‘123’;
 
 CREATE USER user2@’%’ IDENTIFIED BY ‘123’;
 ```
 
-## **5.2 给用户授权**
+## 5.2 给用户授权
 语法：GRANT 权限1, … , 权限n ON 数据库.* TO 用户名
 
-```mysql
+```sql
 GRANT CREATE,ALTER,DROP,INSERT,UPDATE,DELETE,SELECT ON mydb1.* TO user1@localhost;
 GRANT ALL ON mydb1.* TO user2@localhost;
 ```
 
-## **5.3 撤销授权**
+## 5.3 撤销授权
 语法：REVOKE权限1, … , 权限n ON 数据库.* FORM 用户名
 
-```mysql
+```sql
 REVOKE CREATE,ALTER,DROP ON mydb1.* FROM user1@localhost;
 ```
 
-## **5.4 查看用户权限**
+## 5.4 查看用户权限
 语法：SHOW GRANTS FOR 用户名
 
-```mysql
+```sql
 SHOW GRANTS FOR user1@localhost;
 ```
 
-## **5.5 删除用户**
+## 5.5 删除用户
 语法：DROP USER 用户名
 
-```mysql
+```sql
 DROP USER user1@localhost;
 ```
 
-## **5.6 修改用户密码**
+## 5.6 修改用户密码
 语法：
 
-```mysql
+```sql
 USE mysql;
 UPDATE USER SET PASSWORD=PASSWORD(‘密码’) WHERE User=’用户名’ and Host=’IP’;
 FLUSH PRIVILEGES;
 ```
 
-```mysql
+```sql
 UPDATE USER SET PASSWORD=PASSWORD('1234') WHERE User='user2' and Host=’localhost’;
 FLUSH PRIVILEGES;
 ```
@@ -232,7 +232,7 @@ FLUSH PRIVILEGES;
 # 6. 数据查询语法（DQL）
 DQL就是数据查询语言，数据库执行DQL语句不会对数据进行改变，而是让数据库发送结果集给客户端。语法：
 
-```mysql
+```sql
 SELECT selection_list	/*要查询的列名称*/
 FROM table_list			/*要查询的表名称*/
 WHERE condition			/*行条件*/
@@ -249,7 +249,7 @@ LIMIT offset_start, row_count;	/*结果限定*/
 | sname  | varchar(50) | 学生姓名 |
 | age    | int         | 学生年龄 |
 | gender | varchar(50) | 学生性别 |
-```mysql
+```sql
 CREATE TABLE stu (
 	sid	CHAR(6),
 	sname		VARCHAR(50),
@@ -282,7 +282,7 @@ INSERT INTO stu VALUES('S_1011', 'xxx', NULL, NULL);
 | comm     | decimal(7,2) | 奖金   |
 | deptno   | int          | 部分编号 |
 
-```mysql
+```sql
 CREATE TABLE emp(
 	empno		INT,
 	ename		VARCHAR(50),
@@ -316,7 +316,7 @@ INSERT INTO emp values(7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,10);
 | deptno | int         | 部分编码   |
 | dname  | varchar(50) | 部分名称   |
 | loc    | varchar(50) | 部分所在地点 |
-```mysql
+```sql
 CREATE TABLE dept(
 	deptno		INT,
 	dname		varchar(14),
@@ -329,17 +329,17 @@ INSERT INTO dept values(30, 'SALES', 'CHICAGO');
 INSERT INTO dept values(40, 'OPERATIONS', 'BOSTON');
 ```
 
-## **6.1 基础查询**
-### **6.1.1 查询所有列**
-```mysql
+## 6.1 基础查询
+### 6.1.1 查询所有列
+```sql
 SELECT * FROM stu;
 ```
-### **6.1.2 查询指定列**
-```mysql
+### 6.1.2 查询指定列
+```sql
 SELECT sid, sname, age FROM stu;
 ```
-## **6.2 条件查询**
-### **6.2.1 条件查询介绍**
+## 6.2 条件查询
+### 6.2.1 条件查询介绍
 条件查询就是在查询时给出WHERE子句，在WHERE子句中可以使用如下运算符及关键字：
 
 - =、!=、&lt;>、<、<=、>、>=
@@ -351,42 +351,42 @@ SELECT sid, sname, age FROM stu;
 - NOT
 
 ### 6.2.2 查询性别为女，并且年龄50的记录
-```mysql
+```sql
 SELECT * FROM stu
 WHERE gender='female' AND ge<50;
 ```
 
 ### 6.2.3 查询学号为S_1001，或者姓名为liSi的记录
 
-```mysql
+```sql
 SELECT * FROM stu
 WHERE sid ='S_1001' OR sname='liSi';
 ```
 
 ### 6.2.4 查询学号为S_1001，S_1002，S_1003的记录
 
-```mysql
+```sql
 SELECT * FROM stu
 WHERE sid IN ('S_1001','S_1002','S_1003');
 ```
 
 ### 6.2.5 查询学号不是S_1001，S_1002，S_1003的记录
 
-```mysql
+```sql
 SELECT * FROM tab_student
 WHERE s_number NOT IN ('S_1001','S_1002','S_1003');
 ```
 
 ### 6.2.6 查询年龄为null的记录
 
-```mysql
+```sql
 SELECT * FROM stu
 WHERE age IS NULL;
 ```
 
 ### 6.2.7 查询年龄在20到40之间的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE age>=20 AND age<=40;
@@ -394,7 +394,7 @@ WHERE age>=20 AND age<=40;
 
 或者
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE age BETWEEN 20 AND 40;
@@ -402,7 +402,7 @@ WHERE age BETWEEN 20 AND 40;
 
 ### 6.2.8 查询性别非男的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE gender!='male';
@@ -410,7 +410,7 @@ WHERE gender!='male';
 
 或者
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE gender<>'male';
@@ -418,7 +418,7 @@ WHERE gender<>'male';
 
 或者
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE NOT gender='male';
@@ -426,7 +426,7 @@ WHERE NOT gender='male';
 
 ### 6.2.9 查询姓名不为null的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE NOT sname IS NULL;
@@ -434,17 +434,17 @@ WHERE NOT sname IS NULL;
 
 或者
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE sname IS NOT NULL;
 ```
 
-## **6.3模糊查询**
+## 6.3模糊查询
 当想查询姓名中包含a字母的学生时就需要使用模糊查询了。模糊查询需要使用关键字LIKE
 ### 6.3.1 查询姓名由5个字母构成的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE sname LIKE '_____';
@@ -454,7 +454,7 @@ WHERE sname LIKE '_____';
 
 ### 6.3.2 查询姓名由5个字母构成，并且第5个字母为“i”的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE sname LIKE '____i';
@@ -462,7 +462,7 @@ WHERE sname LIKE '____i';
 
 ### 6.3.3 查询姓名以“z”开头的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE sname LIKE 'z%';
@@ -472,7 +472,7 @@ WHERE sname LIKE 'z%';
 
 ### 6.3.4 查询姓名中第2个字母为“i”的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE sname LIKE '_i%';
@@ -480,50 +480,50 @@ WHERE sname LIKE '_i%';
 
 ### 6.3.5 查询姓名中包含“a”字母的学生记录
 
-```mysql
+```sql
 SELECT *
 FROM stu
 WHERE sname LIKE '%a%';
 ```
 
-## **6.4 字段控制查询**
+## 6.4 字段控制查询
 ### 6.4.1 去除重复记录
 去除重复记录（两行或两行以上记录中系列的上的数据都相同），例如emp表中sal字段就存在相同的记录。当只查询emp表的sal字段时，那么会出现重复记录，那么想去除重复记录，需要使用DISTINCT：
 
-```mysql
+```sql
 SELECT DISTINCT sal FROM emp;
 ```
 
 ### 6.4.2 查看雇员的月薪与佣金之和
 因为sal和comm两列的类型都是数值类型，所以可以做加运算。如果sal或comm中有一个字段不是数值类型，那么会出错。
 
-```mysql
+```sql
 SELECT *,sal+comm FROM emp;
 ```
 
 comm列有很多记录的值为NULL，因为任何东西与NULL相加结果还是NULL，所以结算结果可能会出现NULL。下面使用了把NULL转换成数值0的函数IFNULL：
 
-```mysql
+```sql
 SELECT *,sal+IFNULL(comm,0) FROM emp;
 ```
 
 ### 6.4.3 给列名添加别名
 在上面查询中出现列名为sal+IFNULL(comm,0)，这很不美观，现在我们给这一列给出一个别名，为total：
 
-```mysql
+```sql
 SELECT *, sal+IFNULL(comm,0) AS total FROM emp;
 ```
 
 给列起别名时，是可以省略AS关键字的：
 
-```mysql
+```sql
 SELECT *,sal+IFNULL(comm,0) total FROM emp;
 ```
 
-## **6.5 排序**
-### **6.5.1 查询所有学生记录，按年龄升序排序**
+## 6.5 排序
+### 6.5.1 查询所有学生记录，按年龄升序排序
 
-```mysql
+```sql
 SELECT *
 FROM stu
 ORDER BY sage ASC;
@@ -531,28 +531,28 @@ ORDER BY sage ASC;
 
 或者
 
-```mysql
+```sql
 SELECT *
 FROM stu
 ORDER BY sage;
 ```
 
-### **6.5.2 查询所有学生记录，按年龄降序排序**
+### 6.5.2 查询所有学生记录，按年龄降序排序
 
-```mysql
+```sql
 SELECT *
 FROM stu
 ORDER BY age DESC;
 ```
 
-### **6.5.3 查询所有雇员，按月薪降序排序，如果月薪相同时，按编号升序排序**
+### 6.5.3 查询所有雇员，按月薪降序排序，如果月薪相同时，按编号升序排序
 
-```mysql
+```sql
 SELECT * FROM emp
 ORDER BY sal DESC,empno ASC;
 ```
 
-# **7. 聚合函数**
+# 7. 聚合函数
 聚合函数是用来做纵向运算的函数：
 
 | 聚合函数    | 功能描述                              |
@@ -563,17 +563,17 @@ ORDER BY sal DESC,empno ASC;
 | SUM()   | 计算指定列的数值和，如果指定列类型不是数值类型，那么计算结果为0  |
 | AVG()   | 计算指定列的平均值，如果指定列类型不是数值类型，那么计算结果为0  |
 
-## **7.1 COUNT**
+## 7.1 COUNT
 当需要纵向统计时可以使用COUNT()。
 
 查询emp表中记录数：
 
-```mysql
+```sql
 SELECT COUNT(*) AS cnt FROM emp;
 ```
 查询emp表中有佣金的人数：
 
-```mysql
+```sql
 SELECT COUNT(comm) cnt FROM emp;
 ```
 
@@ -581,83 +581,83 @@ SELECT COUNT(comm) cnt FROM emp;
 
 查询emp表中月薪大于2500的人数：
 
-```mysql
+```sql
 SELECT COUNT(*) FROM emp
 WHERE sal > 2500;
 ```
 
 统计月薪与佣金之和大于2500元的人数：
-```mysql
+```sql
 SELECT COUNT(*) AS cnt FROM emp WHERE sal+IFNULL(comm,0) > 2500;
 ```
 
 查询有佣金的人数，以及有领导的人数：
-```mysql
+```sql
 SELECT COUNT(comm), COUNT(mgr) FROM emp;
 ```
 
-## **7.2 SUM和AVG**
+## 7.2 SUM和AVG
 当需要纵向求和时使用sum()函数。
 
 查询所有雇员月薪和：
-```mysql
+```sql
 SELECT SUM(sal) FROM emp;
 ```
 
 查询所有雇员月薪和，以及所有雇员佣金和：
-```mysql
+```sql
 SELECT SUM(sal), SUM(comm) FROM emp;
 ```
 
 查询所有雇员月薪+佣金和：
-```mysql
+```sql
 SELECT SUM(sal+IFNULL(comm,0)) FROM emp;
 ```
 
 统计所有员工平均工资：
-```mysql
+```sql
 SELECT SUM(sal), COUNT(sal) FROM emp;
 ```
 或者
-```mysql
+```sql
 SELECT AVG(sal) FROM emp;
 ```
 
-## **7.3 MAX和MIN**
+## 7.3 MAX和MIN
 查询最高工资和最低工资：
-```mysql
+```sql
 SELECT MAX(sal), MIN(sal) FROM emp;
 ```
 
-# **8. 分组查询**
+# 8. 分组查询
 
 当需要分组查询时需要使用GROUP BY子句，例如查询每个部门的工资和，这说明要使用部分来分组。
 
-## **8.1 分组查询**
+## 8.1 分组查询
 查询每个部门的部门编号和每个部门的工资和：
 
-```mysql
+```sql
 SELECT deptno, SUM(sal)
 FROM emp
 GROUP BY deptno;
 ```
 查询每个部门的部门编号以及每个部门的人数：
-```mysql
+```sql
 SELECT deptno,COUNT(*)
 FROM emp
 GROUP BY deptno;
 ```
 查询每个部门的部门编号以及每个部门工资大于1500的人数：
-```mysql
+```sql
 SELECT deptno,COUNT(*)
 FROM emp
 WHERE sal>1500
 GROUP BY deptno;
 ```
 
-## **8.2 HAVING子句**
+## 8.2 HAVING子句
 查询工资总和大于9000的部门编号以及工资和：
-```mysql
+```sql
 SELECT deptno, SUM(sal)
 FROM emp
 GROUP BY deptno
@@ -666,24 +666,24 @@ HAVING SUM(sal) > 9000;
 
 注意，WHERE是对分组前记录的条件，如果某行记录没有满足WHERE子句的条件，那么这行记录不会参加分组；而HAVING是对分组后数据的约束。
 
-# **9. LIMIT**
+# 9. LIMIT
 LIMIT用来限定查询结果的起始行，以及总行数。
 
-###**9.1 查询5行记录，起始行从0开始**
+###9.1 查询5行记录，起始行从0开始
 
-```mysql
+```sql
 SELECT * FROM emp LIMIT 0, 5;
 ```
 
 注意，起始行从0开始，即第一行开始！
 
-## **9.2 查询10行记录，起始行从3开始**
+## 9.2 查询10行记录，起始行从3开始
 
-```mysql
+```sql
 SELECT * FROM emp LIMIT 3, 10;
 ```
 
-## **9.3 分页查询**
+## 9.3 分页查询
 如果一页记录为10条，希望查看第3页记录应该怎么查呢？
 
 - 第一页记录起始行为0，一共查询10行；
@@ -703,7 +703,7 @@ SELECT * FROM emp LIMIT 3, 10;
 - 自然连接
 - 子查询
 
-## **10.1 合并结果集**
+## 10.1 合并结果集
 作用：合并结果集就是把两个select语句的查询结果合并到一起！
 要求：被合并的两个结果：列数、列类型必须相同
 
@@ -716,7 +716,7 @@ SELECT * FROM emp LIMIT 3, 10;
 
 ![mysql](img/union2.png)
 
-## **10.2 连接查询**
+## 10.2 连接查询
 连接查询就是求出多个表的乘积，例如t1连接t2，那么查询出的结果就是t1*t2。
 
 ![mysql](img/连接查询.png)
@@ -738,7 +738,7 @@ SELECT * FROM emp,dept WHERE emp.deptno=dept.deptno;
 ![mysql](img/连接查询3.png)
 
 上面查询结果会把两张表的所有列都查询出来，也许你不需要那么多列，这时就可以指定要查询的列了。
-```mysql
+```sql
 SELECT emp.ename,emp.sal,emp.comm,dept.dname
 FROM emp,dept
 WHERE emp.deptno=dept.deptno;
@@ -747,16 +747,16 @@ WHERE emp.deptno=dept.deptno;
 
 还可以为表指定别名，然后在引用列时使用别名即可。
 
-```mysql
+```sql
 SELECT e.ename,e.sal,e.comm,d.dname
 FROM emp AS e,dept AS d
 WHERE e.deptno=d.deptno;
 ```
 
-### **10.2.1 内连接**
+### 10.2.1 内连接
 上面的连接语句就是内连接，但它不是SQL标准中的查询方式，可以理解为方言！SQL标准的内连接为：
 
-```mysql
+```sql
 SELECT *
 FROM emp e
 INNER JOIN dept d
@@ -768,11 +768,11 @@ ON e.deptno=d.deptno;
 
 ![mysql](img/inner_join.gif)
 
-### **10.2.2 外连接（左连接、右连接）**
+### 10.2.2 外连接（左连接、右连接）
 外连接的特点：查询出的结果存在不满足条件的可能。
 左连接：读取左边数据表的全部数据，即便右边表无对应数据
 
-```mysql
+```sql
 SELECT * FROM emp e
 LEFT OUTER JOIN dept d
 ON e.deptno=d.deptno;
@@ -786,10 +786,10 @@ ON e.deptno=d.deptno;
 
 ![mysql](img/left_join.gif)
 
-### **10.2.3 右连接**
+### 10.2.3 右连接
 右连接就是先把右表中所有记录都查询出来，然后左表满足条件的显示，不满足显示NULL。例如在dept表中的40部门并不存在员工，但在右连接中，如果dept表为右表，那么还是会查出40部门，但相应的员工信息为NULL。
 
-```mysql
+```sql
 SELECT * FROM emp e
 RIGHT OUTER JOIN dept d
 ON e.deptno=d.deptno;
@@ -807,26 +807,26 @@ ON e.deptno=d.deptno;
 
 ![mysql](img/right_join.gif)
 
-## **10.3 全外连接**
+## 10.3 全外连接
 ![mysql](img/full_join.gif)
 
 全外连接（MySQL不支持）：只要某一个表存在匹配，就返回行；可以使用UNION来完成全链接
 
-## **10.4 自然连接**
+## 10.4 自然连接
 大家也都知道，连接查询会产生无用笛卡尔积，我们通常使用主外键关系等式来去除它。而自然连接无需你去给出主外键等式，它会自动找到这一等式：
 
 两张连接的表中名称和类型完全一致的列作为条件，例如emp和dept表都存在deptno列，并且类型一致，所以会被自然连接找到！
 
 当然自然连接还有其他的查找条件的方式，但其他方式都可能存在问题！
 
-```mysql
+```sql
 SELECT * FROM emp NATURAL JOIN dept;
 SELECT * FROM emp NATURAL LEFT JOIN dept;
 SELECT * FROM emp NATURAL RIGHT JOIN dept;
 ```
 
 
-## **10.5 子查询**
+## 10.5 子查询
 子查询就是嵌套查询，即SELECT中包含SELECT，如果一条语句中存在两个，或两个以上SELECT，那么就是子查询语句了。
 
 - 子查询出现的位置：
@@ -847,19 +847,19 @@ SELECT * FROM emp NATURAL RIGHT JOIN dept;
 
 第一步：查询甘宁的工资
 
-```mysql
+```sql
 SELECT sal FROM emp WHERE ename='甘宁'
 ```
 
 第二步：查询高于甘宁工资的员工
 
-```mysql
+```sql
 SELECT * FROM emp WHERE sal > (${第一步})
 ```
 
 结果：
 
-```mysql
+```sql
 SELECT * FROM emp WHERE sal > (SELECT sal FROM emp WHERE ename='甘宁')
 ```
 
@@ -872,19 +872,19 @@ SELECT * FROM emp WHERE sal > (SELECT sal FROM emp WHERE ename='甘宁')
 
 第一步：查询30部门所有人工资
 
-```mysql
+```sql
 SELECT sal FROM emp WHERE deptno=30;
 ```
 
 第二步：查询高于30部门所有人工资的员工信息
 
-```mysql
+```sql
 SELECT * FROM emp WHERE sal > ALL (${第一步})
 ```
 
 结果：
 
-```mysql
+```sql
 SELECT * FROM emp WHERE sal > ALL (SELECT sal FROM emp WHERE deptno=30)
 ```
 
@@ -898,19 +898,19 @@ SELECT * FROM emp WHERE sal > ALL (SELECT sal FROM emp WHERE deptno=30)
 
 第一步：查询出殷天正的工作和工资
 
-```mysql
+```sql
 SELECT job,sal FROM emp WHERE ename='殷天正'
 ```
 
 第二步：查询出与殷天正工作和工资相同的人
 
-```mysql
+```sql
 SELECT * FROM emp WHERE (job,sal) IN (${第一步})
 ```
 
 结果：
 
-```mysql
+```sql
 SELECT * FROM emp WHERE (job,sal) IN (SELECT job,sal FROM emp WHERE ename='殷天正')
 ```
 
@@ -925,13 +925,13 @@ SELECT * FROM emp WHERE (job,sal) IN (SELECT job,sal FROM emp WHERE ename='殷�
 
 第一步：去除多表，只查一张表，这里去除部门表，只查员工表
 
-```mysql
+```sql
 SELECT ename, sal FROM emp e WHERE empno=1006
 ```
 
 第二步：让第一步与dept做内连接查询，添加主外键条件去除无用笛卡尔积
 
-```mysql
+```sql
 SELECT e.ename, e.sal, d.dname, d.loc
 FROM emp e, dept d
 WHERE e.deptno=d.deptno AND empno=1006
@@ -941,13 +941,13 @@ WHERE e.deptno=d.deptno AND empno=1006
 
 第三步：查询dept表中dname和loc两列，因为deptno会被作为条件，用来去除无用笛卡尔积，所以需要查询它。
 
-```mysql
+```sql
 SELECT dname,loc,deptno FROM dept;
 ```
 
 第四步：替换第二步中的dept
 
-```mysql
+```sql
 SELECT e.ename, e.sal, d.dname, d.loc
 FROM emp e, (SELECT dname,loc,deptno FROM dept) d
 WHERE e.deptno=d.deptno AND e.empno=1006
@@ -956,7 +956,7 @@ WHERE e.deptno=d.deptno AND e.empno=1006
 - 子查询作为表
 - 子查询形式为多行多列
 
-# **11. MySQL 索引**
+# 11. MySQL 索引
 MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。
 
 索引分单列索引和组合索引。单列索引，即一个索引只包含单个列，一个表可以有多个单列索引，但这不是组合索引。组合索引，即一个索包含多个列。
@@ -969,22 +969,22 @@ MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大�
 
 建立索引会占用磁盘空间的索引文件。
 
-## **11.1 普通索引**
+## 11.1 普通索引
 
-```mysql
+```sql
 CREATE INDEX indexName ON mytable(username(length)); //创建索引
 ALTER mytable ADD INDEX [indexName] ON (username(length)) ;//修改表结构
 DROP INDEX [indexName] ON mytable; //删除索引
 ```
-## **11.2 唯一索引**
+## 11.2 唯一索引
 
-```mysql
+```sql
 CREATE UNIQUE INDEX indexName ON mytable(username(length)) ;//创建索引
 ALTER mytable ADD UNIQUE [indexName] ON (username(length)) ;修改表结构
 ```
-##**11.3 使用ALTER 命令添加和删除索引**
+##11.3 使用ALTER 命令添加和删除索引
 
-```mysql
+```sql
 //该语句添加一个主键，这意味着索引值必须是唯一的，且不能为NULL
 ALTER TABLE tbl_name ADD PRIMARY KEY (column_list);
 

@@ -96,11 +96,11 @@ web.xml
 在web.xml中配置Servlet的目的其实只有一个，就是把访问路径与一个Servlet绑定到一起，上面配置是把访问路径：“/helloworld”与“cn.itcast.servlet.HelloServlet”绑定到一起。
 
 - &lt;servlet>：指定HelloServlet这个Servlet的名称为hello；
-- &lt;servlet-mapping>：指定/helloworld访问路径，所以访问的Servlet名为hello。
+- <servlet-mapping>：指定/helloworld访问路径，所以访问的Servlet名为hello。
 
 &lt;servlet>和&lt;servlet-mapping>通过&lt;servlet-name>这个元素关联在一起了！
 
-![servlet](img/servlet.png)
+![servlet](img/访问servlet.png)
 
 接下来，我们编译HelloServlet，注意，编译HelloServlet时需要导入servlet-api.jar，因为Servlet.class等类都在servlet-api.jar中。
 
@@ -556,7 +556,7 @@ ServletContext的主要功能是：存取数据；读取web.xml中的应用初�
 - ServletContext对象的创建是在服务器启动时完成的；
 - ServletContext对象的销毁是在服务器关闭时完成的。
 
- ServletContext对象的作用是在整个Web应用的动态资源之间共享数据！例如在AServlet中向ServletContext对象中保存一个值，然后在BServlet中就可以获取这个值，这就是共享数据了。
+ServletContext对象的作用是在整个Web应用的动态资源之间共享数据！例如在AServlet中向ServletContext对象中保存一个值，然后在BServlet中就可以获取这个值，这就是共享数据了。
 
 ## 6.2 获取ServletContext
 - ServletConfig#getServletContext()

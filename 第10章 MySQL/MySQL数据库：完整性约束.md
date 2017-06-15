@@ -9,7 +9,7 @@
 
 - 创建表：定义列时指定主键：
 
-```mysql
+```sql
 CREATE TABLE stu(
 		sid	    CHAR(6) PRIMARY KEY,
 		sname	VARCHAR(20),
@@ -20,7 +20,7 @@ CREATE TABLE stu(
 
 - 创建表：定义列之后独立指定主键：
 
-```mysql
+```sql
 CREATE TABLE stu(
 		sid	    CHAR(6),
 		sname	VARCHAR(20),
@@ -32,14 +32,14 @@ CREATE TABLE stu(
 
 - 修改表时指定主键：
 
-```mysql
+```sql
 ALTER TABLE stu
 ADD PRIMARY KEY(sid);
 ```
 
 - 删除主键（只是删除主键约束，而不会删除主键列）：
 
-```mysql
+```sql
 ALTER TABLE stu DROP PRIMARY KEY;
 ```
 
@@ -48,7 +48,7 @@ MySQL提供了主键自动增长的功能！这样用户就不用再为是否有
 
 - 创建表时设置主键自增长（主键必须是整型才可以自增长）：
 
-```mysql
+```sql
 CREATE TABLE stu(
 		sid INT PRIMARY KEY AUTO_INCREMENT,
 		sname	VARCHAR(20),
@@ -59,13 +59,13 @@ CREATE TABLE stu(
 
 - 修改表时设置主键自增长：
 
-```mysql
+```sql
 ALTER TABLE stu CHANGE sid sid INT AUTO_INCREMENT;
 ```
 
 - 修改表时删除主键自增长：
 
-```mysql
+```sql
 ALTER TABLE stu CHANGE sid sid INT;
 ```
 
@@ -74,7 +74,7 @@ ALTER TABLE stu CHANGE sid sid INT;
 
 - 指定非空约束：
 
-```mysql
+```sql
 CREATE TABLE stu(
 		sid INT PRIMARY KEY AUTO_INCREMENT,
 		sname VARCHAR(10) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE stu(
 
 当为sname字段指定为非空后，在向stu表中插入记录时，必须给sname字段指定值，否则会报错：
 
-```mysql
+```sql
 INSERT INTO stu(sid) VALUES(1);
 ```
 插入的记录中sname没有指定值，所以会报错！
@@ -93,7 +93,7 @@ INSERT INTO stu(sid) VALUES(1);
 # 5. 唯一
 还可以为字段指定唯一约束！当为字段指定唯一约束后，那么字段的值必须是唯一的。这一点与主键相似！例如给stu表的sname字段指定唯一约束：
 
-```mysql
+```sql
 CREATE TABLE tab_ab(
 	sid INT PRIMARY KEY AUTO_INCREMENT,
 	sname VARCHAR(10) UNIQUE
@@ -117,7 +117,7 @@ INSERT INTO sname(sid, sname) VALUES(1002, 'zs');
 * 1对1：例如老公和老婆就是一对一的关系，一个老公只能有一个老婆，而一个老婆只能有一个老公。
 * 多对多：老师与学生的关系就是多对多，一个老师可以有多个学生，一个学生可以有多个老师。
 
-概念模型在Java中成为实体类（javaBean），类就使用成员变量来完成关系，一般都是双向关联！多对一双向中关联，即员工关联部门，部门也关联员工
+概念模型在Java中成为实体类（javabean），类就使用成员变量来完成关系，一般都是双向关联！多对一双向中关联，即员工关联部门，部门也关联员工
 
 ```java
 class Employee {//多方关联一方
@@ -170,7 +170,7 @@ class Employee {//多方关联一方
 
 创建t_user表，指定uid为主键列：
 
-```mysql
+```sql
 CREATE TABLE t_user(
 	uid	INT PRIMARY KEY AUTO_INCREMENT,
 	uname	VARCHAR(20) UNIQUE NOT NULL
@@ -178,7 +178,7 @@ CREATE TABLE t_user(
 ```
 创建t_section表，指定sid为主键列，u_id为相对t_user表的uid列的外键：
 
-```mysql
+```sql
 CREATE TABLE t_section(
 		sid	INT PRIMARY KEY AUTO_INCREMENT,
 		sname	VARCHAR(30),
@@ -187,14 +187,14 @@ CREATE TABLE t_section(
 );
 ```
 修改t_section表，指定u_id为相对t_user表的uid列的外键：
-```mysql
+```sql
 ALTER TABLE t_section
 ADD CONSTRAINT fk_t_user
 FOREIGN KEY(u_id)
 REFERENCES t_user(uid);
 ```
 修改t_section表，删除u_id的外键约束：
-```mysql
+```sql
 ALTER TABLE t_section
 DROP FOREIGN KEY fk_t_user;
 ```
@@ -208,7 +208,7 @@ DROP FOREIGN KEY fk_t_user;
 - 给t_card表的主键添加外键约束（相对t_user表），即t_card表的主键也是外键。
 
 在表中建立一对一关系比较特殊，需要让其中一张表的主键，即是主键又是外键。
-```mysql
+```sql
   create table husband(
     hid int PRIMARY KEY,
     ...
@@ -231,7 +231,7 @@ wife.wid是主键，不能重复，又是外键，必须来自husband.hid。
 
 数据库表中的多对一关系，只需要在多方使用一个独立的列来引用1方的主键即可
 
-```mysql
+```sql
  /*员工表*/
   create talbe emp (
     empno int primary key,/*员工编号*/
@@ -252,7 +252,7 @@ emp表中的deptno列的值表示当前员工所从属的部门编号。也就�
 
 语法：CONSTRAINT 约束名称 FOREIGN KEY(外键列名) REFERENCES 关联表(关联表的主键)
 
-```mysql
+```sql
 /*创建表时指定外键约束*/
   create talbe emp (
     empno int primary key,
@@ -276,7 +276,7 @@ emp表中的deptno列的值表示当前员工所从属的部门编号。也就�
 
 在表中建立多对多关系需要使用中间表，即需要三张表，在中间表中使用两个外键，分别引用其他两个表的主键。
 
-```mysql
+```sql
  create table student(
     sid int PRIMARY KEY,
     ...
