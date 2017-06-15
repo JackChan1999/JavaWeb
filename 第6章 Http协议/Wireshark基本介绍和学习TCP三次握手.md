@@ -4,7 +4,7 @@
 
 对我而言， wireshark 是学习网络协议最好的工具。
 
-# 1. wireshark介绍
+# 1. Wireshark介绍
 
 wireshark的官方下载网站： [http://www.wireshark.org/](http://www.wireshark.org/)
 
@@ -30,7 +30,7 @@ wireshark能获取HTTP，也能获取HTTPS，但是不能解密HTTPS，所以wir
 
 微软的network monitor，sniffer
 
-# 5. 什么人会用到wireshark
+# 5. 什么人会用到Wireshark
 
 - 网络管理员会使用wireshark来检查网络问题
 - 软件测试工程师使用wireshark抓包，来分析自己测试的软件
@@ -39,7 +39,7 @@ wireshark能获取HTTP，也能获取HTTPS，但是不能解密HTTPS，所以wir
 
 总之跟网络相关的东西，都可能会用到wireshark
 
-# 6. wireshark 开始抓包
+# 6. Wireshark 开始抓包
 
 开始界面
 
@@ -112,7 +112,7 @@ Filter栏上就多了个"Filter 102" 的按钮
 | ip.src ==192.168.1.102 or ip.dst==192.168.1.102 | 源地址或者目标地址是192.168.1.102 |
 | http.request.method==”GET”               | 过滤get请求                 |
 | http.request.method==”POST”              | 过滤post请求                |
-| http.request.method==”GET” and ip.dst==192.168.1.102 |                         |
+| http.request.method==”GET” and ip.dst==192.168.1.102 | 过滤指定ip的get请求            |
 
 # 11. 封包列表(Packet List Pane)
 
@@ -132,7 +132,7 @@ Filter栏上就多了个"Filter 102" 的按钮
 - Transmission Control Protocol:  传输层T的数据段头部信息，此处是TCP
 - Hypertext Transfer Protocol:  应用层的信息，此处是HTTP协议
 
-# 13. wireshark与对应的OSI七层模型
+# 13. Wireshark与对应的OSI七层模型
 
 ![img](http://pic002.cnblogs.com/images/2012/263119/2012100709030740.png)
 

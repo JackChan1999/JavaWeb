@@ -7,7 +7,7 @@
 
 ![Http协议](http://img.blog.csdn.net/20161108115713048)
 
-# **1. 什么是HTTP协议**
+# 1. 什么是HTTP协议
 
 客户端连上web服务器后，若想获得web服务器中的某个web资源，需遵守一定的通讯格式，HTTP协议用于定义客户端与web服务器通迅的格式。
 
@@ -15,7 +15,7 @@ HTTP是hypertext transfer protocol（超文本传输协议）的简写，它是T
 
 HTTP就是一个通信规则，通信规则规定了客户端发送给服务器的内容格式，也规定了服务器发送给客户端的内容格式。其实我们要学习的就是这个两个格式！客户端发送给服务器的格式叫“请求协议”；服务器发送给客户端的格式叫“响应协议”。
 
-HTTP协议是学习JavaWEB开发的基石，不深入了解HTTP协议，就不能说掌握了WEB开发，更无法管理和维护一些复杂的WEB站点。
+HTTP协议是学习JavaWeb开发的基石，不深入了解HTTP协议，就不能说掌握了WEB开发，更无法管理和维护一些复杂的WEB站点。
 
 ## OSI网络七层协议
 
@@ -29,25 +29,32 @@ HTTP协议是学习JavaWEB开发的基石，不深入了解HTTP协议，就不�
 | 数据链路层 | 主要将从物理层接收的数据进行MAC地址（网卡的地址）的封装与解封装        |
 | 物理层   | 主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用是传输比特流。 |
 
-![](img/网络模型.png)
+![](img/osi.png)
 
 ![](img/http协议.png)
 
-# **2. HTTP协议简介**
+# 2. HTTP协议简介
 
 协议是指计算机通信网络中两台计算机之间进行通信所必须共同遵守的规定或规则，HTTP协议(超文本传输协议)是一种通信协议，它允许将HTML(超文本标记语言)文档从Web服务器传送到客户端的浏览器。
 
 HTTP协议是应用层协议，HTTP使用请求-响应的方式进行传输，一个请求对应一个响应，并且请求只能是由客户端发起的。
 
-# **3. HTTP1.0和HTTP1.1的区别**
+# 3. HTTP1.0和HTTP1.1的区别
 
 在HTTP1.0协议中，客户端与web服务器建立连接后，只能获得一个web资源。
 
 HTTP1.1协议，允许客户端与web服务器建立连接后，在一个连接上获取多个web资源。
 
+# 打开一个网页需要浏览器发送多次Request
+
 一个好多同学搞不清楚的问题：
 
 一个web页面中，使用img标签引用了三幅图片，当客户端访问服务器中的这个web页面时，客户端总共会访问几次服务器，即向服务器发送了几次HTTP请求。
+
+1. 当你在浏览器输入URL `http://www.cnblogs.com` 的时候，浏览器发送一个Request去获取 `http://www.cnblogs.com` 的html.  服务器把Response发送回给浏览器
+2. 浏览器分析Response中的 HTML，发现其中引用了很多其他文件，比如图片，CSS文件，JS文件
+3. 浏览器会自动再次发送Request去获取图片，CSS文件，或者JS文件
+4. 等所有的文件都下载成功后。 网页就被显示出来了
 
 ## Http网络请求原理
 
@@ -59,7 +66,7 @@ Http是一种应用层协议，它通过tcp实现了可靠的数据传输，能�
 
 HTTP实际上是基于TCP协议，而TCP协议又是基于Socket，Socket实际上操作的也就是输入、输出流，输出流是向服务器写数据，输入流是向服务器读取数据。
 
-# **4. 协议**
+# 4. 协议
 
 协议：协议的甲乙双方，就是客户端（浏览器）和服务器！
 
@@ -68,13 +75,13 @@ HTTP实际上是基于TCP协议，而TCP协议又是基于Socket，Socket实际�
 - 请求协议
 - 响应协议
 
-# **5. HttpWatch和FireBug**
+# 5. HttpWatch和FireBug
 
 HttpWatch是专门为IE浏览器提供的，用来查看HTTP请求和响应内容的工具。而FireFox上需要安装FireBug软件。如果你使用的是Chrome，那么就不用自行安装什么工具了，因为它自身就有查看请求和响应内容的功能！
 
 HttpWatch和FireBug这些工具对浏览器而言不是必须的，但对我们开发者是很有帮助的，通过查看HTTP请求响应内容，可以使我们更好的学习HTTP协议。
 
-# **6. 请求协议**
+# 6. 请求协议
 
 请求方法，各个方法的解释如下：
 
@@ -102,7 +109,7 @@ HttpWatch和FireBug这些工具对浏览器而言不是必须的，但对我们�
 
 浏览器发送给服务器的内容就这个格式的，如果不是这个格式服务器将无法解读！在HTTP协议中，请求有很多请求方法，其中最为常用的就是GET和POST。不同的请求方法之间的区别，后面会一点一点的介绍。
 
-## **6.1 GET请求**
+## 6.1 GET请求
 
 Get是最常用的方法，它的作用是获取服务器中的某个资源。客户端用Get方法发起一次Http请求，服务器将对应的资源返回给客户端。
 
@@ -143,7 +150,7 @@ Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98
 - `Cookie: JSESSIONID=369766FDF6220F7803433C0B2DE36D98`
   因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID
 
-## **6.2 POST请求**
+## 6.2 POST请求
 
 POST方法起初是用来向服务器传递数据的，实际上，POST请求通常会用来提交HTML的表单数据。表单中填好的数据会传输给服务器，然后由服务器对这些数据进行处理。
 
@@ -191,11 +198,11 @@ POST请求是可以有请求体的，而GET请求不能有请求体。
 
 Referer请求头是比较有用的一个请求头，它可以用来做统计工作，也可以用来做防盗链。
 
-## **6.3 统计工作**
+## 6.3 统计工作
 
 我公司网站在百度上做了广告，但不知道在百度上做广告对我们网站的访问量是否有影响，那么可以对每个请求中的Referer进行分析，如果Referer为百度的很多，那么说明用户都是通过百度找到我们公司网站的。
 
-## **6.4 防盗链**
+## 6.4 防盗链
 
 我公司网站上有一个下载链接，而其他网站盗链了这个地址，例如在我网站上的index.html页面中有一个链接，点击即可下载JDK7.0，但有某个人的微博中盗链了这个资源，它也有一个链接指向我们网站的JDK7.0，也就是说登录它的微博，点击链接就可以从我网站上下载JDK7.0，这导致我们网站的广告没有看，但下载的却是我网站的资源。这时可以使用Referer进行防盗链，在资源被下载之前，我们对Referer进行判断，如果请求来自本网站，那么允许下载，如果非本网站，先跳转到本网站看广告，然后再允许下载
 
@@ -251,7 +258,7 @@ OPTIONS方法请求Web服务器告知其支持的各种功能。
 
 ### Content-Type
 
-post请求的数据类型		
+Post请求的数据类型		
 mime类型（媒体类型）：a/b，a为主类型，b为子类型，image/gif，*/*：所有格式
 
 | 类型                                | 作用             |
@@ -265,8 +272,9 @@ mime类型（媒体类型）：a/b，a为主类型，b为子类型，image/gif�
 | text/html;charset=utf-8           | html类型的文本      |
 | image/png，image/jpeg，image/gif    | 图片             |
 
-```
-connection.setRequestProperty(“Content-Type”, “application/x-www-form-urlencoded");
+```java
+HttpURLConnection connection = ...;
+connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 ```
 
 ### 实体头字段
@@ -283,11 +291,11 @@ Content-Disposition:form-data;name="uploadFile";filename="a.txt" 表单项名称
 
 Content-Disposition:attachment;filename="filename"让浏览器弹出下载框
 
-# **7. 响应协议**
+# 7. 响应协议
 
 在接收和解释请求消息后，服务器返回一个HTTP响应消息。
 
-## **7.1 响应内容**
+## 7.1 响应内容
 
 响应协议的格式如下：
 
@@ -342,7 +350,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 - Set-Cookie: JSESSIONID=C97E2B4C55553EAB46079A4F263435A4; Path=/hello：响应给客户端的Cookie
 - Date: Wed, 25 Sep 2012 04:15:03 GMT：响应的时间，这可能会有8小时的时区差
 
-## **7.2 若干响应头**
+## 7.2 若干响应头
 
 | 响应头                                      | 功能描述                        |
 | :--------------------------------------- | :-------------------------- |
@@ -378,7 +386,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 
 `Date: Tue, 11 Jul 2000 18:23:51 GMT` 当前时间
 
-## **7.3 响应码**
+## 7.3 响应码
 
 响应码/状态码的职责是当客户端向服务器端发送请求时，描述返回请求结果。借助状态码，用户可以知道服务器端是正常处理了请求，还是出现了什么错误。
 
@@ -417,7 +425,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 
 - If-Modified-Since：把上次请求的index.html的最后修改时间还给服务器；状态码：304，比较If-Modified-Since的时间与文件真实的时间一样时，服务器会响应304，而且不会有响应正文，表示浏览器缓存的就是最新版本
 
-## **7.4 其他响应头**
+## 7.4 其他响应头
 
 1、告诉浏览器不要缓存的响应头
 
@@ -431,7 +439,7 @@ Date: Wed, 25 Sep 2012 04:15:03 GMT
 
 - `Refresh: 3;url=http://www.itcast.cn`
 
-## **7.5 HTML中指定响应头**
+## 7.5 HTML中指定响应头
 
 在HTMl页面中可以使用`<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">`来指定响应头，例如在index.html页面中给出`<meta http-equiv="Refresh" content="3;url=http://www.itcast.cn">`，表示浏览器只会显示index.html页面3秒，然后自动跳转到`http://www.itcast.cn`
 
@@ -576,26 +584,26 @@ public class SimpleHttpServer extends Thread {
         Socket mClientSocket;
         BufferedReader mInputStream;
         PrintStream mOutputStream;
-        /**
+        /
          * 请求方法,GET、POST等
          */
         String httpMethod;
-        /**
+        /
          * 子路径
          */
         String subPath;
-        /**
+        /
          * 分隔符
          */
         String boundary;
 
-        /**
+        /
          * 请求参数
          */
         Map<String, String> mParams = new HashMap<String, String>();
         // 请求headers
         Map<String, String> mHeaders = new HashMap<String, String>();
-        /**
+        /
          * 是否已经解析完Header
          */
         boolean isParseHeader = false;
@@ -882,12 +890,12 @@ public class IoUtils {
 
 因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN中断连接报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，"你发的FIN报文我收到了"。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。
 
-# **TCP的三次握手/四次挥手**
+# TCP的三次握手/四次挥手
 
 TCP是面向连接的传输层协议，TCP协议提供可靠的连接服务，所以用了建立链接的三次握手和关闭连接的四次挥手来保证可靠服务。
 通过TCP通信就像是两个应用在打电话一样，打电话前得先拨号建立连接，通话结束后要挂机释放连接。
 
-## **建立TCP连接的三次握手**
+## 建立TCP连接的三次握手
 TCP连接的三次握手分别为：
 
 - 客户端发送一个带SYN标志的TCP报文到服务器，表示告诉服务器我想建立一个连接。

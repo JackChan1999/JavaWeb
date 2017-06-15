@@ -19,6 +19,7 @@ RFC2616记录的HTTP状态码有37种，再加上「WebDAV」([RFC4918]()、[584
 ## 2XX Success
 
 ![img](http://mmbiz.qpic.cn/mmbiz/EibqicLiaLZ06c0o1v7RJ2HvDLdosE2DJjd2QvLicPXK0QicAupQPcbrrxOnRZaYGEDjIiaOiba88R5omaeCMtkGgyCkg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
 2xx 响应结果表示从客户端发来的请求在服务器端被正常处理了。
 
 ## 200 OK
