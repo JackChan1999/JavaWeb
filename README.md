@@ -20,8 +20,8 @@
 
 * [前言](https://alleniverson.gitbooks.io/javaweb/content/)
 * [1. HTML](https://alleniverson.gitbooks.io/javaweb/content/第1章%20HTML/)
-  * [HTML](https://alleniverson.gitbooks.io/javaweb/content/第1章%20HTML/HTML.html)
-  * [HTML5](https://alleniverson.gitbooks.io/javaweb/content/第1章%20HTML/HTML5.html)
+  * [HTML](http://alleniverson.gitbooks.io/javaweb/content/第1章%20HTML/HTML.html)
+  * [HTML5](http://alleniverson.gitbooks.io/javaweb/content/第1章%20HTML/HTML5.html)
 * [2. CSS](https://alleniverson.gitbooks.io/javaweb/content/第2章%20CSS)
   * [CSS](https://alleniverson.gitbooks.io/javaweb/content/第2章%20CSS/CSS.html)
   * [CSS3](https://alleniverson.gitbooks.io/javaweb/content/第2章%20CSS/CSS3.html)
