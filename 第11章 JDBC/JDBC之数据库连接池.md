@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: images
+---
+
 ![jdbc](http://img.blog.csdn.net/20161104231600003)
 # **JDBC系列阅读**
 1. [JavaWeb：用JDBC操作数据库](http://blog.csdn.net/axi295309066/article/details/52954659)
@@ -5,7 +9,12 @@
 3. [JavaWeb：JDBC之数据库连接池](http://blog.csdn.net/axi295309066/article/details/52981389)
 4. [使用JDBC实现水果超市管理系统](https://github.com/JackChan1999/FruitStore)
 
+为了避免频繁的创建数据库连接，数据库连接池技术应运而生。数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用现有的数据库连接，而不是重新建立。
+
+![1500710930141](images/1500710930141.png)
+
 # 1. 池参数（所有池参数都有默认值）
+
 - 初始大小：10个
 - 最小空闲连接数：3个
 - 增量：一次创建的最小单位（5个）
@@ -22,6 +31,11 @@
 连接池返回的Connection对象，它的close()方法与众不同！调用它的close()不是关闭，而是把连接归还给池！
 
 # 4. 数据库连接池
+
+为了获取数据库连接对象（Connection），JDBC提供了javax.sql.DataSource接口，它负责与数据库建立连接，并定义了返回值为Connection对象的方法，具体如下。
+
+- Connection getConnection() 
+- Connection getConnection(String username, String password)
 
 ## **4.1 数据库连接池的概念**
 用池来管理Connection，这可以重复使用Connection。有了池，所以我们就不用自己来创建Connection，而是通过池来获取Connection对象。当使用完Connection后，调用Connection的close()方法也不会真的关闭Connection，而是把Connection“归还”给池。池就可以再利用这个Connection对象了
@@ -97,6 +111,11 @@ public class ItcastConnection extends ConnectionWrapper {
 ```
 
 # 5. DBCP
+
+DBCP是数据库连接池（DataBase Connection Pool）的简称，是Apache组织下的开源连接池实现，也是Tomcat服务器使用的连接池组件。单独使用DBCP数据源时，需要在应用程序中导入两个JAR包，具体如下。
+
+- commons-dbcp.jar包
+- commons-pool.jar包
 
 ## **5.1 什么是DBCP？**
 DBCP是Apache提供的一款开源免费的数据库连接池！
@@ -190,6 +209,10 @@ defaultTransactionIsolation=REPEATABLE_READ
 ```
 
 # 6. C3P0
+
+C3P0是目前最流行的开源数据库连接池之一，它实现了DataSource数据源接口，支持JDBC2和JDBC3的标准规范，易于扩展并且性能优越，著名的开源框架Hibernate和 Spring都支持该数据源。在使用C3P0数据源开发时，需要了解C3P0中DataSource接口的实现类ComboPooledDataSource，它是C3P0的核心类，提供了数据源对象的相关方法，该类的常用方法介绍如下表所示。
+
+![1500711026809](images/1500711026809.png)
 
 ## **6.1 C3P0简介**
 C3P0也是开源免费的连接池！C3P0被很多人看好！
@@ -471,6 +494,10 @@ public class BaseServlet extends HttpServlet {
 ```
 
 # 10. DBUtils
+
+为了更加简单地使用JDBC，Apache组织提供了一个DBUtils工具，它是操作数据库的一个组件，实现了对JDBC的简单封装，可以在不影响性能的情况下极大地简化JDBC的编码工作量。
+
+DBUtils工具的核心是org.apache.commons.dbutils.QueryRunner类和org.apache.commons.dbutils.ResultSetHandler接口。
 
 ## **10.1 DBUtils简介**
 DBUtils是Apache Commons组件中的一员，开源免费！
