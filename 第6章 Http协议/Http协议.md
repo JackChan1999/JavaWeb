@@ -258,7 +258,7 @@ OPTIONS方法请求Web服务器告知其支持的各种功能。
 
 ### Content-Type
 
-MIME媒体类型，多功能Internet邮件扩展协议（MIME）来描述。MIME的定义形式为“[type]/[subtype]”，其中，[type]用来描述数据类型的大类，而[subtype]用来描述数据类型的子类。例如，"text/html"描述的数据类型的大类是文本（text），而子类是超文本标记语言（html）；a/b，a为主类型，b为子类型，image/gif；/：所有格式
+MIME媒体类型，多功能Internet邮件扩展协议（MIME）来描述。MIME的定义形式为“[type]/[subtype]”，其中，[type]用来描述数据类型的大类，而[subtype]用来描述数据类型的子类。例如，"text/html"描述的数据类型的大类是文本（text），而子类是超文本标记语言（html）；a/b，a为主类型，b为子类型，image/gif；`*/*`：所有格式
 
 Post请求的Content-Type
 

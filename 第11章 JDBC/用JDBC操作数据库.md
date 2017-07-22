@@ -1,37 +1,90 @@
+---
+typora-copy-images-to: images
+---
+
 ![jdbc](http://img.blog.csdn.net/20161104231415000)
 
 # JDBC系列阅读
 1. [JavaWeb：用JDBC操作数据库](http://blog.csdn.net/axi295309066/article/details/52954659)
 2. [JavaWeb：JDBC之事务](http://blog.csdn.net/axi295309066/article/details/52981430)
 3. [JavaWeb：JDBC之数据库连接池](http://blog.csdn.net/axi295309066/article/details/52981389)
+4. [使用JDBC实现水果超市管理系统](https://github.com/JackChan1999/FruitStore)
 
 # 1. 什么是JDBC
-JDBC（Java DataBase Connectivity）就是Java数据库连接，说白了就是用Java语言来操作数据库。原来我们操作数据库是在控制台使用SQL语句来操作数据库，JDBC是用Java语言向数据库发送SQL语句。
+
+JDBC的全称是Java数据库连接（Java Database Connectivity），它是一套用于执行SQL语句的Java API。应用程序可通过这套API连接到关系型数据库，并使用SQL语句来完成对数据库中数据的查询、新增、更新和删除等操作。说白了就是用Java语言来操作数据库。原来我们操作数据库是在控制台使用SQL语句来操作数据库，JDBC是用Java语言向数据库发送SQL语句。
 
 # 2. JDBC原理
 早期SUN公司的天才们想编写一套可以连接天下所有数据库的API，但是当他们刚刚开始时就发现这是不可完成的任务，因为各个厂商的数据库服务器差异太大了。后来SUN开始与数据库厂商们讨论，最终得出的结论是，由SUN提供一套访问数据库的规范（就是一组接口），并提供连接数据库的协议标准，然后各个数据库厂商会遵循SUN的规范提供一套访问自己公司的数据库服务器的API出现。SUN提供的规范命名为JDBC，而各个厂商提供的，遵循了JDBC规范的，可以访问自己数据库的API被称之为驱动！
 
-![jdbc](http://img.blog.csdn.net/20161028112134237)
+![1500689319427](images/1500689319427.png)
 
 JDBC是接口，而JDBC驱动才是接口的实现，没有驱动无法完成数据库连接！每个数据库厂商都有自己的驱动，用来连接自己公司的数据库。
 当然还有第三方公司专门为某一数据库提供驱动，这样的驱动往往不是开源免费的！
 
+### 2.1 JDBC的具体实现细节
+
+![](images/jdbc实现细节-1.png)
+
+![](images/jdbc实现细节-2.png)
+
 # 3. JDBC核心类（接口）介绍
+
+Driver接口是所有JDBC驱动程序必须实现的接口，该接口专门提供给数据库厂商使用。需要注意的是，在编写JDBC程序时，必须要把所使用的数据库驱动程序或类库加载到项目的classpath中（这里指MySQL驱动JAR包）。
+
 JDBC中的核心类有：DriverManager、Connection、Statement，和ResultSet！
+
+### DriverManager
+
+DriverManager类用于加载JDBC驱动并且创建与数据库的连接。在DriverManager类中，定义了两个比较重要的静态方法，如下所示。
+
+![1500689772510](images/1500689772510.png)
 
 DriverManger（驱动管理器）的作用有两个：
 
 - 注册驱动：这可以让JDBC知道要使用的是哪个驱动
 - 获取Connection：如果可以获取到Connection，那么说明已经与数据库连接上了
 
+### Connection
+
+Connection接口代表Java程序和数据库的连接，只有获得该连接对象后，才能访问数据库，并操作数据表。在Connection接口中，定义了一系列方法，其常用方法如下所示。
+
+![1500689818195](images/1500689818195.png)
+
 Connection对象表示连接，与数据库的通讯都是通过这个对象展开的：
 
 - Connection最为重要的一个方法就是用来获取Statement对象；
+
+### Statement
+
+Statement接口用于执行静态的SQL语句，并返回一个结果对象。Statement接口对象可以通过Connection实例的createStatement()方法获得，该对象会把静态的SQL语句发送到数据库中编译执行，然后返回数据库的处理结果。
+
+在Statement接口中，提供了3个常用的执行SQL语句的方法，具体如下所示。
+
+![1500689939569](images/1500689939569.png)
 
 Statement是用来向数据库发送SQL语句的，这样数据库就会执行发送过来的SQL语句：
 
 - void executeUpdate(String sql)：执行更新操作（insert、update、delete等）
 - ResultSet executeQuery(String sql)：执行查询操作，数据库在执行查询后会返回查询结果，查询结果就是ResultSet
+
+### PreparedStatement
+
+PreparedStatement是Statement的子接口，用于执行预编译的SQL语句。该接口扩展了带有参数SQL语句的执行操作，应用该接口中的SQL语句可以使用占位符“?”来代替其参数，然后通过setXxx()方法为SQL语句的参数赋值。在PreparedStatement接口中，提供了一些常用方法，具体如下所示。
+
+![1500690104454](images/1500690104454.png)
+
+需要注意的是，表中的setDate()方法可以设置日期内容，但参数Date的类型是java.sql.Date，而不是java.util.Date。
+
+![1500690126327](images/1500690126327.png)
+
+### ResultSet
+
+ResultSet接口用于保存JDBC执行查询时返回的结果集，该结果集封装在一个逻辑表格中。在ResultSet接口内部有一个指向表格数据行的游标（或指针），ResultSet对象初始化时，游标在表格的第一行之前，调用next()方法可将游标移动到下一行。如果下一行没有数据，则返回false。在应用程序中经常使用next()方法作为while循环的条件来迭代ResultSet结果集。ResultSet接口中的常用方法如下所示。
+
+![1500690177568](images/1500690177568.png)
+
+ResultSet接口中定义了大量的getXxx()方法，而采用哪种getXxx()方法取决于字段的数据类型。程序既可以通过字段的名称来获取指定数据，也可以通过字段的索引来获取指定的数据，字段的索引是从1开始编号的。例如，数据表的第一列字段名为id，字段类型为int，那么即可以使用getInt(1)获取该列的值，也可以使用getInt(“id”)获取该列的值。
 
 ResultSet对象表示查询结果集，只有在执行查询操作后才会有结果集的产生。结果集是一个二维的表格，有行有列。操作结果集要学习移动ResultSet内部的“行光标”，以及获取当前行上的每一列上的数据：
 
@@ -40,7 +93,17 @@ ResultSet对象表示查询结果集，只有在执行查询操作后才会有�
 
 # 4. Hello JDBC
 
-下面开始编写第一个JDBC程序
+下面开始编写第一个JDBC程序，JDBC的使用步骤
+
+通常，JDBC的使用可以按照以下几个步骤进行：
+
+（1）加载并注册数据库驱动
+（2）通过DriverManager获取数据库连接
+（3）通过Connection对象获取Statement对象
+（4）使用Statement执行SQL语句
+（5）操作ResultSet结果集
+（6）关闭连接，释放资源
+
 ## 4.1 mysql数据库的驱动jar包
 
 mysql-connector-java-5.1.13-bin.jar
@@ -309,6 +372,19 @@ Statement还有一个boolean execute()方法，这个方法可以用来执行增
 如果使用execute()方法执行的是查询语句，那么还要调用ResultSet getResultSet()来获取select语句的查询结果。
 
 ## 5.5 ResultSet之滚动结果集
+
+ResultSet主要用于存储结果集，可以通过next()方法由前向后逐个获取结果集中的数据，如果想获取结果集中任意位置的数据，则需要在创建Statement对象时，设置两个ResultSet定义的常量，具体设置方式如下： 
+
+```java
+ Statement st = conn.createStatement(
+    ResultSet.TYPE_SCROLL_INSENITIVE, 
+    ResultSet.CONCUR_READ_ONLY
+);
+ResultSet rs = st.excuteQuery(sql);
+```
+
+在上述方式中，常量“Result.TYPE_SCROLL_INSENITIVE”表示结果集可滚动，常量“ResultSet.CONCUR_READ_ONLY”表示以只读形式打开结果集。
+
 下一行：默认只能使用它，其他的方法存在，但不能使用！默认的结果集不可滚动！
 上一行
 下N行
@@ -415,6 +491,8 @@ ResultSet还提供了一套通过列名称来获取列数据的方法
 
 # 6. PreparedStatement
 
+PreparedStatement对象可以对SQL语句进行预编译，预编译的信息会存储在该对象中。当相同的SQL语句再次执行时，程序会使用PreparedStatement对象中的数据，而不需要对SQL语句再次编译去查询数据库，这样就大大的提高了数据的访问效率。
+
 - 它是Statement接口的子接口
 - 强大之处
 - 防SQL攻击
@@ -480,7 +558,7 @@ public void login(String username, String password) {
 		} finally {
 			JdbcUtils.close(con, stmt, rs);
 		}		
-	}
+}
 ```
 
 下面是调用这个方法的代码：
@@ -565,30 +643,30 @@ MySQL执行预编译分为如三步：
 
 ```java
 Connection con = JdbcUtils.getConnection();
-		Statement stmt = con.createStatement();
-		stmt.executeUpdate("prepare myfun from 'select  from t_book where bid=?'");
-		stmt.executeUpdate("set @str='b1'");
-		ResultSet rs = stmt.executeQuery("execute myfun using @str");
-		while(rs.next()) {
-			System.out.print(rs.getString(1) + ", ");
-			System.out.print(rs.getString(2) + ", ");
-			System.out.print(rs.getString(3) + ", ");
-			System.out.println(rs.getString(4));
-		}
+Statement stmt = con.createStatement();
+stmt.executeUpdate("prepare myfun from 'select  from t_book where bid=?'");
+stmt.executeUpdate("set @str='b1'");
+ResultSet rs = stmt.executeQuery("execute myfun using @str");
+while(rs.next()) {
+    System.out.print(rs.getString(1) + ", ");
+    System.out.print(rs.getString(2) + ", ");
+    System.out.print(rs.getString(3) + ", ");
+    System.out.println(rs.getString(4));
+}
 
-		stmt.executeUpdate("set @str='b2'");
-		rs = stmt.executeQuery("execute myfun using @str");
+stmt.executeUpdate("set @str='b2'");
+rs = stmt.executeQuery("execute myfun using @str");
 
-		while(rs.next()) {
-			System.out.print(rs.getString(1) + ", ");
-			System.out.print(rs.getString(2) + ", ");
-			System.out.print(rs.getString(3) + ", ");
-			System.out.println(rs.getString(4));
-		}
+while(rs.next()) {
+    System.out.print(rs.getString(1) + ", ");
+    System.out.print(rs.getString(2) + ", ");
+    System.out.print(rs.getString(3) + ", ");
+    System.out.println(rs.getString(4));
+}
 
-		rs.close();
-		stmt.close();
-		con.close();
+rs.close();
+stmt.close();
+con.close();
 ```
 ### 6.7.3 useServerPrepStmts参数
 
@@ -600,30 +678,30 @@ Connection con = JdbcUtils.getConnection();
 
 ```java
 Connection con = JdbcUtils.getConnection();
-		String sql = "select  from t_book where bid=?";
-		PreparedStatement pstmt = con.prepareStatement(sql);
+String sql = "select  from t_book where bid=?";
+PreparedStatement pstmt = con.prepareStatement(sql);
 
-		pstmt.setString(1, "b1");
-		ResultSet rs = pstmt.executeQuery();
-		while(rs.next()) {
-			System.out.print(rs.getString(1) + ", ");
-			System.out.print(rs.getString(2) + ", ");
-			System.out.print(rs.getString(3) + ", ");
-			System.out.println(rs.getString(4));
-		}
+pstmt.setString(1, "b1");
+ResultSet rs = pstmt.executeQuery();
+while(rs.next()) {
+    System.out.print(rs.getString(1) + ", ");
+    System.out.print(rs.getString(2) + ", ");
+    System.out.print(rs.getString(3) + ", ");
+    System.out.println(rs.getString(4));
+}
 
-		pstmt.setString(1, "b2");
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			System.out.print(rs.getString(1) + ", ");
-			System.out.print(rs.getString(2) + ", ");
-			System.out.print(rs.getString(3) + ", ");
-			System.out.println(rs.getString(4));
-		}
+pstmt.setString(1, "b2");
+rs = pstmt.executeQuery();
+while(rs.next()) {
+    System.out.print(rs.getString(1) + ", ");
+    System.out.print(rs.getString(2) + ", ");
+    System.out.print(rs.getString(3) + ", ");
+    System.out.println(rs.getString(4));
+}
 
-		rs.close();
-		pstmt.close();
-		con.close();
+rs.close();
+pstmt.close();
+con.close();
 ```
 
 ### 6.7.4 cachePrepStmts参数
@@ -636,31 +714,31 @@ jdbc:mysql://localhost:3306/test?useServerPrepStmts=true&cachePrepStmts=true
 
 ```java
 Connection con = JdbcUtils.getConnection();
-		String sql = "select  from t_book where bid=?";
-		PreparedStatement pstmt = con.prepareStatement(sql);
+String sql = "select  from t_book where bid=?";
+PreparedStatement pstmt = con.prepareStatement(sql);
 
-		pstmt.setString(1, "b1");
-		ResultSet rs = pstmt.executeQuery();
-		while(rs.next()) {
-			System.out.print(rs.getString(1) + ", ");
-			System.out.print(rs.getString(2) + ", ");
-			System.out.print(rs.getString(3) + ", ");
-			System.out.println(rs.getString(4));
-		}
+pstmt.setString(1, "b1");
+ResultSet rs = pstmt.executeQuery();
+while(rs.next()) {
+    System.out.print(rs.getString(1) + ", ");
+    System.out.print(rs.getString(2) + ", ");
+    System.out.print(rs.getString(3) + ", ");
+    System.out.println(rs.getString(4));
+}
 
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, "b2");
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			System.out.print(rs.getString(1) + ", ");
-			System.out.print(rs.getString(2) + ", ");
-			System.out.print(rs.getString(3) + ", ");
-			System.out.println(rs.getString(4));
-		}
+pstmt = con.prepareStatement(sql);
+pstmt.setString(1, "b2");
+rs = pstmt.executeQuery();
+while(rs.next()) {
+    System.out.print(rs.getString(1) + ", ");
+    System.out.print(rs.getString(2) + ", ");
+    System.out.print(rs.getString(3) + ", ");
+    System.out.println(rs.getString(4));
+}
 
-		rs.close();
-		pstmt.close();
-		con.close();
+rs.close();
+pstmt.close();
+con.close();
 ```
 
 ## 6.8 打开批处理

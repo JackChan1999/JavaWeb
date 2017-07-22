@@ -4,6 +4,7 @@
 1. [JavaWeb：用JDBC操作数据库](http://blog.csdn.net/axi295309066/article/details/52954659)
 2. [JavaWeb：JDBC之事务](http://blog.csdn.net/axi295309066/article/details/52981430)
 3. [JavaWeb：JDBC之数据库连接池](http://blog.csdn.net/axi295309066/article/details/52981389)
+4. [使用JDBC实现水果超市管理系统](https://github.com/JackChan1999/FruitStore)
 
 # 1. 事务
 
