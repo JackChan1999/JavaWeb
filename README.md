@@ -1,5 +1,13 @@
 ## JavaWeb开发笔记
 
+对于一个开发者而言，能够胜任系统中任意一个模块的开发是其核心价值的体现。
+
+对于一个架构师而言，掌握各种语言的优势并可以运用到系统中，由此简化系统的开发，是其架构生涯的第一步。
+
+对于一个开发团队而言，能在短期内开发出用户满意的软件系统是起核心竞争力的体现。
+
+每一个程序员都不能固步自封，要多接触新的行业，新的技术领域，突破自我。
+
 ![](assets/note.jpg)
 
 > 十年生死两茫茫，不思量，自难忘，华年短暂，陈辞岁月悠悠伤，
@@ -47,6 +55,7 @@
   * [6.11 Wireshark基本介绍和学习TCP三次握手](https://alleniverson.gitbooks.io/javaweb/content/第6章%20Http协议/Wireshark基本介绍和学习TCP三次握手.html)
   * [6.12 Wireshark抓包实战](https://alleniverson.gitbooks.io/javaweb/content/第6章%20Http协议/Wireshark抓包实战.html)
   * [6.13 Fidder抓包](https://alleniverson.gitbooks.io/javaweb/content/第6章%20Http协议/Fidder.html)
+  * [6.14 网络安全](第6章 Http协议/网络安全.md)
 * [7. Servlet技术](https://alleniverson.gitbooks.io/javaweb/content/第7章%20Servlet/Servlet.html)
 * [8. 请求和响应](https://alleniverson.gitbooks.io/javaweb/content/第8章%20请求响应/HttpServletResponse和HttpServletRequest.html)
 * [9. 会话跟踪技术](https://alleniverson.gitbooks.io/javaweb/content/第9章%20会话及其会话技术)
