@@ -102,7 +102,7 @@ response.addCookie(cookie);                    // 输出到客户端
 ```java
 Cookie cookie = new Cookie("username","helloweenvsfei");   // 新建Cookie
 cookie.setMaxAge(0);                          // 设置生命周期为0，不能为负数
-response.addCookie(cookie);                    // 必须执行这一句
+response.addCookie(cookie);                   // 必须执行这一句
 ```
 response对象提供的Cookie操作方法只有一个添加操作add(Cookie cookie)。
 
@@ -126,9 +126,9 @@ Cookie是不可跨域名的。域名www.google.com颁发的Cookie不会被提交
 ```java
 Cookie cookie = new Cookie("time","20080808");	   // 新建Cookie
 cookie.setDomain(".helloweenvsfei.com");           // 设置域名
-cookie.setPath("/");                              // 设置路径
+cookie.setPath("/");                               // 设置路径
 cookie.setMaxAge(Integer.MAX_VALUE);               // 设置有效期
-response.addCookie(cookie);                       // 输出到客户端
+response.addCookie(cookie);                        // 输出到客户端
 ```
 读者可以修改本机C:\WINDOWS\system32\drivers\etc下的hosts文件来配置多个临时域名，然后使用setCookie.jsp程序来设置跨域名Cookie验证domain属性。
 
@@ -152,7 +152,7 @@ HTTP协议不仅是无状态的，而且是不安全的。使用HTTP协议的数
 ```java
 Cookie cookie = new Cookie("time", "20080808");   // 新建Cookie
 cookie.setSecure(true);                           // 设置安全属性
-response.addCookie(cookie);                        // 输出到客户端
+response.addCookie(cookie);                       // 输出到客户端
 ```
 
 提示：secure属性并不能对Cookie内容加密，因而不能保证绝对的安全性。如果需要高安全性，需要在程序中对Cookie内容加密、解密，以防泄密。
@@ -301,38 +301,39 @@ if (account != null && ssid != null) {
     login = ssid.equals(calcMD1(account + KEY));
     // 如果加密规则正确, 则视为已经登录
 }
- %>
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01Transitional//EN">
-       <legend><%= login ? "欢迎您回来" : "请先登录"%></legend>
-        <% if(login){%>
-            欢迎您, ${ cookie.account.value }. &nbsp;&nbsp;
-           <a href="${ pageContext.request.requestURI }?action=logout">
-            注销</a>
-        <% } else {%>
-        <formaction="${ pageContext.request.requestURI }?action=login"
-        method="post">
-           <table>
-               <tr><td>账号： </td>
-                   <td><input type="text"name="account" style="width:
-                   200px; "></td>
-               </tr>
-               <tr><td>密码： </td>
-                   <td><inputtype="password" name="password"></td>
-               </tr>
-               <tr>
-                   <td>有效期： </td>
-                   <td><inputtype="radio" name="timeout" value="-1"
-                   checked> 关闭浏览器即失效 <br/> <input type="radio"
-                   name="timeout" value="<%= 30 *24 * 60 * 60 %>"> 30天
-                   内有效 <br/><input type="radio" name="timeout" value=
-                   "<%= Integer.MAX_VALUE %>"> 永久有效 <br/> </td> </tr>
-               <tr><td></td>
-                   <td><input type="submit"value=" 登  录 " class=
-                   "button"></td>
-               </tr>
-           </table>
-        </form>
-        <% } %>
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01Transitional//EN">
+      <legend><%= login ? "欢迎您回来" : "请先登录"%></legend>
+       <% if(login){%>
+           欢迎您, ${ cookie.account.value }. &nbsp;&nbsp;
+          <a href="${ pageContext.request.requestURI }?action=logout">
+           注销</a>
+       <% } else {%>
+       <form action="${ pageContext.request.requestURI }?action=login" method="post">
+          <table>
+              <tr>
+              	  <td>账号：</td>
+                  <td><input type="text"name="account" style="width:200px;"></td>
+              </tr>
+              <tr>
+              	  <td>密码：</td>
+                  <td><inputtype="password" name="password"></td>
+              </tr>
+              <tr>
+                  <td>有效期：</td>
+                  <td><inputtype="radio" name="timeout" value="-1"
+                  checked> 关闭浏览器即失效 <br/> <input type="radio"
+                  name="timeout" value="<%= 30 *24 * 60 * 60 %>"> 30天
+                  内有效 <br/><input type="radio" name="timeout" value=
+                  "<%= Integer.MAX_VALUE %>"> 永久有效 <br/> </td> 
+              </tr>
+              <tr>
+                  <td></td>
+                  <td><input type="submit" value="登录" class="button"></td>
+              </tr>
+          </table>
+      </form>
+    <%} %>
 ```
 登录时可以选择登录信息的有效期：关闭浏览器即失效、30天内有效与永久有效。通过设置Cookie的age属性来实现，注意观察代码。运行效果如图1.7所示。
 
@@ -370,24 +371,28 @@ Servlet中必须使用request来编程式获取HttpSession对象，而JSP中内�
 代码1.9  session.jsp
 
 ```jsp
-<% @ page language = "java" pageEncoding = "UTF-8" %>
-<jsp : directive.page import = "com.helloweenvsfei.sessionWeb.bean.Person"/>
+<% @page language = "java" pageEncoding = "UTF-8" %>
+<jsp:directive.page import = "com.helloweenvsfei.sessionWeb.bean.Person"/>
 <jsp:directive.page import="java.text.SimpleDateFormat"/>
-<jsp : directive.page import = "java.text.DateFormat"/>
+<jsp:directive.page import = "java.text.DateFormat"/>
 <jsp:directive.page import="java.util.Date"/>
 
 <% !DateFormat dateFormat = newSimpleDateFormat("yyyy-MM-dd");
 // 日期格式化器
  %> <% response.setCharacterEncoding("UTF-8");
 // 设置request编码
+
 Person[] persons =
 {
     // 基础数据，保存三个人的信息
-    new Person("Liu Jinghua", "password1", 34, dateFormat.parse ("1982-01-01")), new Person("Hello Kitty",
-    "hellokitty", 23, dateFormat.parse ("1984-02-21")), new Person("Garfield", "garfield_pass", 23, dateFormat.parse ("1994-09-12")),
+    new Person("Liu Jinghua", "password1", 34, dateFormat.parse ("1982-01-01")), 
+    new Person("Hello Kitty","hellokitty", 23, dateFormat.parse ("1984-02-21")), 
+    new Person("Garfield", "garfield_pass", 23, dateFormat.parse ("1994-09-12")),
 };
+
 String message = "";
 // 要显示的消息
+
 if (request.getMethod().equals("POST"))
 {
     // 如果是POST登录       
@@ -395,7 +400,8 @@ if (request.getMethod().equals("POST"))
     {
         // 遍历基础数据，验证账号、密码
         // 如果用户名正确且密码正确
-        if (person.getName().equalsIgnoreCase(request.getParameter("username")) && person.getPassword().equals(request.getParameter("password")))
+        if (person.getName().equalsIgnoreCase(request.getParameter("username")) && 
+        person.getPassword().equals(request.getParameter("password")))
         {
             // 登录成功，设置将用户的信息以及登录时间保存到Session
             session.setAttribute("person", person);
@@ -409,8 +415,9 @@ if (request.getMethod().equals("POST"))
     message = "用户名密码不匹配，登录失败。";
     // 登录失败
 }
- %> <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01Transitional//EN" > < html > // ... HTML代码为一个FORM表单，代码略，请看随书光盘
- </html>
+%> <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01Transitional//EN"> 
+<html> // ... HTML代码为一个FORM表单，代码略，请看随书光盘
+</html>
 ```
 登录界面验证用户登录信息，如果登录正确，就把用户信息以及登录时间保存进Session，然后转到欢迎页面welcome.jsp。welcome.jsp中从Session中获取信息，并将用户资料显示出来。
 
@@ -419,22 +426,37 @@ welcome.jsp代码如下：
 代码1.10  welcome.jsp
 
 ```jsp
-<% @ page language = "java" pageEncoding = "UTF-8" %> < jsp : directive.pageimport = "com.helloweenvsfei.sessionWeb.bean.Person"/>
-<jsp:directive.page import="java.text.SimpleDateFormat"/> < jsp : directive.page import = "java.text.DateFormat"/>
-<jsp:directive.page import="java.util.Date"/> <% ! DateFormat dateFormat = newSimpleDateFormat("yyyy-MM-dd");
+<% @ page language = "java" pageEncoding = "UTF-8" %> 
+<jsp:directive.pageimport = "com.helloweenvsfei.sessionWeb.bean.Person"/>
+<jsp:directive.page import="java.text.SimpleDateFormat"/> 
+<jsp:directive.page import = "java.text.DateFormat"/>
+<jsp:directive.page import="java.util.Date"/> 
+<% ! DateFormat dateFormat = newSimpleDateFormat("yyyy-MM-dd");
 // 日期格式化器
  %> <% Person person = (Person) session.getAttribute("person");
 // 获取登录的person
 Date loginTime = (Date) session.getAttribute("loginTime");
 // 获取登录时间
- %> // ... 部分HTML代码略
- < table > < tr >< td > 您的姓名： </td>
-                   <td><%= person.getName()%></td > </tr>
-               <tr><td>登录时间：</td > < td ><%= loginTime %></td>
-               </tr > < tr >< td > 您的年龄： </td>
-                   <td><%= person.getAge()%></td > </tr>
-               <tr><td>您的生日：</td > < td ><%= dateFormat.format(person.getBirthday()) %></td>
-               </tr > </table>
+%> // ... 部分HTML代码略
+
+<table> 
+	<tr>
+		<td>您的姓名：</td>
+        <td><%= person.getName()%></td>
+    </tr>
+    <tr>
+    	<td>登录时间：</td> 
+    	<td ><%= loginTime %></td>
+    </tr> 
+    <tr>
+    	<td>您的年龄：</td>
+        <td><%=person.getAge()%></td> 
+    </tr>
+    <tr>
+    	<td>您的生日：</td> 
+    	<td><%=dateFormat.format(person.getBirthday())%></td>
+    </tr> 
+</table>
 ```
 程序运行效果如图1.8所示。
 
