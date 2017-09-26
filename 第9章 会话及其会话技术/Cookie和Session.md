@@ -20,7 +20,7 @@ HttpServletRequest对象和ServletContext对象都可以对数据进行保存，
 
 （3）为了保存会话过程中产生的数据，在Servlet技术中，提供了两个用于保存会话数据的对象，分别是Cookie和Session。
 
-## **1.1 什么是会话跟踪技术**
+## 1.1 什么是会话跟踪技术
 
 我们需要先了解一下什么是会话！可以把会话理解为客户端与服务器之间的一次会晤，在一次会晤中可能会包含多次请求和响应。例如你给10086打个电话，你就是客户端，而10086服务人员就是服务器了。从双方接通电话那一刻起，会话就开始了，到某一方挂断电话表示会话结束。在通话过程中，你会向10086发出多个请求，那么这多个请求都在一个会话中。
 
@@ -35,13 +35,15 @@ HttpServletRequest对象和ServletContext对象都可以对数据进行保存，
 
 在这个会话中当前用户信息必须在这个会话中共享的，因为登录的是张三，那么在转账和还款时一定是相对张三的转账和还款！这就说明我们必须在一个会话过程中有共享数据的能力
 
-## **1.2 会话路径技术使用Cookie或Session完成**
+## 1.2 会话路径技术使用Cookie或Session完成
+
 我们知道HTTP协议是无状态协议，也就是说每个请求都是独立的！无法记录前一次请求的状态。但HTTP协议中可以使用Cookie来完成会话跟踪！
 
 在JavaWeb中，使用Session来完成会话跟踪，Session底层依赖Cookie技术
 
 # 2. Cookie
-## **2.1 什么叫Cookie**
+## 2.1 什么叫Cookie
+
 Cookie是一种会话技术，它用于将会话过程中的数据保存到用户的浏览器中，从而使浏览器和服务器可以更好地进行数据交互。
 
 在现实生活中，当顾客在购物时，商城经常会赠送顾客一张会员卡，卡上记录用户的个人信息(姓名，手机号等)、消费额度和积分额度等。顾客一旦接受了会员卡，以后每次光临该商场时，都可以使用这张会员卡，商场也将根据会员卡上的消费记录计算会员的优惠额度和累加积分。在Web应用中，Cookie的功能类似于这张会员卡，当用户通过浏览器访问Web服务器时，服务器会给客户端发送一些信息，这些信息都保存在Cookie中。这样，当该浏览器再次访问服务器时，都会在请求头中将Cookie发送给服务器，方便服务器对浏览器做出正确的响应。
@@ -60,19 +62,19 @@ Cookie是由服务器创建，然后通过响应发送给客户端的一个键�
 
 服务器向客户端发送Cookie时，会在HTTP响应头字段中增加Set-Cookie响应头字段。Set-Cookie头字段中设置的Cookie遵循一定的语法格式，具体示例如下：
 
-![1500710342665](img/1500710342665.png)
+![cookie](img/1500710342665.png)
 
 在上述示例中，user表示Cookie的名称，itcast表示Cookie的值，Path表示Cookie的属性。需要注意的是，Cookie必须以键值对的形式存在，其属性可以有多个，但这些属性之间必须用分号;和空格分隔。
 
 了解了Cookie信息的发送方式后，接下来，通过一张图来描述Cookie在浏览器和服务器之间的传输过程，具体如图所示。
 
-![1500710373121](img/1500710373121.png)
+![cookie](img/1500710373121.png)
 
 在图中，描述了Cookie在浏览器和服务器之间的传输过程。当用户第一次访问服务器时，服务器会在响应消息中增加Set-Cookie头字段，将用户信息以Cookie的形式发送给浏览器。一旦用户浏览器接受了服务器发送的Cookie信息，就会将它保存在浏览器的缓冲区中，这样，当浏览器后续访问该服务器时，都会在请求消息中将用户信息以Cookie的形式发送给Web服务器，从而使服务器端分辨出当前请求是由哪个用户发出的。
 
 Cookie类的常用方法
 
-![1500710398427](img/1500710398427.png)
+![cookie](img/1500710398427.png)
 
 | 方法声明                              | 功能描述                     |
 | :-------------------------------- | :----------------------- |
@@ -92,13 +94,13 @@ Cookie类的常用方法
 | setSecure()                       | 设置Cookie是否使用安全的协议传送      |
 | getSecure()                       | 获取Cookie是否使用安全的协议传送      |
 
-## **2.2 Cookie的用途**
+## 2.2 Cookie的用途
 
 - 服务器使用Cookie来跟踪客户端状态！
 - 保存购物车(购物车中的商品不能使用request保存，因为它是一个用户向服务器发送的多个请求信息)
 - 显示上次登录名(也是一个用户多个请求)
 
-## **2.3 Cookie规范**
+## 2.3 Cookie规范
 
 - Cookie通过请求头和响应头在服务器与客户端之间传输
 - Cookie大小上限为4KB
@@ -109,7 +111,7 @@ Cookie类的常用方法
 
 注意，不同浏览器之间是不共享Cookie的。也就是说在你使用IE访问服务器时，服务器会把Cookie发给IE，然后由IE保存起来，当你在使用FireFox访问服务器时，不可能把IE保存的Cookie发送给服务器。
 
-## **2.4 Cookie与HTTP头**
+## 2.4 Cookie与HTTP头
 
 Cookie是通过HTTP请求和响应头在客户端和服务器端传递的：
 
@@ -124,10 +126,12 @@ Set-Cookie: b=B
 Set-Cookie: c=C
 ```
 
-## **2.5 Cookie的覆盖**
+## 2.5 Cookie的覆盖
+
 如果服务器端发送重复的Cookie那么会覆盖原有的Cookie，例如客户端的第一个请求服务器端发送的Cookie是：Set-Cookie: a=A；第二请求服务器端发送的是：Set-Cookie: a=AA，那么客户端只留下一个Cookie，即：a=AA
 
-## **2.6 Cookie第一例**
+## 2.6 Cookie第一例
+
 我们这个案例是，客户端访问AServlet，AServlet在响应中添加Cookie，浏览器会自动保存Cookie。然后客户端访问BServlet，这时浏览器会自动在请求中带上Cookie，BServlet获取请求中的Cookie打印出来
 
 ![cookie](http://img.blog.csdn.net/20161028012346319)
@@ -196,9 +200,9 @@ public class BServlet extends HttpServlet {
 	}
 }
 ```
-##**2.7 Cookie的生命**
+## 2.7 Cookie的生命
 
-###**2.7.1 什么是Cookie的生命**
+### 2.7.1 什么是Cookie的生命
 Cookie不只是有name和value，Cookie还是生命。所谓生命就是Cookie在客户端的有效时间，可以通过setMaxAge(int)来设置Cookie的有效时间
 
 - cookie.setMaxAge(-1)：cookie的maxAge属性的默认值就是-1，表示只在浏览器内存中存活。一旦关闭浏览器窗口，那么cookie就会消失
@@ -207,7 +211,7 @@ Cookie不只是有name和value，Cookie还是生命。所谓生命就是Cookie�
 
 - cookie.setMaxAge(0)：cookie生命等于0是一个特殊的值，它表示cookie被作废！也就是说，如果原来浏览器已经保存了这个Cookie，那么可以通过Cookie的setMaxAge(0)来删除这个Cookie。无论是在浏览器内存中，还是在客户端硬盘上都会删除这个Cookie
 
-###**2.7.2 浏览器查看Cookie**
+### 2.7.2 浏览器查看Cookie
 
 下面是浏览器查看Cookie的方式：
 
@@ -229,7 +233,7 @@ Google Chrome查看Cookie
 
 ![cookie](img/cookie5.png)
 
-###**2.7.3 案例：显示上次访问时间**
+### 2.7.3 案例：显示上次访问时间
 
 - 创建Cookie，名为lasttime，值为当前时间，添加到response中
 - 在AServlet中获取请求中名为lasttime的Cookie
@@ -259,15 +263,15 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)
 	}
 ```
 
-# **3. Cookie的path**
+# 3. Cookie的path
 
-## **3.1 什么是Cookie的路径**
+## 3.1 什么是Cookie的路径
 
 现在有WEB应用A，向客户端发送了10个Cookie，这就说明客户端无论访问应用A的哪个Servlet都会把这10个Cookie包含在请求中！但是也许只有AServlet需要读取请求中的Cookie，而其他Servlet根本就不会获取请求中的Cookie。这说明客户端浏览器有时发送这些Cookie是多余的！
 
 可以通过设置Cookie的path来指定浏览器，在访问什么样的路径时，包含什么样的Cookie
 
-## **3.2 Cookie路径与请求路径的关系**
+## 3.2 Cookie路径与请求路径的关系
 
 下面我们来看看Cookie路径的作用：
 下面是客户端浏览器保存的3个Cookie的路径：
@@ -278,7 +282,7 @@ c:　/cookietest/jsp
 
 下面是浏览器请求的URL：
 
-A:　http://localhost:8080/cookietest/AServlet 
+A:　http://localhost:8080/cookietest/AServlet
 B:　http://localhost:8080/cookietest/servlet/BServlet
 C:　http://localhost:8080/cookietest/jsp/CServlet
 
@@ -292,7 +296,7 @@ C:　http://localhost:8080/cookietest/jsp/CServlet
 - B请求的URL包含了“/cookietest”，以及“/cookietest/servlet”，所以请求中包含路径为“/cookietest”和“/cookietest/servlet”两个Cookie
 - C请求的URL包含了“/cookietest”，以及“/cookietest/jsp”，所以请求中包含路径为“/cookietest”和“/cookietest/jsp”两个Cookie
 
-## **3.3 设置Cookie的路径**
+## 3.3 设置Cookie的路径
 设置Cookie的路径需要使用setPath()方法，例如：
 ```java
 cookie.setPath(“/cookietest/servlet”);
@@ -303,7 +307,7 @@ cookie.setPath(“/cookietest/servlet”);
 - 访问 http://localhost:8080/cookietest/servlet/BServlet 时添加的Cookie默认路径为/cookietest/servlet
 - 访问 http://localhost:8080/cookietest/jsp/BServlet 时添加的Cookie默认路径为/cookietest/jsp
 
-# **4. Cookie的domain**
+# 4. Cookie的domain
 
 Cookie的domain属性可以让网站中二级域共享Cookie，次要！		
 百度你是了解的对吧！
@@ -328,7 +332,6 @@ http://tieba.baidu.com
 127.0.0.1       localhost
 127.0.0.1       www.baidu.com
 127.0.0.1       news.baidu.com
-
 ```
 
 第二步：设置Tomcat虚拟主机
@@ -369,7 +372,8 @@ if(cs != null) {
 
 第五步：访问www.baidu.com\AServlet，然后再访问news.baidu.com\BServlet
 
-# **5. Cookie中保存中文**
+# 5. Cookie中保存中文
+
 Cookie的name和value都不能使用中文，如果希望在Cookie中使用中文，那么需要先对中文进行URL编码，然后把编码后的字符串放到Cookie中
 
 向客户端响应中添加Cookie
@@ -380,7 +384,6 @@ Cookie c = new Cookie(name, value);
 c.setMaxAge(3600);
 response.addCookie(c);
 ```
-
 从客户端请求中获取Cookie
 ```java
 response.setContentType("text/html;charset=utf-8");
@@ -395,7 +398,7 @@ response.setContentType("text/html;charset=utf-8");
 		}
 ```
 
-# **6. 显示曾经浏览过的商品**
+# 6. 显示曾经浏览过的商品
 
 index.jsp
 
@@ -469,7 +472,7 @@ public class CookieUtils {
 
 # 7. HttpSession
 
-## **7.1 HttpSession概述**
+## 7.1 HttpSession概述
 
 Cookie技术可以将用户的信息保存在各自的浏览器中，并且可以在多次请求下实现数据的共享。但是，如果传递的信息比较多，使用Cookie技术显然会增大服务器端程序处理的难度。这时，可以使用Session实现，Session是一种将会话数据保存到服务器端的技术。
 
@@ -479,21 +482,21 @@ Cookie技术可以将用户的信息保存在各自的浏览器中，并且可�
 
 以网站购物为例，通过一张图来描述Session保存用户信息的原理，具体如图所示
 
-![1500710486240](img/1500710486240.png)
+![HttpSession](img/1500710486240.png)
 
-在图中，用户甲和乙都调用buyServlet将商品添加到购物车，调用payServlet进行商品结算。由于甲和乙购买商品的过程类似，在此，以用户甲为例进行详细说明。当用户甲访问购物网站时，服务器为甲创建了一个Session对象（相当于购物车）。当甲将Nokia手机添加到购物车时，Nokia手机的信息便存放到了Session对象中。同时，服务器将Session对象的ID属性以Cookie (Set-Cookie: JSESSIONID=111)的形式返回给甲的浏览器。当甲完成购物进行结账时，需要向服务器发送结账请求，这时，浏览器自动在请求消息头中将Cookie (Cookie: JSESSIONID=111)信息回送给服务器，服务器根据ID属性找到为用户甲所创建的Session对象，并将Session对象中所存放的Nokia手机信息取出进行结算。 
+在图中，用户甲和乙都调用buyServlet将商品添加到购物车，调用payServlet进行商品结算。由于甲和乙购买商品的过程类似，在此，以用户甲为例进行详细说明。当用户甲访问购物网站时，服务器为甲创建了一个Session对象（相当于购物车）。当甲将Nokia手机添加到购物车时，Nokia手机的信息便存放到了Session对象中。同时，服务器将Session对象的ID属性以Cookie (Set-Cookie: JSESSIONID=111)的形式返回给甲的浏览器。当甲完成购物进行结账时，需要向服务器发送结账请求，这时，浏览器自动在请求消息头中将Cookie (Cookie: JSESSIONID=111)信息回送给服务器，服务器根据ID属性找到为用户甲所创建的Session对象，并将Session对象中所存放的Nokia手机信息取出进行结算。
 
-### **7.1.1 什么是HttpSesssion**
+### 7.1.1 什么是HttpSesssion
 
 javax.servlet.http.HttpSession接口表示一个会话，我们可以把一个会话内需要共享的数据保存到HttSession对象中！
 
-### **7.1.2 获取HttpSession对象**
+### 7.1.2 获取HttpSession对象
 
 - HttpSession request.getSesssion()：如果当前会话已经有了session对象那么直接返回，如果当前会话还不存在会话，那么创建Session并返回
 
 - HttpSession request.getSession(boolean)：当参数为true时，与requeset.getSession()相同。如果参数为false，那么如果当前会话中存在Session则返回，不存在返回null
 
-###**7.1.3 HttpSession是域对象**
+### 7.1.3 HttpSession是域对象
 
 我们已经学习过HttpServletRequest、ServletContext，它们都是域对象，现在我们又学习了一个HttpSession，它也是域对象。它们三个是Servlet中可以使用的域对象，而JSP中可以多使用一个域对象，明天我们再讲解JSP的第四个域对象
 
@@ -519,7 +522,7 @@ javax.servlet.http.HttpSession接口表示一个会话，我们可以把一个�
 
 - Enumeration getAttributeNames()：获取所有域属性的名称
 
-## **7.2 登录案例**
+## 7.2 登录案例
 
 ![session](http://img.blog.csdn.net/20161028232631839)
 
@@ -625,7 +628,7 @@ public class LoginServlet extends HttpServlet {
 	}
 }
 ```
-## **7.3 Session的实现原理**
+## 7.3 Session的实现原理
 
 session底层是依赖Cookie的！我们来理解一下session的原理吧！
 
@@ -653,7 +656,7 @@ session是依赖Cookie实现的。session是服务器端对象
 
 当用户打开某个服务器页面长时间没动作时，这样session会超时失效，当用户再有活动时，服务器通过用户提供的sessionId已经找不到session对象了，那么服务器还是会创建一个新的session对象，再把新的sessionId保存到客户端。这也是一个新的会话开始了。
 
-## **7.4 Session与浏览器**
+## 7.4 Session与浏览器
 
 session保存在服务器，而sessionId通过Cookie发送给客户端，但这个Cookie的生命不为-1，即只在浏览器内存中存在，也就是说如果用户关闭了浏览器，那么这个Cookie就丢失了
 
@@ -662,6 +665,7 @@ session保存在服务器，而sessionId通过Cookie发送给客户端，但这�
 你可能会说，那原来的session对象会怎样？当一个session长时间没人使用的话，服务器会把session删除了！这个时长在Tomcat中配置是30分钟，可以在${CATALANA}/conf/web.xml找到这个配置，当然你也可以在自己的web.xml中覆盖这个配置！
 
 web.xml
+
 ```xml
 <session-config>
     <session-timeout>30</session-timeout>
@@ -670,9 +674,9 @@ web.xml
 
 session失效时间也说明一个问题！如果你打开网站的一个页面开始长时间不动，超出了30分钟后，再去点击链接或提交表单时你会发现，你的session已经丢失了
 
-## **7.5 Session其他常用API**
+## 7.5 Session其他常用API
 
-![1500710560639](img/1500710560639.png)
+![Session](img/1500710560639.png)
 
 | 返回值     | 方法                       | 功能描述                                     |
 | :------ | ------------------------ | :--------------------------------------- |
@@ -685,7 +689,7 @@ session失效时间也说明一个问题！如果你打开网站的一个页面�
 | boolean | isNew()                  | 查看session是否为新。当客户端第一次请求时，服务器为客户端创建session，但这时服务器还没有响应客户端，也就是还没有把sessionId响应给客户端时，这时session的状态为新 |
 
 
-## **7.6 URL重写**
+## 7.6 URL重写
 
 我们知道session依赖Cookie，那么session为什么依赖Cookie呢？因为服务器需要在每次请求中获取sessionId，然后找到客户端的session对象。那么如果客户端浏览器关闭了Cookie呢？那么session是不是就会不存在了呢？
 
@@ -721,19 +725,19 @@ index.jsp
 
 在会话过程中，会话的有效时间可以在web.xml文件中设置，其默认值由Servlet容器定义。在&lt;Tomcat安装目录>\conf\web.xml文件中，可以找到如下一段配置信息：
 
-![1500710638699](img/1500710638699.png)
+![Session超时管理](img/1500710638699.png)
 
 在上面的配置信息中，设置的时间值是以分钟为单位的，即Tomcat服务器的默认会话超时间隔为30分钟。如果将&lt;session-timeout>元素中的时间值设置成0或一个负数，则表示会话永不超时。由于&lt;Tomcat安装目录>\conf\web.xml文件对站点内的所有Web应用程序都起作用，因此，如果想单独设置某个Web应用程序的会话超时间隔，则需要在自己应用的web.xml文件中进行设置。需要注意的是，要想使Session失效，除了可以等待会话时间超时外，还可以通过invalidate()方法强制使会话失效。
 
-# **8. 案例：一次性图片验证码**
+# 8. 案例：一次性图片验证码
 
-## **8.1 验证码有啥用**
+## 8.1 验证码有啥用
 
 在我们注册时，如果没有验证码的话，我们可以使用URLConnection来写一段代码发出注册请求。甚至可以使用while(true)来注册！那么服务器就废了！
 
 验证码可以去识别发出请求的是人还是程序！当然，如果聪明的程序可以去分析验证码图片！但分析图片也不是一件容易的事，因为一般验证码图片都会带有干扰线，人都看不清，那么程序一定分析不出来。
 
-## **8.2 VerifyCode类**
+## 8.2 VerifyCode类
 现在我们已经有了cn.itcast.utils.VerifyCode类，这个类可以生成验证码图片！下面来看一个小例子
 ```java
 public void fun1() throws IOException {
@@ -749,9 +753,10 @@ public void fun1() throws IOException {
 		VerifyCode.output(image, out);
 	}
 ```
-## **8.3 在页面中显示动态图片**
+## 8.3 在页面中显示动态图片
 
 我们需要写一个VerifyCodeServlet，在这个Servlet中我们生成动态图片，然后它图片写入到response.getOutputStream()流中！然后让页面的&lt;img>元素指定这个VerifyCodServlet即可
+
 ```java
 VerifyCodeServlet
 public class VerifyCodeServlet extends HttpServlet {
@@ -780,7 +785,7 @@ index.jsp
     <a href="javascript:_change()">看不清，换一张</a>
   </body>
 ```
-## **8.4 在注册页面中使用验证码**
+## 8.4 在注册页面中使用验证码
 ```html
  <form action="/day06_6/RegistServlet" method="post">
     	用户名：<input type="text" name="username"/><br/>
@@ -791,7 +796,8 @@ index.jsp
         <input type="submit" value="Submit"/>
     </form>
 ```
-## **8.5 RegistServlet**
+## 8.5 RegistServlet
+
 修改VerifyCodeServlet
 ```java
 public class VerifyCodeServlet extends HttpServlet {
@@ -825,7 +831,7 @@ public class RegistServlet extends HttpServlet {
 	}
 }
 ```
-## **8.6 总结验证码案例**
+## 8.6 总结验证码案例
 
 **VerifyCodeServlet：**
 

@@ -18,11 +18,11 @@ Cookie意为“甜饼”，是由W3C组织提出，最早由Netscape社区发展
 
 Cookie实际上是一小段的文本信息。客户端请求服务器，如果服务器需要记录该用户状态，就使用response向客户端浏览器颁发一个Cookie。客户端浏览器会把Cookie保存起来。当浏览器再请求该网站时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。服务器还可以根据需要修改Cookie的内容。
 
-![img](http://hi.csdn.net/attachment/201111/9/0_13208318702UfF.gif)
+![img](img/会话_01.png)
 
 查看某个网站颁发的Cookie很简单。在浏览器地址栏输入JavaScript:alert (document. cookie)就可以了（需要有网才能查看）。JavaScript脚本会弹出一个对话框显示本网站颁发的所有Cookie的内容，如图1.1所示。
 
-![图1.1  Baidu网站颁发的Cookie](http://hi.csdn.net/attachment/201111/9/0_1320831961Yumf.gif)
+![Baidu网站颁发的Cookie](img/会话_02.png)
 
 图1.1中弹出的对话框中显示的为Baidu网站的Cookie。其中第一行BAIDUID记录的就是笔者的身份helloweenvsfei，只是Baidu使用特殊的方法将Cookie信息加密了。
 
@@ -38,7 +38,7 @@ IE浏览器会在“C:\Documents and Settings\你的用户名\Cookies”文件�
 
 [Java](http://lib.csdn.net/base/java)中把Cookie封装成了javax.servlet.http.Cookie类。每个Cookie都是该Cookie类的对象。服务器通过操作Cookie类对象对客户端Cookie进行操作。通过request.getCookie()获取客户端提交的所有Cookie（以Cookie[]数组形式返回），通过response.addCookie(Cookiecookie)向客户端设置Cookie。
 
-Cookie对象使用key-value属性对的形式保存用户状态，一个Cookie对象保存一个属性对，一个request或者response同时使用多个Cookie。因为Cookie类位于包javax.servlet.http.*下面，所以JSP中不需要import该类。
+Cookie对象使用key-value属性对的形式保存用户状态，一个Cookie对象保存一个属性对，一个request或者response同时使用多个Cookie。因为Cookie类位于包 `javax.servlet.http.*` 下面，所以JSP中不需要import该类。
 
 ### 1.3 Cookie的不可跨域名性
 
@@ -178,18 +178,19 @@ Cookie是保存在浏览器端的，因此浏览器具有操作Cookie的先决�
 本例将采用另一种方案，只在登录时查询一次数据库，以后访问验证登录信息时不再查询数据库。实现方式是把账号按照一定的规则加密后，连同账号一块保存到Cookie中。下次访问时只需要判断账号的加密规则是否正确即可。本例把账号保存到名为account的Cookie中，把账号连同密钥用MD1[算法](http://lib.csdn.net/base/datastructure)加密后保存到名为ssid的Cookie中。验证时验证Cookie中的账号与密钥加密后是否与Cookie中的ssid相等。相关代码如下：
 
 代码1.8 loginCookie.jsp
-```javascript
+
+```jsp
 <% @ page language = "java"pageEncoding = "UTF-8" isErrorPage = "false" %> <% ! // JSP方法
 private static final String KEY = ":cookie@helloweenvsfei.com";
 // 密钥
-public final static String calcMD1(Stringss) 
+public final static String calcMD1(Stringss)
 {
     // MD1 加密算法
     String s = ss == null ? "" : ss;
     // 若为null返回空
     char hexDigits[] = {'0', '1', '2', '3', '4', '1', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     // 字典
-    try 
+    try
     {
         byte [] strTemp = s.getBytes();
         // 获取字节
@@ -205,7 +206,7 @@ public final static String calcMD1(Stringss)
         // 新字符串数组
         int k = 0;
         // 计数器k
-        for (int i = 0; i < j; i++) 
+        for (int i = 0; i < j; i++)
         {
             // 循环输出
             byte byte0 = md[i];
@@ -300,7 +301,7 @@ if (account != null && ssid != null) {
     login = ssid.equals(calcMD1(account + KEY));
     // 如果加密规则正确, 则视为已经登录
 }
- %> 
+ %>
  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01Transitional//EN">
        <legend><%= login ? "欢迎您回来" : "请先登录"%></legend>
         <% if(login){%>
@@ -321,12 +322,12 @@ if (account != null && ssid != null) {
                <tr>
                    <td>有效期： </td>
                    <td><inputtype="radio" name="timeout" value="-1"
-                   checked> 关闭浏览器即失效 <br/> <input type="radio" 
+                   checked> 关闭浏览器即失效 <br/> <input type="radio"
                    name="timeout" value="<%= 30 *24 * 60 * 60 %>"> 30天
-                   内有效 <br/><input type="radio" name="timeout" value= 
+                   内有效 <br/><input type="radio" name="timeout" value=
                    "<%= Integer.MAX_VALUE %>"> 永久有效 <br/> </td> </tr>
                <tr><td></td>
-                   <td><input type="submit"value=" 登  录 " class= 
+                   <td><input type="submit"value=" 登  录 " class=
                    "button"></td>
                </tr>
            </table>
@@ -335,7 +336,7 @@ if (account != null && ssid != null) {
 ```
 登录时可以选择登录信息的有效期：关闭浏览器即失效、30天内有效与永久有效。通过设置Cookie的age属性来实现，注意观察代码。运行效果如图1.7所示。
 
-![图1.7  永久登录](http://hi.csdn.net/attachment/201111/9/0_1320832572fkE6.gif)
+![永久登录](img/会话_03.png)
 
 提示：该加密机制中最重要的部分为算法与密钥。由于MD1算法的不可逆性，即使用户知道了账号与加密后的字符串，也不可能解密得到密钥。因此，只要保管好密钥与算法，该机制就是安全的。
 
@@ -354,6 +355,7 @@ Session是另一种记录客户状态的机制，不同的是Cookie保存在客�
 Session对应的类为javax.servlet.http.HttpSession类。每个来访者对应一个Session对象，所有该客户的状态信息都保存在这个Session对象里。Session对象是在客户端第一次请求服务器的时候创建的。Session也是一种key-value的属性对，通过getAttribute(Stringkey)和setAttribute(String key，Objectvalue)方法读写客户状态信息。Servlet里通过request.getSession()方法获取该客户的Session，
 
 例如：
+
 ```java
 HttpSession session = request.getSession();       // 获取Session对象
 session.setAttribute("loginTime", new Date());     // 设置Session中的属性
@@ -361,38 +363,39 @@ out.println("登录时间为：" +(Date)session.getAttribute("loginTime"));     
 ```
 request还可以使用getSession(boolean create)来获取Session。区别是如果该客户的Session不存在，request.getSession()方法会返回null，而getSession(true)会先创建Session再将Session返回。
 
-Servlet中必须使用request来编程式获取HttpSession对象，而JSP中内置了Session隐藏对象，可以直接使用。如果使用声明了<%@page session="false" %>，则Session隐藏对象不可用。下面的例子使用Session记录客户账号信息。
+Servlet中必须使用request来编程式获取HttpSession对象，而JSP中内置了Session隐藏对象，可以直接使用。如果使用声明了 `<%@page session="false" %>`，则Session隐藏对象不可用。下面的例子使用Session记录客户账号信息。
 
 源代码如下：
 
 代码1.9  session.jsp
+
 ```jsp
-<% @ page language = "java" pageEncoding = "UTF-8" %> 
+<% @ page language = "java" pageEncoding = "UTF-8" %>
 <jsp : directive.page import = "com.helloweenvsfei.sessionWeb.bean.Person"/>
-<jsp:directive.page import="java.text.SimpleDateFormat"/> 
+<jsp:directive.page import="java.text.SimpleDateFormat"/>
 <jsp : directive.page import = "java.text.DateFormat"/>
-<jsp:directive.page import="java.util.Date"/> 
+<jsp:directive.page import="java.util.Date"/>
 
 <% !DateFormat dateFormat = newSimpleDateFormat("yyyy-MM-dd");
 // 日期格式化器
  %> <% response.setCharacterEncoding("UTF-8");
 // 设置request编码
-Person[] persons = 
+Person[] persons =
 {
     // 基础数据，保存三个人的信息
-    new Person("Liu Jinghua", "password1", 34, dateFormat.parse ("1982-01-01")), new Person("Hello Kitty", 
-    "hellokitty", 23, dateFormat.parse ("1984-02-21")), new Person("Garfield", "garfield_pass", 23, dateFormat.parse ("1994-09-12")), 
+    new Person("Liu Jinghua", "password1", 34, dateFormat.parse ("1982-01-01")), new Person("Hello Kitty",
+    "hellokitty", 23, dateFormat.parse ("1984-02-21")), new Person("Garfield", "garfield_pass", 23, dateFormat.parse ("1994-09-12")),
 };
 String message = "";
 // 要显示的消息
-if (request.getMethod().equals("POST")) 
+if (request.getMethod().equals("POST"))
 {
     // 如果是POST登录       
-    for (Person person : persons) 
+    for (Person person : persons)
     {
         // 遍历基础数据，验证账号、密码
         // 如果用户名正确且密码正确
-        if (person.getName().equalsIgnoreCase(request.getParameter("username")) && person.getPassword().equals(request.getParameter("password"))) 
+        if (person.getName().equalsIgnoreCase(request.getParameter("username")) && person.getPassword().equals(request.getParameter("password")))
         {
             // 登录成功，设置将用户的信息以及登录时间保存到Session
             session.setAttribute("person", person);
@@ -414,6 +417,7 @@ if (request.getMethod().equals("POST"))
 welcome.jsp代码如下：
 
 代码1.10  welcome.jsp
+
 ```jsp
 <% @ page language = "java" pageEncoding = "UTF-8" %> < jsp : directive.pageimport = "com.helloweenvsfei.sessionWeb.bean.Person"/>
 <jsp:directive.page import="java.text.SimpleDateFormat"/> < jsp : directive.page import = "java.text.DateFormat"/>
@@ -434,7 +438,7 @@ Date loginTime = (Date) session.getAttribute("loginTime");
 ```
 程序运行效果如图1.8所示。
 
-![图1.8  使用Session记录用户信息](http://hi.csdn.net/attachment/201111/9/0_13208326838dA8.gif)
+![使用Session记录用户信息](img/会话_04.png)
 
 注意程序中Session中直接保存了Person类对象与Date类对象，使用起来要比Cookie方便。
 
@@ -503,14 +507,14 @@ Tomcat中Session的默认超时时间为20分钟。通过setMaxInactiveInterval(
 ### 2.7  URL地址重写
 
 URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写的原理是将该用户Session的id信息重写到URL地址中。服务器能够解析重写后的URL获取Session的id。这样即使客户端不支持Cookie，也可以使用Session来记录用户状态。HttpServletResponse类提供了encodeURL(Stringurl)实现URL地址重写，例如：
-```html
+```jsp
 <td>
     <a href="<%=response.encodeURL("index.jsp?c=1&wd=Java") %>">Homepage</a>
 </td>
 ```
 该方法会自动判断客户端是否支持Cookie。如果客户端支持Cookie，会将URL原封不动地输出来。如果客户端不支持Cookie，则会将用户Session的id重写到URL中。重写后的输出可能是这样的：
 
-```html
+```jsp
 <td>
     <ahref="index.jsp;jsessionid=0CCD096E7F8D97B0BE608AFDC3E1931E?c=1&wd=Java">Homepage</a>
 </td>
@@ -518,7 +522,7 @@ URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写�
 即在文件名的后面，在URL参数的前面添加了字符串“;jsessionid=XXX”。其中XXX为Session的id。分析一下可以知道，增添的jsessionid字符串既不会影响请求的文件名，也不会影响提交的地址栏参数。用户单击这个链接的时候会把Session的id通过URL提交到服务器上，服务器通过解析URL地址获得Session的id。
 
 如果是页面重定向（Redirection），URL地址重写可以这样写：
-```
+```jsp
 <%
     if(“administrator”.equals(userName))
     {
@@ -540,7 +544,7 @@ URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写�
 打开项目sessionWeb的WebRoot目录下的META-INF文件夹（跟WEB-INF文件夹同级，如果没有则创建），打开context.xml（如果没有则创建），编辑内容如下：
 
 代码1.11 /META-INF/context.xml
-```
+```xml
 <?xml version='1.0' encoding='UTF-8'?>
 
 <Context path="/sessionWeb"cookies="false">
@@ -551,7 +555,7 @@ URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写�
 
 代码1.12  context.xml
 
-```
+```xml
 <!-- The contents of this file will be loaded for eachweb application -->
 
 <Context cookies="false">
