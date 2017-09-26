@@ -42,7 +42,7 @@ ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳
 
 - W3C、ECMA 的不懈努力下，随着Microsoft 的 IE浏览器的不断改进，一个遵奉标准、笃行规范的 Web 新世界展现在世人面前
 
-![JavaScript](http://img.blog.csdn.net/20161029121340002)
+![JavaScript](img/js_01.png)
 
 # 4. JavaScript语言组成
 
@@ -52,7 +52,7 @@ ECMA-262 的开发始于 1996 年，在 1997 年 7 月，ECMA 会员大会采纳
 - 文档对象模型（DOM：Document Object Model）
 - 浏览器对象模型（BOM：Broswer Object Model）
 
-![JavaScript](http://img.blog.csdn.net/20161029121452424)
+![JavaScript](img/js_02.png)
 
 # 5. js和html的结合方式
 
@@ -293,47 +293,47 @@ var 函数名 = function(参数列表){
 
 Array对象属性
 
-![JavaScript](http://img.blog.csdn.net/20161029093707201)
+![JavaScript](img/js_03.png)
 
 Array对象方法
 
-![JavaScript](http://img.blog.csdn.net/20161029093721498)
+![JavaScript](img/js_04.png)
 
 ### Boolean
 
 boolean对象属性
 
-![JavaScript](http://img.blog.csdn.net/20161029094018665)
+![JavaScript](img/js_05.png)
 
 boolean对象方法
 
-![JavaScript](http://img.blog.csdn.net/20161029094030672)
+![JavaScript](img/js_06.png)
 
 ### Date
 
-![JavaScript](http://img.blog.csdn.net/20161029234312145)
+![JavaScript](img/js_07.png)
 
-![JavaScript](http://img.blog.csdn.net/20161029234323713)
+![JavaScript](img/js_08.png)
 
 ### Math
 
-![JavaScript](http://img.blog.csdn.net/20161029094955660)
+![JavaScript](img/js_09.png)
 
 ### String
 
-![JavaScript](http://img.blog.csdn.net/20161029234623553)
+![JavaScript](img/js_10.png)
 
-![JavaScript](http://img.blog.csdn.net/20161029234636850)
+![JavaScript](img/js_11.png)
 
 ### Number
 
 Number对象属性
 
-![JavaScript](http://img.blog.csdn.net/20161029095106868)
+![JavaScript](img/js_12.png)
 
 Number对象方法
 
-![JavaScript](http://img.blog.csdn.net/20161029095116410)
+![JavaScript](img/js_13.png)
 
 ### js的全局函数
 
@@ -487,7 +487,7 @@ Browser Object Model(浏览器对象模型)
 # 10. Window对象
 Window 对象是 JavaScript 层级中的顶层对象，Window 对象代表一个浏览器窗口或一个框架
 
-![JavaScript](http://img.blog.csdn.net/20161103011909191)
+![JavaScript](img/js_14.png)
 
 ## Window对象常用的方法
 
@@ -556,7 +556,7 @@ DOM：将文档解析成内存中的树状结构。通过树状结构对文档�
 
 ## 11.2 DOM结构模型
 
-![JavaScript](http://img.blog.csdn.net/20161105233044244)
+![JavaScript](img/js_15.png)
 
 ## 11.3 DOM三个级别和DHTML介绍
 
@@ -580,11 +580,11 @@ DOM：将文档解析成内存中的树状结构。通过树状结构对文档�
 
 ## 11.4 BOM 和HTML DOM关系图
 
-![JavaScript](http://img.blog.csdn.net/20161029110818210)
+![JavaScript](img/js_16.png)
 
 ## 11.5 Node接口属性和方法
 
-![JavaScript](http://img.blog.csdn.net/20161111162222665)
+![JavaScript](img/js_17.png)
 
 ## 11.6 DOM中的Document对象
 
@@ -873,7 +873,7 @@ HTML 4.0 的新特性之一是有能力使 HTML 事件触发浏览器中的动�
 
 事件通常与函数配合使用，这样就可以通过发生的事件来驱动函数执行。
 
-![JavaScript](http://img.blog.csdn.net/20161103011451408)
+![JavaScript](img/js_18.png)
 
 | 事件          | 描述      |
 | :---------- | :------ |

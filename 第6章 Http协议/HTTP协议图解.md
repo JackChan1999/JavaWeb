@@ -7,17 +7,17 @@
 
 多了个S，其实S表示TLS、SSL。在这里不做解释，因此HTTP的技术基石如图所示：
 
-![绘图1](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXgRvZS54blqu03ZPH5tc2qubN8ke0cF7L8PHD9Bn8uouLDic18A2Az0g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![绘图1](img/HTTP协议图解_01.webp)
 
 那HTTP协议呢？HTTP协议（HyperText Transfer Protocol）,即超文本传输协议是用于服务器传输到客户端浏览器的传输协议。Web上，服务器和客户端利用HTTP协议进行通信会话。有OOP思想的得出结论：其会话的结构是一个简单的请求/响应序列，即浏览器发出请求和服务器做出响应。
 
-![](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXibibOXHqhtSSnsNnUfticwD2sfkVTvrmleiawINBtl3vibQIzEBEpXrBJVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](img/HTTP协议图解_02.webp)
 
 ## 深入理解技术基石和工作流程
 
 既然HTTP是基于传输层的TCP协议，而TCP协议是**面向连接**的**端到端**的协议。因此，使用HTTP协议传输前，首先建立TCP连接，就是因此在谈的TCP链接过程的“三次握手”。如图
 
-![](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXqZ4czSMNevz0KF72U2Gzib1A0Tfa5TticJ1WEkMLibbNZiciadwXBVNfYicQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](img/HTTP协议图解_03.webp)
 
 在Web上，HTTP协议使用TCP协议而不是UDP协议的原因在于一个网页必须传送很多数据，而且保证其完整性。TCP协议提供传输控制，按顺序组织数据和错误纠正的一系列功能。
 
@@ -33,7 +33,7 @@
 
 建立连接，其实建立在TCP连接基础之上。图解核心工作过程（即省去连接过程）如下：
 
-![](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXEqUg5KTLWramrZNNfAr1QoaobAGzmFzhLfJZu7lI5IZW8Rr9CD3x5A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](img/HTTP协议图解_04.webp)
 
 ## 详解工作过程的HTTP报文
 
@@ -55,7 +55,7 @@ HTTP报文由从客户机到服务器的请求和从服务器到客户机的响�
 
 如图，请求我博客一篇文章时发送的报文内容：
 
-![image](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXam3P4Py8Fhm9gRYZ1NfziaYGRo6doMugzpCvJKf2wyhrUvNFJjhHDdA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![image](img/HTTP协议图解_05.webp)
 
 对于其中请求报文详解:
 
@@ -97,7 +97,7 @@ HTTP报文由从客户机到服务器的请求和从服务器到客户机的响�
 
 如图，就是这篇博客响应的内容:
 
-![](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXibXibicGIich8E5N5M2WscYErHKcsa1jkL8o3w5F93FDrC2PEbhRwwbdag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](img/HTTP协议图解_06.webp)
 
 对其中响应报文详解：
 
@@ -178,11 +178,11 @@ HTTP报文由从客户机到服务器的请求和从服务器到客户机的响�
 
 比如304，在浏览器第一次打开百度时，如图所示:
 
-![](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXia4quck3m0RwHf9xbSVN8iac0CECTer3A191bicQpI6dQ27TkAbzd0g5A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](img/HTTP协议图解_07.webp)
 
 刷新一下：
 
-![](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXhFUqBWQ70qlUN5vDVxsOiceicZPZkvBlxMaxpCia5djib1hf4iatnicAhRIQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](img/HTTP协议图解_08.webp)
 
 这上面的304就证明了
 
@@ -194,7 +194,7 @@ HTTP报文由从客户机到服务器的请求和从服务器到客户机的响�
 
 JavaEE的人会知道Servlet规范。其中Web应用容器都实现了HTTP协议中的对象，即请求和响应对象。比如 javax.servlet.http.HttpServletResponse 对象中肯定有对状态码描述，如图
 
-![image](http://mmbiz.qpic.cn/mmbiz_png/3aGGuJWRuJeeviaLFf0Krhc9Ec9wjp1FXFXRvvtGlgoBmQVt4Rc9NeCnBYm2AcEXlep5B9cUG9WYzLVicVCTBTBQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![image](img/HTTP协议图解_09.webp)
 
 至于如何使用它们，坐等系列文章吧。
 
