@@ -43,7 +43,7 @@ DOM和SAX只是定义了一些接口，以及某些接口的缺省实现，而�
 
 java -Xms20m -Xmx100m MyClass
 
-![设置Java最大内存](http://img.blog.csdn.net/20161008232212197)
+![设置Java最大内存](img/xml_01.png)
 
 ## 2.3 SAX解析原理
 
@@ -55,7 +55,7 @@ DOM会一行一行的读取XML文档，最终会把XML文档所有数据存放�
 
 缺点：当解析到一个元素时，上一个元素的信息已经丢弃，也就是说没有保存元素与元素之间的结构关系，这也大大限制了SAX的使用范围。如果只是想查询XML文档中的数据，那么使用SAX是最佳选择！
 
-![sax](http://img.blog.csdn.net/20161016085213108)
+![sax](img/xml_02.png)
 
 ## 2.4 SAX解析过程
 
@@ -87,7 +87,7 @@ JAXP本身不是解析器（不是Xerces），也不是解析方式（DOM或SAX�
 
 当用户使用JAXP提供的方式来解析XML文档时，用户无需编写与特定解析器相关的代码，而是由JAXP通过特定的方式去查找解析器，来解析XML文档。
 
-![JAXP](http://img.blog.csdn.net/20161008232634305)
+![JAXP](img/xml_03.png)
 
 ## 4.2 JAXP对DOM的支持
 
@@ -254,7 +254,7 @@ doc.setXmlStandalone(true);
 
 等等。无论是哪种XML文档组成部分，都是节点（Node）的子接口。
 
-![DOM](http://img.blog.csdn.net/20161009000722318)
+![DOM](img/xml_04.png)
 
 ## 7.3 Node方法介绍
 
@@ -322,7 +322,7 @@ Node获取属性集合方法，只有Element可以使用：
 
 NamedNodeMap表示属性的集合，方法如下：
 
-![dom](http://img.blog.csdn.net/20161009121713603)
+![dom](img/xml_05.png)
 
 Node的判断方法：
 
@@ -332,7 +332,7 @@ Node的判断方法：
 ## 7.4 Docment方法介绍
 创建节点方法：
 
-![Docment](http://img.blog.csdn.net/20161009122322502)
+![Docment](img/xml_06.png)
 
 获取子元素方法：
 
@@ -631,7 +631,7 @@ parser.parse("src/students.xml", new MyContentHandler());
 
 org.xml.sax.ContentHandler中的方法：
 
-![ContentHandler](http://img.blog.csdn.net/20161009102319983)
+![ContentHandler](img/xml_07.png)
 
 org.xml.sax.helpers.DefualtHandler对ContentHandler做了空实现，所以我们可以自定义内容处理器时可以继承DefaultHandler类。
 
@@ -757,7 +757,7 @@ DOM4J使用JAXP来查找SAX解析器，然后把XML文档解析为org.dom4j.Docu
 
 Attribute是属性节点，CharacterData是文本节点，文本节点有三个子接口，分别是CDATA、Text、Comment。
 
-![DOM4J](http://img.blog.csdn.net/20161009000821304)
+![DOM4J](img/xml_08.png)
 
 ## 9.3 DOM4J获取Document对象
 
@@ -913,11 +913,11 @@ Document doc = DocumentHelper.createDocument();
 ## 10.7 其它方法介绍
 Node接口
 
-![Node](http://img.blog.csdn.net/20161009144859638)
+![Node](img/xml_09.png)
 
 Branch接口，实现了Node接口
 
-![Branch](http://img.blog.csdn.net/20161009094119293)
+![Branch](img/xml_10.png)
 
 Document
 
@@ -930,7 +930,7 @@ Document
 
 Element方法：
 
-![Element](http://img.blog.csdn.net/20161009154118951)
+![Element](img/xml_11.png)
 
 DocumentHelper静态方法介绍：
 
@@ -1197,31 +1197,31 @@ XPath即为XML路径语言（XML Path Language），它是一种用来确定XML�
 
 - 第一种形式，/AAA/DDD/BBB： 表示一层一层的，AAA下面 DDD下面的BBB
 
-![XPath](http://img.blog.csdn.net/20161103153437612)
+![XPath](img/xml_12.png)
 
 - 第二种形式，//BBB： 表示和这个名称相同，表示只要名称是BBB，都得到
 
-![XPath](http://img.blog.csdn.net/20161103153358395)
+![XPath](img/xml_13.png)
 
 - 第三种形式，/*: 所有元素
 
-![XPath](http://img.blog.csdn.net/20161103153319347)
+![XPath](img/xml_14.png)
 
 - 第四种形式，BBB[1]：　表示第一个BBB元素
 
-![XPath](http://img.blog.csdn.net/20161103153051798)
+![XPath](img/xml_15.png)
 
 BBB[last()]：表示最后一个BBB元素
 
-![XPath](http://img.blog.csdn.net/20161103153218580)
+![XPath](img/xml_16.png)
 
 - 第五种形式，//BBB[@id]： 表示只要BBB元素上面有id属性，都得到
 
-![XPath](http://img.blog.csdn.net/20161103153005204)
+![XPath](img/xml_17.png)
 
 - 第六种形式，//BBB[@id='b1'] 表示元素名称是BBB,在BBB上面有id属性，并且id的属性值是b1
 
-![XPath](http://img.blog.csdn.net/20161103152916155)
+![XPath](img/xml_18.png)
 
 ## 12.2 DOM4J对XPath的支持
 
